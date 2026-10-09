@@ -1,0 +1,27 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Map of Australia",
+  "width": 650,
+  "height": 450,
+  "data": {
+    "url": "data/australia.topojson",
+    "format": {
+      "type": "topojson",
+      "feature": "shapes"
+    }
+  },
+  "projection": {
+    "type": "mercator"
+  },
+  "mark": {
+    "type": "geoshape",
+    "fill": "#d6e7f2",
+    "stroke": "#ffffff",
+    "strokeWidth": 1
+  },
+  "config": {
+    "view": {
+      "stroke": null
+    }
+  }
+}

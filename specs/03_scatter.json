@@ -1,0 +1,81 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Domestic vs international visitor nights",
+    "subtitle": "State/territory visitation, year ending June 2026"
+  },
+  "width": 570,
+  "height": 410,
+  "data": {
+    "url": "data/tourism_by_state.csv"
+  },
+  "encoding": {
+    "x": {
+      "field": "DomesticNightsM",
+      "type": "quantitative",
+      "title": "Domestic visitor nights (millions)",
+      "scale": {
+        "zero": true
+      }
+    },
+    "y": {
+      "field": "InternationalNightsM",
+      "type": "quantitative",
+      "title": "International visitor nights (millions)",
+      "scale": {
+        "zero": true
+      }
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "circle",
+        "size": 170,
+        "color": "#087e8b",
+        "opacity": 0.8
+      },
+      "encoding": {
+        "tooltip": [
+          {
+            "field": "State",
+            "type": "nominal"
+          },
+          {
+            "field": "DomesticNightsM",
+            "type": "quantitative",
+            "title": "Domestic nights (M)",
+            "format": ".1f"
+          },
+          {
+            "field": "InternationalNightsM",
+            "type": "quantitative",
+            "title": "International nights (M)",
+            "format": ".1f"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 9,
+        "dy": -6,
+        "fontSize": 11,
+        "color": "#223344"
+      },
+      "encoding": {
+        "text": {
+          "field": "StateCode",
+          "type": "nominal"
+        }
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    }
+  }
+}

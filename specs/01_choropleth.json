@@ -1,0 +1,69 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Where do Australians travel overnight?",
+    "subtitle": "Domestic visitor nights by state, year ending June 2026"
+  },
+  "width": 620,
+  "height": 440,
+  "data": {
+    "url": "data/australia.topojson",
+    "format": {
+      "type": "topojson",
+      "feature": "shapes"
+    }
+  },
+  "transform": [
+    {
+      "filter": "datum.properties.STE_NAME21 != 'Other Territories'"
+    },
+    {
+      "lookup": "properties.STE_NAME21",
+      "from": {
+        "data": {
+          "url": "data/tourism_by_state.csv"
+        },
+        "key": "State",
+        "fields": [
+          "DomesticNightsM"
+        ]
+      }
+    }
+  ],
+  "projection": {
+    "type": "mercator"
+  },
+  "mark": {
+    "type": "geoshape",
+    "stroke": "white",
+    "strokeWidth": 0.8
+  },
+  "encoding": {
+    "color": {
+      "field": "DomesticNightsM",
+      "type": "quantitative",
+      "scale": {
+        "scheme": "blues"
+      },
+      "title": "Visitor nights (millions)"
+    },
+    "tooltip": [
+      {
+        "field": "properties.STE_NAME21",
+        "type": "nominal",
+        "title": "State"
+      },
+      {
+        "field": "DomesticNightsM",
+        "type": "quantitative",
+        "title": "Domestic nights (M)",
+        "format": ".1f"
+      }
+    ]
+  },
+  "config": {
+    "view": {
+      "stroke": null
+    }
+  }
+}

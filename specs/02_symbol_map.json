@@ -1,0 +1,84 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Where is accommodation spending concentrated?",
+    "subtitle": "Tourism consumption of accommodation services, financial year 2024–25"
+  },
+  "width": 620,
+  "height": 440,
+  "projection": {
+    "type": "mercator"
+  },
+  "layer": [
+    {
+      "data": {
+        "url": "data/australia.topojson",
+        "format": {
+          "type": "topojson",
+          "feature": "shapes"
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.properties.STE_NAME21 != 'Other Territories'"
+        }
+      ],
+      "mark": {
+        "type": "geoshape",
+        "fill": "#e7edf0",
+        "stroke": "#ffffff",
+        "strokeWidth": 0.8
+      }
+    },
+    {
+      "data": {
+        "url": "data/accommodation_spending.csv"
+      },
+      "mark": {
+        "type": "circle",
+        "fill": "#087e8b",
+        "fillOpacity": 0.65,
+        "stroke": "#ffffff",
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "longitude": {
+          "field": "longitude",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "latitude",
+          "type": "quantitative"
+        },
+        "size": {
+          "field": "AccommodationSpendB",
+          "type": "quantitative",
+          "scale": {
+            "range": [
+              140,
+              3300
+            ]
+          },
+          "title": "Accommodation spend (A$B)"
+        },
+        "tooltip": [
+          {
+            "field": "State",
+            "type": "nominal"
+          },
+          {
+            "field": "AccommodationSpendB",
+            "type": "quantitative",
+            "title": "Accommodation spend (A$B)",
+            "format": ".2f"
+          }
+        ]
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    }
+  }
+}
