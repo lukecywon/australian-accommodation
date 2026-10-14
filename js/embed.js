@@ -17,3 +17,8 @@ vegaEmbed(
     "specs/07_butterfly.json",
     { actions: false }
   ).catch(console.error);
+vegaEmbed(
+    "#mosaic-chart",
+    "specs/08_mosaic.json",
+    { actions: false }
+    ).catch(console.error);
