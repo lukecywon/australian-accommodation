@@ -42,3 +42,13 @@ vegaEmbed(
     "specs/12_expenditure_waterfall.json",
     { actions: false }
   ).catch(console.error);
+ vegaEmbed(
+    "#business-trends-chart",
+    "specs/13_abs_tra_indexed_lines.json",
+    { actions: false }
+  ).catch(console.error);
+ vegaEmbed(
+  "#business-trends-chart",
+  "specs/13_abs_tra_indexed_lines_2018_2025.json",
+  { actions: false }
+).catch(console.error);

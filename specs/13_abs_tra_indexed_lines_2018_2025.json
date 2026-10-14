@@ -1,0 +1,175 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Tourism Spending vs Hospitality Businesses",
+    "subtitle": "Australian financial years 2018–19 to 2024–25 | 2018–19 = 100"
+  },
+  "width": 660,
+  "height": 355,
+  "data": {
+    "url": "data/overnight_spending_hospitality_businesses_2018_2025.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "YearStart": "number",
+        "OvernightConsumptionM": "number",
+        "HospitalityBusinesses": "number"
+      }
+    }
+  },
+  "transform": [
+    {
+      "window": [
+        {
+          "op": "first_value",
+          "field": "OvernightConsumptionM",
+          "as": "BaseSpendingM"
+        },
+        {
+          "op": "first_value",
+          "field": "HospitalityBusinesses",
+          "as": "BaseBusinesses"
+        }
+      ],
+      "sort": [
+        {
+          "field": "YearStart",
+          "order": "ascending"
+        }
+      ],
+      "frame": [
+        null,
+        null
+      ]
+    },
+    {
+      "calculate": "100 * datum.OvernightConsumptionM / datum.BaseSpendingM",
+      "as": "SpendingIndex"
+    },
+    {
+      "calculate": "100 * datum.HospitalityBusinesses / datum.BaseBusinesses",
+      "as": "BusinessIndex"
+    },
+    {
+      "fold": [
+        "SpendingIndex",
+        "BusinessIndex"
+      ],
+      "as": [
+        "MetricKey",
+        "Index"
+      ]
+    },
+    {
+      "calculate": "datum.MetricKey === 'SpendingIndex' ? 'Domestic overnight tourism spending (TRA)' : 'Accommodation and Food Services businesses (ABS)'",
+      "as": "Series"
+    }
+  ],
+  "mark": {
+    "type": "line",
+    "point": {
+      "filled": true,
+      "size": 110
+    },
+    "strokeWidth": 3
+  },
+  "encoding": {
+    "x": {
+      "field": "FinancialYear",
+      "type": "ordinal",
+      "sort": [
+        "2018-19",
+        "2019-20",
+        "2020-21",
+        "2021-22",
+        "2022-23",
+        "2023-24",
+        "2024-25"
+      ],
+      "axis": {
+        "title": "Financial year",
+        "labelAngle": 0,
+        "labelFontSize": 10
+      }
+    },
+    "y": {
+      "field": "Index",
+      "type": "quantitative",
+      "scale": {
+        "domain": [
+          75,
+          150
+        ],
+        "nice": false
+      },
+      "axis": {
+        "title": "Index (2018–19 = 100)",
+        "values": [
+          80,
+          90,
+          100,
+          110,
+          120,
+          130,
+          140,
+          150
+        ],
+        "grid": true
+      }
+    },
+    "color": {
+      "field": "Series",
+      "type": "nominal",
+      "scale": {
+        "domain": [
+          "Domestic overnight tourism spending (TRA)",
+          "Accommodation and Food Services businesses (ABS)"
+        ],
+        "range": [
+          "#1976a3",
+          "#d28b37"
+        ]
+      },
+      "legend": {
+        "title": null,
+        "orient": "bottom",
+        "labelLimit": 400
+      }
+    },
+    "tooltip": [
+      {
+        "field": "FinancialYear",
+        "type": "nominal",
+        "title": "Financial year"
+      },
+      {
+        "field": "Series",
+        "type": "nominal",
+        "title": "Measure"
+      },
+      {
+        "field": "Index",
+        "type": "quantitative",
+        "title": "Index (2018–19 = 100)",
+        "format": ".2f"
+      },
+      {
+        "field": "OvernightConsumptionM",
+        "type": "quantitative",
+        "title": "TRA overnight tourism spending (A$M)",
+        "format": ",.0f"
+      },
+      {
+        "field": "HospitalityBusinesses",
+        "type": "quantitative",
+        "title": "ABS hospitality businesses (number)",
+        "format": ",.0f"
+      }
+    ]
+  },
+  "config": {
+    "view": {
+      "stroke": null
+    }
+  }
+}

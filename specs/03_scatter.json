@@ -7,7 +7,7 @@
   "width": 570,
   "height": 410,
   "data": {
-    "url": "data/tourism_by_state.csv"
+    "url": "data/tourism_by_state_with_population.csv"
   },
   "encoding": {
     "x": {

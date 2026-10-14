@@ -1,8 +1,8 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
-    "text": "Where do Australians travel overnight?",
-    "subtitle": "Domestic visitor nights by state, year ending June 2026"
+    "text": "Where Is Domestic Tourism Most Intense Relative to Population?",
+    "subtitle": "Domestic visitor nights by state releative to population, year ending June 2026"
   },
   "width": 620,
   "height": 440,
@@ -21,13 +21,18 @@
       "lookup": "properties.STE_NAME21",
       "from": {
         "data": {
-          "url": "data/tourism_by_state.csv"
+          "url": "data/tourism_by_state_with_population.csv"
         },
         "key": "State",
         "fields": [
-          "DomesticNightsM"
+          "DomesticNightsM",
+          "Population"
         ]
       }
+    },
+    {
+      "calculate": "datum.Population > 0 ? datum.DomesticNightsM * 1000000 / datum.Population : null",
+      "as": "NightsPerResident"
     }
   ],
   "projection": {
@@ -39,13 +44,13 @@
     "strokeWidth": 0.8
   },
   "encoding": {
-    "color": {
-      "field": "DomesticNightsM",
-      "type": "quantitative",
-      "scale": {
-        "scheme": "blues"
-      },
-      "title": "Visitor nights (millions)"
+      "color": {
+        "field": "NightsPerResident",
+        "type": "quantitative",
+        "scale": {
+          "scheme": "blues"
+        },
+        "title": "Visitor nights per resident"
     },
     "tooltip": [
       {
