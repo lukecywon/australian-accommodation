@@ -1,0 +1,66 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Domestic Visitor Nights by Travel Purpose",
+  "width": 650,
+  "height": 350,
+
+  "data": {
+    "url": "data/purpose_by_quarter.csv"
+  },
+
+  "mark": {
+    "type": "line",
+    "point": true,
+    "strokeWidth": 2.5
+  },
+
+  "encoding": {
+    "x": {
+      "field": "Quarter",
+      "type": "ordinal",
+      "sort": [
+        "Jun 2025",
+        "Sep 2025",
+        "Dec 2025",
+        "Mar 2026",
+        "Jun 2026"
+      ],
+      "title": "Quarter",
+      "axis": {"labelAngle": 0}
+    },
+
+    "y": {
+      "field": "VisitorNightsM",
+      "type": "quantitative",
+      "title": "Visitor nights (millions)",
+      "scale": {"zero": true}
+    },
+
+    "color": {
+      "field": "Purpose",
+      "type": "nominal",
+      "title": "Purpose of travel"
+    },
+
+    "tooltip": [
+      {
+        "field": "Purpose",
+        "type": "nominal"
+      },
+      {
+        "field": "Quarter",
+        "type": "ordinal"
+      },
+      {
+        "field": "VisitorNightsM",
+        "type": "quantitative",
+        "title": "Visitor nights (millions)",
+        "format": ".2f"
+      }
+    ]
+  },
+
+  "config": {
+    "view": {"stroke": null}
+  }
+}
