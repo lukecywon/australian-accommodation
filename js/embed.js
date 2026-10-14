@@ -7,3 +7,13 @@ vegaEmbed(
     "specs/05_purpose_lines.json",
     { actions: false }
   ).catch(console.error);
+vegaEmbed(
+    "#chart6",
+    "specs/06_treemap.json",
+    { actions: false }
+  ).catch(console.error);
+vegaEmbed(
+    "#butterfly-chart",
+    "specs/07_butterfly.json",
+    { actions: false }
+  ).catch(console.error);

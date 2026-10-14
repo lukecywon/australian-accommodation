@@ -1,0 +1,73 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "International Visitor Nights by Accommodation Type (2026)",
+  "width": 700,
+  "height": 440,
+
+  "data": {
+    "url": "data/treemap_rectangles.csv"
+  },
+
+  "mark": {
+    "type": "rect",
+    "stroke": "white",
+    "strokeWidth": 2
+  },
+
+  "encoding": {
+    "x": {
+      "field": "x0",
+      "type": "quantitative",
+      "scale": {"domain": [0, 100]},
+      "axis": null
+    },
+
+    "x2": {
+      "field": "x1"
+    },
+
+    "y": {
+      "field": "y0",
+      "type": "quantitative",
+      "scale": {
+        "domain": [0, 100],
+        "reverse": true
+      },
+      "axis": null
+    },
+
+    "y2": {
+      "field": "y1"
+    },
+
+    "color": {
+      "field": "AccommodationType",
+      "type": "nominal",
+      "title": "Accommodation type"
+    },
+
+    "tooltip": [
+      {
+        "field": "AccommodationType",
+        "type": "nominal",
+        "title": "Accommodation"
+      },
+      {
+        "field": "Nights2026M",
+        "type": "quantitative",
+        "title": "Visitor nights (millions)",
+        "format": ".2f"
+      },
+      {
+        "field": "SharePct",
+        "type": "quantitative",
+        "title": "Share (%)",
+        "format": ".1f"
+      }
+    ]
+  },
+
+  "config": {
+    "view": {"stroke": null}
+  }
+}
