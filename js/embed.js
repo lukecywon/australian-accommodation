@@ -27,3 +27,8 @@ vegaEmbed(
   "specs/09_hotel_dot_map.json",
   { actions: false }
 ).catch(console.error);
+vegaEmbed(
+    "#dumbbell-chart",
+    "specs/10_dumbbell.json",
+    { actions: false }
+  ).catch(console.error);
