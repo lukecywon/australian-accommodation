@@ -1,0 +1,99 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+
+  "title": {
+    "text": "Domestic Accommodation Mix by State",
+    "subtitle": "Selected accommodation categories, 2024"
+  },
+
+  "width": 700,
+  "height": 400,
+
+  "data": {
+    "url": "data/mosaic_rectangles.csv"
+  },
+
+  "mark": {
+    "type": "rect",
+    "stroke": "white",
+    "strokeWidth": 2
+  },
+
+  "encoding": {
+    "x": {
+      "field": "x0",
+      "type": "quantitative",
+      "scale": {
+        "domain": [0, 100]
+      },
+      "axis": null
+    },
+
+    "x2": {
+      "field": "x1"
+    },
+
+    "y": {
+      "field": "y0",
+      "type": "quantitative",
+      "scale": {
+        "domain": [0, 100],
+        "reverse": true
+      },
+      "axis": {
+        "title": "Share within selected categories (%)"
+      }
+    },
+
+    "y2": {
+      "field": "y1"
+    },
+
+    "color": {
+      "field": "AccommodationType",
+      "type": "nominal",
+      "scale": {
+        "domain": [
+          "Hotels and similar",
+          "Rented accommodation",
+          "Friends or relatives property"
+        ],
+        "range": [
+          "#4477AA",
+          "#EEAA55",
+          "#66AA99"
+        ]
+      },
+      "title": "Accommodation type"
+    },
+
+    "tooltip": [
+      {
+        "field": "State",
+        "type": "nominal"
+      },
+      {
+        "field": "AccommodationType",
+        "type": "nominal"
+      },
+      {
+        "field": "NightsM",
+        "type": "quantitative",
+        "title": "Visitor nights (millions)",
+        "format": ".2f"
+      },
+      {
+        "field": "StateSelectedTotalM",
+        "type": "quantitative",
+        "title": "Selected category total (M)",
+        "format": ".2f"
+      }
+    ]
+  },
+
+  "config": {
+    "view": {
+      "stroke": null
+    }
+  }
+}
