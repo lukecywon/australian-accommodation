@@ -1,0 +1,133 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Quarterly variation in domestic visitor nights",
+    "subtitle": "Deviation from each state\u2019s five-quarter average \u2022 June 2025\u2013June 2026",
+    "anchor": "start",
+    "fontSize": 17,
+    "subtitleFontSize": 11
+  },
+  "width": {
+    "step": 87
+  },
+  "height": {
+    "step": 38
+  },
+  "data": {
+    "url": "data/quarterly_visitor_nights.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "VisitorNights000": "number"
+      }
+    }
+  },
+  "transform": [
+    {
+      "joinaggregate": [
+        {
+          "op": "mean",
+          "field": "VisitorNights000",
+          "as": "StateAverage"
+        }
+      ],
+      "groupby": [
+        "State"
+      ]
+    },
+    {
+      "calculate": "(datum.VisitorNights000 / datum.StateAverage - 1) * 100",
+      "as": "DeviationPct"
+    }
+  ],
+  "mark": {
+    "type": "rect",
+    "stroke": "white",
+    "strokeWidth": 2
+  },
+  "encoding": {
+    "x": {
+      "field": "Quarter",
+      "type": "ordinal",
+      "sort": [
+        "Jun 2025",
+        "Sep 2025",
+        "Dec 2025",
+        "Mar 2026",
+        "Jun 2026"
+      ],
+      "title": null,
+      "axis": {
+        "labelAngle": 0,
+        "labelPadding": 9
+      }
+    },
+    "y": {
+      "field": "State",
+      "type": "nominal",
+      "sort": [
+        "New South Wales",
+        "Victoria",
+        "Queensland",
+        "South Australia",
+        "Western Australia",
+        "Tasmania",
+        "Northern Territory",
+        "Australian Capital Territory"
+      ],
+      "title": null,
+      "axis": {
+        "labelLimit": 215,
+        "labelPadding": 8
+      }
+    },
+    "color": {
+      "field": "DeviationPct",
+      "type": "quantitative",
+      "title": "Vs. state average (%)",
+      "scale": {
+        "scheme": "redblue",
+        "domainMid": 0
+      },
+      "legend": {
+        "orient": "bottom",
+        "direction": "horizontal",
+        "gradientLength": 260
+      }
+    },
+    "tooltip": [
+      {
+        "field": "State",
+        "title": "State"
+      },
+      {
+        "field": "Quarter",
+        "title": "Quarter"
+      },
+      {
+        "field": "VisitorNights000",
+        "type": "quantitative",
+        "title": "Visitor nights (thousands)",
+        "format": ",.0f"
+      },
+      {
+        "field": "DeviationPct",
+        "type": "quantitative",
+        "title": "Vs. state average (%)",
+        "format": "+.1f"
+      }
+    ]
+  },
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "labelFontSize": 11
+    },
+    "legend": {
+      "titleFontSize": 11,
+      "labelFontSize": 11
+    }
+  }
+}
