@@ -1,0 +1,87 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+
+  "title": {
+    "text": "Where Do Domestic Visitors Stay?",
+    "subtitle": "Capital cities vs regional Australia, 2024"
+  },
+
+  "width": 640,
+  "height": 270,
+
+  "data": {
+    "url": "data/accommodation_capital_regional.csv"
+  },
+
+  "transform": [
+    {
+      "calculate": "datum.Area === 'Capital' ? -datum.NightsM : datum.NightsM",
+      "as": "SignedNights"
+    }
+  ],
+
+  "mark": {
+    "type": "bar",
+    "cornerRadiusEnd": 3
+  },
+
+  "encoding": {
+    "x": {
+      "field": "SignedNights",
+      "type": "quantitative",
+      "scale": {
+        "domain": [-85, 85]
+      },
+      "axis": {
+        "title": "Visitor nights (millions)",
+        "values": [-80, -60, -40, -20, 0, 20, 40, 60, 80],
+        "labelExpr": "abs(datum.value)"
+      }
+    },
+
+    "y": {
+      "field": "AccommodationType",
+      "type": "nominal",
+      "sort": [
+        "Hotels and similar",
+        "Rented accommodation",
+        "Caravan_commercial camping",
+        "Friends or relatives property"
+      ],
+      "title": null
+    },
+
+    "color": {
+      "field": "Area",
+      "type": "nominal",
+      "scale": {
+        "domain": ["Capital", "Regional"],
+        "range": ["#3478ae", "#dc974a"]
+      },
+      "title": "Area"
+    },
+
+    "tooltip": [
+      {
+        "field": "AccommodationType",
+        "title": "Accommodation"
+      },
+      {
+        "field": "Area",
+        "title": "Area"
+      },
+      {
+        "field": "NightsM",
+        "type": "quantitative",
+        "title": "Visitor nights (millions)",
+        "format": ".2f"
+      }
+    ]
+  },
+
+  "config": {
+    "view": {
+      "stroke": null
+    }
+  }
+}
