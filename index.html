@@ -1,126 +1,672 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width,initial-scale=1"><title>FIT3179 – Section 1</title>
-        <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
-        <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
-        <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
-        <link rel="stylesheet" href="css/style.css">
-    </head>
-<body>
+
+  <!-- Page metadata and chart libraries -->
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta
+      name="description"
+      content="Explore Australia's tourism accommodation through 13 charts on visitor nights, travel patterns, hotel locations and economic impact."
+    >
+    <title>Where Australia Stays · FIT3179</title>
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="css/style.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+    <script defer src="js/embed.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#geography">Skip to the data story</a>
+
+    <!-- Header banner -->
+    <header class="hero">
+      <div class="hero-inner">
+        <h1>Where Australia<br>Stays</h1>
+        <p class="hero-subheading">
+          From visitor nights and hotel locations to the economic footprint of accommodation.
+        </p>
+        <p class="hero-intro">
+          Tourism is not one uniform market. Domestic and international visitors travel at different
+          times, stay in different kinds of places, and support different parts of the economy. This
+          visual story follows five questions: where tourists go, when they travel, where they stay,
+          where hotels are located, and what accommodation means for the wider economy.
+        </p>
+        <p class="hero-period">
+          Charts draw on different source periods from 2018-19 to June 2026. The reporting period
+          and population are identified with each figure.
+        </p>
+        <a class="story-link" href="#geography">Explore the story</a>
+      </div>
+    </header>
     <main>
-        <h1>Where Does Australia Stay?</h1>
-        <p>Section 1 demonstration - tourism demand and accommodation expenditure.</p>
-        <section><div id="map1"></div></section>
-        <section><div id="map2"></div></section>
-        <section><div id="chart3"></div></section>
-        <section id="seasonality">
-            <h2>When Do Australians Travel?</h2>
-            <p>
-                Tourism demand changes throughout the year,
-                but not all states experience the same patterns.
-            </p>
-            <div id="chart4"></div>
-            <p>
-                The reason for travelling also influences
-                how domestic visitor nights change.
-            </p>
-            <div id="chart5"></div>
-        </section>
-        <section id="accommodation-choices">
-            <h2>What accommodation do tourists choose?</h2>
 
-            <p>
-                International visitors spend their nights across
-                a range of commercial and private accommodation types.
-            </p>
-
-            <div id="chart6"></div>
-        </section>
-        <section id="regional-comparison">
-            <h2>City vs Regional Accommodation</h2>
-
-            <p>
-                Domestic visitors use different types of
-                accommodation across capital cities and
-                regional Australia.
-            </p>
-
-            <div id="butterfly-chart"></div>
-        </section>
-        <section id="accommodation-composition">
-            <h2>How Do Accommodation Choices Vary by State?</h2>
-            <p>
-                Compare the selected accommodation categories
-                across five Australian states.
-            </p>
-
-            <div id="mosaic-chart"></div>
-        </section>
-        <section id="accommodation-composition">
-            <h2>Hotels Across Australia</h2>
-            <p>
-                Locations of hotels across the nation as recorded by OpenStreetMap
-            </p>
-
-            <div id="hotel-map"></div>
-        </section>
-
-        <section id="international-accommodation">
-          <h2>How Have International Accommodation Choices Changed?</h2>
-
+      <!-- Chapter 01: Geography -->
+      <section class="chapter" id="geography" aria-labelledby="geography-title">
+        <header class="chapter-heading">
+          <p class="chapter-number">Chapter 01</p>
+          <h2 id="geography-title">The geography of a night away</h2>
           <p>
-            Compare international visitor nights across accommodation
-            categories between 2025 and 2026.
+            Where tourists travel depends on the measure we choose. Total visitor nights show the
+            size of each state's tourism market, while visitor nights relative to population reveal
+            a different perspective. We begin with that contrast before looking at where
+            accommodation spending is concentrated and how domestic travel compares with
+            international travel.
           </p>
+        </header>
+        <figure class="chart-block" aria-labelledby="title-01">
+          <header>
+            <p class="figure-number">Figure 01</p>
+            <h3 id="title-01">Where is domestic tourism most intense?</h3>
+            <p class="chart-lead">
+              Comparing visitor nights per resident puts large and small states on a common
+              population-based scale.
+            </p>
+            <p class="period-note">
+              Domestic visitor nights by state relative to population, year ending June 2026
+            </p>
+          </header>
+          <div
+            class="chart-scroll"
+            tabindex="0"
+            role="region"
+            aria-label="Where is domestic tourism most intense? — scroll horizontally if needed"
+          >
+            <div
+              id="chart-01"
+              class="vega-container map-chart"
+              aria-label="Where is domestic tourism most intense?"
+            >
+            </div>
+          </div>
+          <figcaption>
+            <p class="takeaway">
+              Tasmania recorded approximately 18.39 domestic visitor nights per resident, compared
+              with 11.48 in Western Australia, using the specified tourism and population reference
+              periods.
+            </p>
+            <p class="source-note">
+              TRA DoTS, domestic visitor nights, year ending June 2026; ABS Estimated Resident
+              Population, March 2026. Ratio: domestic visitor nights ÷ resident population. This is
+              a population-relative measure, not nights spent travelling by residents.
+            </p>
+          </figcaption>
+        </figure>
+        <figure class="chart-block" aria-labelledby="title-02">
+          <header>
+            <p class="figure-number">Figure 02</p>
+            <h3 id="title-02">Where is accommodation spending concentrated?</h3>
+            <p class="chart-lead">
+              Visitor nights describe demand, expenditure reveals its monetary scale.
+            </p>
+            <p class="period-note">
+              Tourism consumption of accommodation services, financial year 2024-25
+            </p>
+          </header>
+          <div
+            class="chart-scroll"
+            tabindex="0"
+            role="region"
+            aria-label="Where is accommodation spending concentrated? — scroll horizontally if needed"
+          >
+            <div
+              id="chart-02"
+              class="vega-container map-chart"
+              aria-label="Where is accommodation spending concentrated?"
+            >
+            </div>
+          </div>
+          <figcaption>
+            <p class="takeaway">
+              These circles represent accommodation-services consumption, not hotel counts or hotel
+              locations. Compare their sizes rather than treating them as physical footprints.
+            </p>
+            <p class="source-note">
+              TRA State Tourism Satellite Accounts, Table 9, 2024-25; accommodation-services
+              consumption by state, A$ million/billion as labelled.
+            </p>
+          </figcaption>
+        </figure>
+        <figure class="chart-block" aria-labelledby="title-03">
+          <header>
+            <p class="figure-number">Figure 03</p>
+            <h3 id="title-03">How do domestic and international visitor nights compare?</h3>
+            <p class="chart-lead">
+              States that attract many domestic nights do not necessarily have the same balance of
+              international visitor nights.
+            </p>
+            <p class="period-note">State/territory visitation, year ending June 2026</p>
+          </header>
+          <div
+            class="chart-scroll"
+            tabindex="0"
+            role="region"
+            aria-label="How do domestic and international visitor nights compare? — scroll horizontally if needed"
+          >
+            <div
+              id="chart-03"
+              class="vega-container"
+              aria-label="How do domestic and international visitor nights compare?"
+            >
+            </div>
+          </div>
+          <figcaption>
+            <p class="takeaway">
+              Each point is one state or territory. The positions compare two different travel
+              markets over the same year-ending period; they do not explain why the difference
+              exists.
+            </p>
+            <p class="source-note">
+              TRA DoTS Table 1c and International Visitor Survey Table 3, year ending June 2026;
+              visitor nights in millions.
+            </p>
+          </figcaption>
+        </figure>
+        <p class="transition">
+          Where a trip happens is only one part of the story. The next question is when and
+          why people travel.
+        </p>
+      </section>
 
-          <div id="dumbbell-chart"></div>
-        </section>
-        <section id="accommodation-economy">
-          <h2>The Economic Impact of Accommodation</h2>
-
+      <!-- Chapter 02: Timing -->
+      <section class="chapter" id="timing" aria-labelledby="timing-title">
+        <header class="chapter-heading">
+          <p class="chapter-number">Chapter 02</p>
+          <h2 id="timing-title">Travel moves with the calendar</h2>
           <p>
-            Compare Australian states across tourism accommodation
-            output, employment, GVA per filled job, and expenditure.
+            Tourism demand does not hold steady through the year. Recent quarters show different
+            peaks and slowdowns across states, while reasons for travel help explain why those
+            patterns vary. The next two charts examine timing without assuming that five quarters
+            establish a long-term seasonal cycle.
           </p>
+        </header>
+        <figure class="chart-block" aria-labelledby="title-04">
+          <header>
+            <p class="figure-number">Figure 04</p>
+            <h3 id="title-04">Every state has its own quarterly rhythm</h3>
+            <p class="chart-lead">
+              Colour shows how far a quarter sits above or below that state's own five-quarter
+              average.
+            </p>
+            <p class="period-note">
+              Deviation from each state’s five-quarter average • June 2025-June 2026
+            </p>
+          </header>
+          <div
+            class="chart-scroll"
+            tabindex="0"
+            role="region"
+            aria-label="Every state has its own quarterly rhythm — scroll horizontally if needed"
+          >
+            <div
+              id="chart-04"
+              class="vega-container"
+              aria-label="Every state has its own quarterly rhythm"
+            >
+            </div>
+          </div>
+          <figcaption>
+            <p class="takeaway">
+              The comparison is relative <em>within each state</em>, not a ranking of total visitor
+              nights between states.
+            </p>
+            <p class="source-note">
+              TRA DoTS Table 1b, June 2025-June 2026. Values: domestic visitor nights; colour:
+              percentage difference from that state's mean across these five quarters.
+            </p>
+          </figcaption>
+        </figure>
+        <figure class="chart-block" aria-labelledby="title-05">
+          <header>
+            <p class="figure-number">Figure 05</p>
+            <h3 id="title-05">Why people travel changes the pattern</h3>
+            <p class="chart-lead">
+              Holidays, visits to friends and relatives, business trips and other travel purposes do
+              not all follow the same quarterly trajectory.
+            </p>
+            <p class="period-note">Domestic visitor nights · June 2025-June 2026 · Millions</p>
+          </header>
+          <div
+            class="chart-scroll"
+            tabindex="0"
+            role="region"
+            aria-label="Why people travel changes the pattern — scroll horizontally if needed"
+          >
+            <div
+              id="chart-05"
+              class="vega-container"
+              aria-label="Why people travel changes the pattern"
+            >
+            </div>
+          </div>
+          <figcaption>
+            <p class="takeaway">
+              Holiday visitor nights reached approximately 52.2 million in the March 2026 quarter,
+              the highest of the five quarters shown.
+            </p>
+            <p class="source-note">
+              TRA DoTS Table 3b, June 2025-June 2026; domestic visitor nights by travel purpose
+              (millions).
+            </p>
+          </figcaption>
+        </figure>
+        <p class="transition">
+          The timing of travel matters. But a visitor night can be spent in a hotel, a rented
+          property, or a home belonging to friends and family.
+        </p>
+      </section>
 
-          <div id="parallel-chart"></div>
-        </section>
-        <section id="expenditure-changes">
-          <h2>What Is Driving Tourism Spending?</h2>
-
+      <!-- Chapter 03: Accommodation -->
+      <section class="chapter" id="accommodation" aria-labelledby="accommodation-title">
+        <header class="chapter-heading">
+          <p class="chapter-number">Chapter 03</p>
+          <h2 id="accommodation-title">Beyond the hotel room</h2>
           <p>
-            Domestic overnight-trip expenditure increased
-            between the June quarters of 2025 and 2026.
-            Accommodation was the largest positive contributor.
+            Accommodation is more varied than a single hotel market. International visitors spend
+            nights in commercial and private accommodation, and domestic visitors make different
+            choices between capital-city and regional trips. These charts move from the national mix
+            to the contrasts between places.
           </p>
+        </header>
+        <figure class="chart-block" aria-labelledby="title-06">
+          <header>
+            <p class="figure-number">Figure 06</p>
+            <h3 id="title-06">Where do international visitors spend their nights?</h3>
+            <p class="chart-lead">
+              The area of each rectangle represents the number of international visitor nights in
+              that accommodation category.
+            </p>
+            <p class="period-note">International visitor nights · Year ending June 2026</p>
+          </header>
+          <div
+            class="chart-scroll"
+            tabindex="0"
+            role="region"
+            aria-label="Where do international visitors spend their nights? — scroll horizontally if needed"
+          >
+            <div
+              id="chart-06"
+              class="vega-container"
+              aria-label="Where do international visitors spend their nights?"
+            >
+            </div>
+          </div>
+          <figcaption>
+            <p class="takeaway">
+              Rented properties account for approximately 45.8% of international visitor nights and
+              friends' or relatives' properties approximately 29.1% in the source period.
+            </p>
+            <p class="source-note">
+              TRA International Visitor Survey Table 4, year ending June 2026; 11 accommodation
+              categories. Rented properties are not necessarily short-term holiday rentals.
+            </p>
+          </figcaption>
+        </figure>
+        <figure class="chart-block" aria-labelledby="title-07">
+          <header>
+            <p class="figure-number">Figure 07</p>
+            <h3 id="title-07">Capital cities or regional Australia: where are nights spent?</h3>
+            <p class="chart-lead">
+              Mirrored bars compare domestic accommodation visitor nights in capital-city and
+              regional areas for the same selected accommodation type.
+            </p>
+            <p class="period-note">Capital cities vs regional Australia, 2024</p>
+          </header>
+          <div
+            class="chart-scroll"
+            tabindex="0"
+            role="region"
+            aria-label="Capital cities or regional Australia: where are nights spent? — scroll horizontally if needed"
+          >
+            <div
+              id="chart-07"
+              class="vega-container"
+              aria-label="Capital cities or regional Australia: where are nights spent?"
+            >
+            </div>
+          </div>
+          <figcaption>
+            <p class="takeaway">
+              In the selected data, caravan and commercial-camping nights are much more numerous in
+              regional areas than in capital-city areas.
+            </p>
+            <p class="source-note">
+              TRA NVS Overnight Accommodation Trends, year ending December 2024. Four accommodation
+              types with publishable values for both capital and regional areas. These are absolute
+              nights, not within-area market shares.
+            </p>
+          </figcaption>
+        </figure>
+        <figure class="chart-block" aria-labelledby="title-08">
+          <header>
+            <p class="figure-number">Figure 08</p>
+            <h3 id="title-08">How does the accommodation mix differ between states?</h3>
+            <p class="chart-lead">
+              Column width represents each state's total visitor nights across three selected
+              accommodation categories; segment height shows the category's share of that state
+              total.
+            </p>
+            <p class="period-note">Selected accommodation categories, 2024</p>
+          </header>
+          <div
+            class="chart-scroll"
+            tabindex="0"
+            role="region"
+            aria-label="How does the accommodation mix differ between states? — scroll horizontally if needed"
+          >
+            <div
+              id="chart-08"
+              class="vega-container"
+              aria-label="How does the accommodation mix differ between states?"
+            >
+            </div>
+          </div>
+          <figcaption>
+            <p class="takeaway">
+              This is a comparison of <strong>selected</strong> accommodation categories across five
+              states, not a complete picture of every state's overnight accommodation.
+            </p>
+            <p class="source-note">
+              TRA NVS Overnight Accommodation Trends, year ending December 2024; NSW, VIC, QLD, SA
+              and WA; hotels and similar, rented accommodation, friends/relatives' properties.
+            </p>
+          </figcaption>
+        </figure>
+        <p class="transition">
+          With accommodation types in view, we can look more closely at the hotels themselves and
+          how international accommodation use has changed.
+        </p>
+      </section>
 
-          <div id="waterfall-chart"></div>
-        </section>
-        
-        <section id="business-trends">
-          <h2>The Business Side of Tourism</h2>
-
+      <!-- Chapter 04: Hotel locations -->
+      <section class="chapter" id="hotel-locations" aria-labelledby="hotel-locations-title">
+        <header class="chapter-heading">
+          <p class="chapter-number">Chapter 04</p>
+          <h2 id="hotel-locations-title">Hotels on the map, choices in motion</h2>
           <p>
-            How has growth in domestic overnight tourism
-            spending compared with growth in the number
-            of hospitality businesses?
+            Statistics by state summarise large areas. Individual hotel locations reveal a different
+            geographic pattern: establishments cluster around particular places rather than
+            spreading evenly across the map. Alongside that location snapshot, we compare how
+            international visitor nights changed between accommodation types.
           </p>
+        </header>
+        <figure class="chart-block" aria-labelledby="title-09">
+          <header>
+            <p class="figure-number">Figure 09</p>
+            <h3 id="title-09">Where are Australia's mapped hotels?</h3>
+            <p class="chart-lead">
+              Each dot represents an individual hotel record with real coordinates in OpenStreetMap.
+            </p>
+            <p class="period-note">Individual hotel records mapped in OpenStreetMap</p>
+          </header>
+          <div
+            class="chart-scroll"
+            tabindex="0"
+            role="region"
+            aria-label="Where are Australia's mapped hotels? — scroll horizontally if needed"
+          >
+            <div
+              id="chart-09"
+              class="vega-container map-chart"
+              aria-label="Where are Australia's mapped hotels?"
+            >
+            </div>
+          </div>
+          <figcaption>
+            <p class="takeaway">
+              Dots show the distribution of <strong>mapped hotel establishments</strong>; they do
+              not measure occupancy, room supply, hotel quality, or every operating hotel in
+              Australia.
+            </p>
+            <p class="source-note">
+              OpenStreetMap contributors; hotel records from the supplied accommodation extract.
+              Other Territories excluded. TODO: confirm extraction date. OpenStreetMap data is
+              available under the Open Database Licence; coverage is incomplete.
+            </p>
+            <p class="source-note">
+              Each dot is one hotel recorded in OpenStreetMap. <a
+              href="https://www.openstreetmap.org/copyright">© OpenStreetMap contributors · licence
+              and attribution</a>
+            </p>
+          </figcaption>
+        </figure>
+        <figure class="chart-block" aria-labelledby="title-10">
+          <header>
+            <p class="figure-number">Figure 10</p>
+            <h3 id="title-10">Which accommodation types gained or lost visitor nights?</h3>
+            <p class="chart-lead">
+              Two dots per category compare international visitor nights in the years ending June
+              2025 and June 2026.
+            </p>
+            <p class="period-note">
+              Visitor nights by accommodation type, years ending June 2025 and June 2026
+            </p>
+          </header>
+          <div
+            class="chart-scroll"
+            tabindex="0"
+            role="region"
+            aria-label="Which accommodation types gained or lost visitor nights? — scroll horizontally if needed"
+          >
+            <div
+              id="chart-10"
+              class="vega-container"
+              aria-label="Which accommodation types gained or lost visitor nights?"
+            >
+            </div>
+          </div>
+          <figcaption>
+            <p class="takeaway">
+              Rented-property visitor nights increased while nights at friends' or relatives'
+              properties decreased across the two periods.
+            </p>
+            <p class="source-note">
+              TRA International Visitor Survey Table 4; international visitor nights by
+              accommodation type, years ending June 2025 and June 2026. Differences do not by
+              themselves establish why traveller choices changed.
+            </p>
+          </figcaption>
+        </figure>
+        <p class="transition">
+          Visitor behaviour and the location of accommodation establishments lead into one final
+          question: what does this activity mean for the wider economy?
+        </p>
+      </section>
 
-          <div id="business-trends-chart"></div>
-
-          <p class="source-note">
-            Sources: TRA State Tourism Satellite Accounts,
-            Table 4; ABS Counts of Australian Businesses,
-            Table 1. Figures are indexed to 2022–23 = 100.
-            The two measures cover different industry scopes.
+      <!-- Chapter 05: Economy -->
+      <section class="chapter" id="economy" aria-labelledby="economy-title">
+        <header class="chapter-heading">
+          <p class="chapter-number">Chapter 05</p>
+          <h2 id="economy-title">The wider economic footprint</h2>
+          <p>
+            Accommodation supports output, jobs and tourism spending, but different indicators tell
+            different stories. We first compare state economic profiles, then trace which spending
+            categories contributed to an annual change. The final chart broadens the lens by
+            combining Tourism Research Australia spending with Australian Bureau of Statistics
+            business counts.
           </p>
-        </section>
-        
+        </header>
+        <figure class="chart-block" aria-labelledby="title-11">
+          <header>
+            <p class="figure-number">Figure 11</p>
+            <h3 id="title-11">Different states, different accommodation economies</h3>
+            <p class="chart-lead">
+              Each state is one line across four indicators: accommodation output, filled jobs, GVA
+              per filled job, and accommodation-services consumption.
+            </p>
+            <p class="period-note">
+              Direct tourism accommodation measures, 2024-25; axes scaled independently from 0 to 1
+            </p>
+          </header>
+          <div
+            class="chart-scroll"
+            tabindex="0"
+            role="region"
+            aria-label="Different states, different accommodation economies — scroll horizontally if needed"
+          >
+            <div
+              id="chart-11"
+              class="vega-container"
+              aria-label="Different states, different accommodation economies"
+            >
+            </div>
+          </div>
+          <figcaption>
+            <p class="takeaway">
+              Each axis is normalised separately from 0 (lowest state) to 1 (highest state); a
+              higher position is not a percentage, and the four indicators have different underlying
+              units.
+            </p>
+            <p class="source-note">
+              TRA State Tourism Satellite Accounts 2024-25, Tables 5, 6, 7 and 9. GVA per filled job
+              derived from published GVA and filled-job estimates; not employee wages.
+            </p>
+            <p class="interaction-note">
+              Select a state in the legend to highlight its profile. Shift-click to select several;
+              click again to clear.
+            </p>
+          </figcaption>
+        </figure>
+        <figure class="chart-block" aria-labelledby="title-12">
+          <header>
+            <p class="figure-number">Figure 12</p>
+            <h3 id="title-12">What drove the change in overnight tourism spending?</h3>
+            <p class="chart-lead">
+              Positive and negative spending changes accumulate from the June 2025 baseline to the
+              June 2026 net increase.
+            </p>
+            <p class="period-note">
+              June quarter 2025 to June quarter 2026 · Difference from 2025 baseline (A$M)
+            </p>
+          </header>
+          <div
+            class="chart-scroll"
+            tabindex="0"
+            role="region"
+            aria-label="What drove the change in overnight tourism spending? — scroll horizontally if needed"
+          >
+            <div
+              id="chart-12"
+              class="vega-container"
+              aria-label="What drove the change in overnight tourism spending?"
+            >
+            </div>
+          </div>
+          <figcaption>
+            <p class="takeaway">
+              Accommodation expenditure increased by about A$455.2 million between the June quarters
+              of 2025 and 2026, the largest positive change among the categories displayed.
+            </p>
+            <p class="source-note">
+              TRA Domestic Tourism Statistics Table 4a, June quarter 2025 vs June quarter 2026, A$
+              million. Other (net) includes remaining category changes and a reconciliation
+              adjustment; it is not a separately measured spending category.
+            </p>
+          </figcaption>
+        </figure>
+        <figure class="chart-block" aria-labelledby="title-13">
+          <header>
+            <p class="figure-number">Figure 13</p>
+            <h3 id="title-13">Did hospitality businesses grow alongside tourism spending?</h3>
+            <p class="chart-lead">
+              Indexing both measures to 2018-19 = 100 lets us compare their relative changes without
+              putting dollars and business counts on incompatible axes.
+            </p>
+            <p class="period-note">Australian financial years 2018-19 to 2024-25 | 2018-19 = 100</p>
+          </header>
+          <div
+            class="chart-scroll"
+            tabindex="0"
+            role="region"
+            aria-label="Did hospitality businesses grow alongside tourism spending? — scroll horizontally if needed"
+          >
+            <div
+              id="chart-13"
+              class="vega-container"
+              aria-label="Did hospitality businesses grow alongside tourism spending?"
+            >
+            </div>
+          </div>
+          <figcaption>
+            <p class="takeaway">
+              Domestic overnight tourism spending fell sharply during the pandemic period and later
+              recovered, while the broader Accommodation and Food Services business count followed a
+              different trajectory.
+            </p>
+            <p class="source-note">
+              TRA State Tourism Satellite Accounts 2024-25 Table 4 (domestic overnight tourism
+              consumption, nominal A$M) + ABS Counts of Australian Businesses Table 1 (Accommodation
+              and Food Services, operating businesses). Financial years 2018-19 to 2024-25. ABS
+              figures cross archived and newer releases, with a June 2022 revision; spending and
+              business counts have different industry scopes and cannot establish causation.
+            </p>
+          </figcaption>
+        </figure>
+      </section>
 
-        <p>Sources: TRA Domestic Tourism Statistics, June 2026 (Table 1c); TRA International Visitor Survey, June 2026 (Table 3); TRA State Tourism Satellite Accounts, 2024–25 (Table 9). Cartographic positions on the symbol map are indicative, not business locations.</p>
-        <script src="js/embed.js"></script>
+      <!-- Closing takeaway -->
+      <section class="closing" aria-labelledby="closing-title">
+        <h2 id="closing-title">What the patterns tell us</h2>
+        <p>
+          Australia's accommodation landscape changes depending on what we measure. Total demand is
+          not the same as demand relative to population. A recorded hotel location is not a measure
+          of occupancy. Spending, visitor nights and business counts describe different parts of
+          tourism. Read together, and with their time periods and definitions visible, these charts
+          tell a richer story than a single ranking could.
+        </p>
+      </section>
     </main>
-</body>
+
+    <!-- Sources and methodology -->
+    <footer id="sources">
+      <h2>Sources &amp; methodology</h2>
+      <p>
+        This FIT3179 Data Visualisation 2 assignment combines Tourism Research Australia (TRA),
+        Australian Bureau of Statistics (ABS) and OpenStreetMap data. Each figure identifies its
+        reporting period, population and units. Charts use the supplied datasets; reporting periods
+        differ.
+      </p>
+      <ul>
+        <li>
+          TRA Domestic Tourism Statistics, June 2026; International Visitor Survey, June 2026; NVS
+          Overnight Accommodation Trends, year ending December 2024; State Tourism Satellite
+          Accounts, 2024-25. <a href="data/tourism_by_state_with_population.csv">State visitation
+          data</a> · <a href="data/state_accommodation_economy.csv">Accommodation economy data</a>.
+        </li>
+        <li>
+          ABS Estimated Resident Population, March 2026, supplies the denominator for visitor nights
+          per resident. ABS Counts of Australian Businesses, Table 1, supplies Accommodation and
+          Food Services business counts. <a
+          href="data/overnight_spending_hospitality_businesses_2018_2025.csv">Combined seven-year
+          series</a>.
+        </li>
+        <li>
+          Visitor nights include commercial and private accommodation. The mosaic covers five states
+          and three selected categories; the capital/regional comparison excludes unavailable
+          matched values.
+        </li>
+        <li>
+          OpenStreetMap hotel records describe mapped establishments, with uncertain completeness.
+          Other Territories are excluded. <a
+          href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors and Open
+          Database Licence</a>.
+        </li>
+        <li>
+          Waterfall “Other (net)” combines remaining category changes and a reconciliation
+          adjustment, rather than a separately measured spending category. <a
+          href="data/spending_waterfall.csv">Spending changes</a>.
+        </li>
+        <li>
+          The final chart uses 2018-19 = 100. Spending is nominal and includes the pandemic
+          disruption. ABS counts combine archived and newer releases with a June 2022 revision. The
+          two series cover different industry scopes, including food services, and do not establish
+          causation.
+        </li>
+      </ul>
+      <p class="assignment-note">
+        FIT3179 · Data Visualisation 2 · Tourism accommodation in Australia
+      </p>
+    </footer>
+  </body>
 </html>
