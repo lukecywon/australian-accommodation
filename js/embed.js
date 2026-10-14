@@ -22,3 +22,8 @@ vegaEmbed(
     "specs/08_mosaic.json",
     { actions: false }
     ).catch(console.error);
+vegaEmbed(
+  "#hotel-map",
+  "specs/09_hotel_dot_map.json",
+  { actions: false }
+).catch(console.error);

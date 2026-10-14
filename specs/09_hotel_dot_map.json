@@ -1,0 +1,100 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Where Are Hotels Located Across Australia?",
+    "subtitle": "Individual hotel records mapped in OpenStreetMap"
+  },
+  "width": 760,
+  "height": 500,
+  "projection": {
+    "type": "mercator"
+  },
+  "layer": [
+    {
+      "data": {
+        "url": "data/australia.topojson",
+        "format": {
+          "type": "topojson",
+          "feature": "shapes"
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.properties.STE_NAME21 != 'Other Territories'"
+        }
+      ],
+      "mark": {
+        "type": "geoshape",
+        "fill": "#EDF2F5",
+        "stroke": "#91A6B5",
+        "strokeWidth": 0.7
+      }
+    },
+    {
+      "data": {
+        "url": "data/australian_hotels.csv",
+        "format": {
+          "type": "csv",
+          "parse": {
+            "Latitude": "number",
+            "Longitude": "number"
+          }
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.State != 'Other Territories'"
+        },
+        {
+          "calculate": "isValid(datum.Name) && datum.Name != '' ? datum.Name : 'Unnamed OSM hotel record'",
+          "as": "DisplayName"
+        }
+      ],
+      "mark": {
+        "type": "circle",
+        "size": 11,
+        "opacity": 0.58,
+        "color": "#176B91"
+      },
+      "encoding": {
+        "longitude": {
+          "field": "Longitude",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "Latitude",
+          "type": "quantitative"
+        },
+        "tooltip": [
+          {
+            "field": "DisplayName",
+            "type": "nominal",
+            "title": "Hotel"
+          },
+          {
+            "field": "State",
+            "type": "nominal"
+          },
+          {
+            "field": "Suburb",
+            "type": "nominal"
+          },
+          {
+            "field": "OSMURL",
+            "type": "nominal",
+            "title": "OSM record"
+          }
+        ],
+        "href": {
+          "field": "OSMURL",
+          "type": "nominal"
+        }
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    }
+  }
+}
