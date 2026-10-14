@@ -32,3 +32,13 @@ vegaEmbed(
     "specs/10_dumbbell.json",
     { actions: false }
   ).catch(console.error);
+ vegaEmbed(
+    "#parallel-chart",
+    "specs/11_parallel_coordinates.json",
+    { actions: false }
+  ).catch(console.error);
+ vegaEmbed(
+    "#waterfall-chart",
+    "specs/12_expenditure_waterfall.json",
+    { actions: false }
+  ).catch(console.error);

@@ -1,0 +1,161 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "What Drove the Change in Domestic Tourism Spending?",
+    "subtitle": "June quarter 2025 to June quarter 2026 · Difference from 2025 baseline (A$M)"
+  },
+  "width": 840,
+  "height": 390,
+  "data": {
+    "url": "data/spending_waterfall.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "Order": "number",
+        "ChangeM": "number",
+        "LowM": "number",
+        "HighM": "number",
+        "Start2025TotalM": "number",
+        "End2026TotalM": "number"
+      }
+    }
+  },
+  "encoding": {
+    "x": {
+      "field": "Step",
+      "type": "ordinal",
+      "sort": [
+        "Accommodation",
+        "Shopping / gifts",
+        "Long-distance transport",
+        "Alcohol / drinks",
+        "Package tours",
+        "Other (net)*",
+        "Total increase"
+      ],
+      "axis": {
+        "title": null,
+        "labelAngle": -25,
+        "labelFontSize": 11,
+        "labelLimit": 160
+      }
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "bar",
+        "size": 64,
+        "cornerRadius": 2
+      },
+      "encoding": {
+        "y": {
+          "field": "LowM",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              620
+            ],
+            "nice": false
+          },
+          "axis": {
+            "title": "Change from June 2025 baseline (A$ million)",
+            "grid": true,
+            "format": ",.0f"
+          }
+        },
+        "y2": {
+          "field": "HighM"
+        },
+        "color": {
+          "field": "Kind",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Increase",
+              "Decrease",
+              "Total"
+            ],
+            "range": [
+              "#138878",
+              "#CF5B59",
+              "#405975"
+            ]
+          },
+          "legend": {
+            "title": null,
+            "orient": "top"
+          }
+        },
+        "tooltip": [
+          {
+            "field": "Step",
+            "type": "nominal",
+            "title": "Expenditure item"
+          },
+          {
+            "field": "ChangeM",
+            "type": "quantitative",
+            "title": "Change (A$M)",
+            "format": "+,.3f"
+          },
+          {
+            "field": "Start2025TotalM",
+            "type": "quantitative",
+            "title": "2025 total (A$M)",
+            "format": ",.3f"
+          },
+          {
+            "field": "End2026TotalM",
+            "type": "quantitative",
+            "title": "2026 total (A$M)",
+            "format": ",.3f"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "dy": -8,
+        "baseline": "bottom",
+        "fontSize": 11,
+        "fontWeight": "bold",
+        "color": "#233449"
+      },
+      "encoding": {
+        "y": {
+          "field": "HighM",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              620
+            ],
+            "nice": false
+          },
+          "axis": {
+            "title": "Change from June 2025 baseline (A$ million)",
+            "grid": true,
+            "format": ",.0f"
+          }
+        },
+        "text": {
+          "field": "ChangeLabel",
+          "type": "nominal"
+        }
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "labelColor": "#344054",
+      "titleColor": "#344054",
+      "gridColor": "#E6EAF0"
+    }
+  }
+}

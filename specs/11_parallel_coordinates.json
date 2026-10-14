@@ -1,0 +1,174 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "How Do State Accommodation Economies Compare?",
+    "subtitle": "Direct tourism accommodation measures, 2024–25; axes scaled independently from 0 to 1"
+  },
+  "width": 700,
+  "height": 380,
+  "data": {
+    "url": "data/state_accommodation_economy.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "OutputM": "number",
+        "GVAM": "number",
+        "FilledJobs000": "number",
+        "ConsumptionM": "number"
+      }
+    }
+  },
+  "transform": [
+    {
+      "calculate": "datum.GVAM / datum.FilledJobs000",
+      "as": "GVAperJobK"
+    },
+    {
+      "fold": [
+        "OutputM",
+        "FilledJobs000",
+        "GVAperJobK",
+        "ConsumptionM"
+      ],
+      "as": [
+        "MetricKey",
+        "Value"
+      ]
+    },
+    {
+      "calculate": "datum.MetricKey === 'OutputM' ? 'Output (A$M)' : datum.MetricKey === 'FilledJobs000' ? 'Filled jobs (000)' : datum.MetricKey === 'GVAperJobK' ? 'GVA per job (A$k)' : 'Consumption (A$M)'",
+      "as": "Metric"
+    },
+    {
+      "joinaggregate": [
+        {
+          "op": "min",
+          "field": "Value",
+          "as": "MetricMin"
+        },
+        {
+          "op": "max",
+          "field": "Value",
+          "as": "MetricMax"
+        }
+      ],
+      "groupby": [
+        "MetricKey"
+      ]
+    },
+    {
+      "calculate": "datum.MetricMax === datum.MetricMin ? 0.5 : (datum.Value - datum.MetricMin) / (datum.MetricMax - datum.MetricMin)",
+      "as": "Normalised"
+    }
+  ],
+  "params": [
+    {
+      "name": "selectedState",
+      "select": {
+        "type": "point",
+        "fields": [
+          "StateCode"
+        ]
+      },
+      "bind": "legend"
+    }
+  ],
+  "mark": {
+    "type": "line",
+    "point": {
+      "filled": true,
+      "size": 65
+    },
+    "strokeWidth": 2.5
+  },
+  "encoding": {
+    "x": {
+      "field": "Metric",
+      "type": "ordinal",
+      "sort": [
+        "Output (A$M)",
+        "Filled jobs (000)",
+        "GVA per job (A$k)",
+        "Consumption (A$M)"
+      ],
+      "axis": {
+        "title": null,
+        "labelAngle": 0,
+        "labelLimit": 180
+      }
+    },
+    "y": {
+      "field": "Normalised",
+      "type": "quantitative",
+      "scale": {
+        "domain": [
+          0,
+          1
+        ]
+      },
+      "axis": {
+        "title": "Relative value (0 = lowest state; 1 = highest state)",
+        "values": [
+          0,
+          0.25,
+          0.5,
+          0.75,
+          1
+        ],
+        "format": ".2f",
+        "grid": true
+      }
+    },
+    "color": {
+      "field": "StateCode",
+      "type": "nominal",
+      "title": "State / territory"
+    },
+    "detail": {
+      "field": "State"
+    },
+    "opacity": {
+      "condition": {
+        "param": "selectedState",
+        "value": 1
+      },
+      "value": 0.13
+    },
+    "tooltip": [
+      {
+        "field": "State",
+        "type": "nominal",
+        "title": "State"
+      },
+      {
+        "field": "Metric",
+        "type": "nominal",
+        "title": "Indicator"
+      },
+      {
+        "field": "Value",
+        "type": "quantitative",
+        "title": "Original value (unit on axis)",
+        "format": ",.2f"
+      },
+      {
+        "field": "Normalised",
+        "type": "quantitative",
+        "title": "Relative position",
+        "format": ".2f"
+      }
+    ]
+  },
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "labelFontSize": 11,
+      "titleFontSize": 12
+    },
+    "legend": {
+      "labelFontSize": 11
+    }
+  }
+}
