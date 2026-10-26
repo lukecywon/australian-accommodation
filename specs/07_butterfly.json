@@ -87,7 +87,8 @@
         "clipHeight": 40,
         "labelLimit": {
           "expr": "width < 450 ? 70 : 240"
-        }
+        },
+        "title": null
       }
     },
     "tooltip": [
@@ -124,10 +125,10 @@
       "titleFont": "Segoe UI, Arial, sans-serif",
       "orient": "bottom",
       "direction": "horizontal",
-      "titleAnchor": "middle",
+      "titleAnchor": "start",
       "layout": {
         "bottom": {
-          "anchor": "middle"
+          "anchor": "start"
         }
       },
       "offset": 74,

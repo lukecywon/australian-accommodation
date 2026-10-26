@@ -90,7 +90,7 @@
             ]
           },
           "legend": {
-            "title": "Accommodation type",
+            "title": null,
             "labelFontSize": 10,
             "titleFontSize": 12,
             "columns": 3,
@@ -205,10 +205,10 @@
       "titleFont": "Segoe UI, Arial, sans-serif",
       "orient": "bottom",
       "direction": "horizontal",
-      "titleAnchor": "middle",
+      "titleAnchor": "start",
       "layout": {
         "bottom": {
-          "anchor": "middle"
+          "anchor": "start"
         }
       },
       "offset": 100,
