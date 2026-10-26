@@ -3,49 +3,49 @@
   "title": "International Visitor Nights by Accommodation Type (2026)",
   "width": 700,
   "height": 440,
-
   "data": {
     "url": "data/treemap_rectangles.csv"
   },
-
   "mark": {
     "type": "rect",
     "stroke": "white",
     "strokeWidth": 2
   },
-
   "encoding": {
     "x": {
       "field": "x0",
       "type": "quantitative",
-      "scale": {"domain": [0, 100]},
+      "scale": {
+        "domain": [
+          0,
+          100
+        ]
+      },
       "axis": null
     },
-
     "x2": {
       "field": "x1"
     },
-
     "y": {
       "field": "y0",
       "type": "quantitative",
       "scale": {
-        "domain": [0, 100],
+        "domain": [
+          0,
+          100
+        ],
         "reverse": true
       },
       "axis": null
     },
-
     "y2": {
       "field": "y1"
     },
-
     "color": {
       "field": "AccommodationType",
       "type": "nominal",
       "title": "Accommodation type"
     },
-
     "tooltip": [
       {
         "field": "AccommodationType",
@@ -61,13 +61,14 @@
       {
         "field": "SharePct",
         "type": "quantitative",
-        "title": "Share (%)",
+        "title": "Share (percent)",
         "format": ".1f"
       }
     ]
   },
-
   "config": {
-    "view": {"stroke": null}
+    "view": {
+      "stroke": null
+    }
   }
 }

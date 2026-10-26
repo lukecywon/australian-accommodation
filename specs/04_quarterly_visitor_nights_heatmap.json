@@ -2,13 +2,13 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
     "text": "Quarterly variation in domestic visitor nights",
-    "subtitle": "Deviation from each state\u2019s five-quarter average \u2022 June 2025\u2013June 2026",
+    "subtitle": "Deviation from each state’s five-quarter average • June 2025–June 2026",
     "anchor": "start",
     "fontSize": 17,
     "subtitleFontSize": 11
   },
   "width": {
-    "step": 87
+    "step": 125
   },
   "height": {
     "step": 38
@@ -38,6 +38,10 @@
     {
       "calculate": "(datum.VisitorNights000 / datum.StateAverage - 1) * 100",
       "as": "DeviationPct"
+    },
+    {
+      "calculate": "replace(replace(replace(replace(datum.Quarter, 'Jun ', 'June '), 'Sep ', 'September '), 'Dec ', 'December '), 'Mar ', 'March ')",
+      "as": "DisplayQuarter"
     }
   ],
   "mark": {
@@ -59,7 +63,8 @@
       "title": null,
       "axis": {
         "labelAngle": 0,
-        "labelPadding": 9
+        "labelPadding": 9,
+        "labelExpr": "replace(replace(replace(replace(datum.label, 'Jun ', 'June '), 'Sep ', 'September '), 'Dec ', 'December '), 'Mar ', 'March ')"
       }
     },
     "y": {
@@ -84,7 +89,10 @@
     "color": {
       "field": "DeviationPct",
       "type": "quantitative",
-      "title": "Vs. state average (%)",
+      "title": [
+        "Difference from state average",
+        "(percent)"
+      ],
       "scale": {
         "scheme": "redblue",
         "domainMid": 0
@@ -101,7 +109,7 @@
         "title": "State"
       },
       {
-        "field": "Quarter",
+        "field": "DisplayQuarter",
         "title": "Quarter"
       },
       {
@@ -113,7 +121,7 @@
       {
         "field": "DeviationPct",
         "type": "quantitative",
-        "title": "Vs. state average (%)",
+        "title": "versus state average (percent)",
         "format": "+.1f"
       }
     ]

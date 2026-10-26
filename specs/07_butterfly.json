@@ -1,44 +1,54 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-
   "title": {
     "text": "Where Do Domestic Visitors Stay?",
-    "subtitle": "Capital cities vs regional Australia, 2024"
+    "subtitle": "Capital cities versus regional Australia, 2024"
   },
-
   "width": 640,
   "height": 270,
-
   "data": {
     "url": "data/accommodation_capital_regional.csv"
   },
-
   "transform": [
     {
       "calculate": "datum.Area === 'Capital' ? -datum.NightsM : datum.NightsM",
       "as": "SignedNights"
+    },
+    {
+      "calculate": "datum.Area === 'Capital' ? 'Capital cities' : 'Regional Australia'",
+      "as": "DisplayArea"
     }
   ],
-
   "mark": {
     "type": "bar",
     "cornerRadiusEnd": 3
   },
-
   "encoding": {
     "x": {
       "field": "SignedNights",
       "type": "quantitative",
       "scale": {
-        "domain": [-85, 85]
+        "domain": [
+          -85,
+          85
+        ]
       },
       "axis": {
         "title": "Visitor nights (millions)",
-        "values": [-80, -60, -40, -20, 0, 20, 40, 60, 80],
+        "values": [
+          -80,
+          -60,
+          -40,
+          -20,
+          0,
+          20,
+          40,
+          60,
+          80
+        ],
         "labelExpr": "abs(datum.value)"
       }
     },
-
     "y": {
       "field": "AccommodationType",
       "type": "nominal",
@@ -50,24 +60,31 @@
       ],
       "title": null
     },
-
     "color": {
       "field": "Area",
       "type": "nominal",
       "scale": {
-        "domain": ["Capital", "Regional"],
-        "range": ["#3478ae", "#dc974a"]
+        "domain": [
+          "Capital",
+          "Regional"
+        ],
+        "range": [
+          "#3478ae",
+          "#dc974a"
+        ]
       },
-      "title": "Area"
+      "title": "Area",
+      "legend": {
+        "labelExpr": "datum.label === 'Capital' ? 'Capital cities' : 'Regional Australia'"
+      }
     },
-
     "tooltip": [
       {
         "field": "AccommodationType",
         "title": "Accommodation"
       },
       {
-        "field": "Area",
+        "field": "DisplayArea",
         "title": "Area"
       },
       {
@@ -78,7 +95,6 @@
       }
     ]
   },
-
   "config": {
     "view": {
       "stroke": null

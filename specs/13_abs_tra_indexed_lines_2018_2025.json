@@ -1,10 +1,10 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
-    "text": "Tourism Spending vs Hospitality Businesses",
-    "subtitle": "Australian financial years 2018–19 to 2024–25 | 2018–19 = 100"
+    "text": "Tourism Spending versus Hospitality Businesses",
+    "subtitle": "Australian financial years 2018–2019 to 2024–2025 | 2018–2019 = 100"
   },
-  "width": 660,
+  "width": 900,
   "height": 355,
   "data": {
     "url": "data/overnight_spending_hospitality_businesses_2018_2025.csv",
@@ -61,8 +61,12 @@
       ]
     },
     {
-      "calculate": "datum.MetricKey === 'SpendingIndex' ? 'Domestic overnight tourism spending (TRA)' : 'Accommodation and Food Services businesses (ABS)'",
+      "calculate": "datum.MetricKey === 'SpendingIndex' ? 'Domestic overnight tourism spending (Tourism Research Australia)' : 'Accommodation and Food Services businesses (Australian Bureau of Statistics)'",
       "as": "Series"
+    },
+    {
+      "calculate": "substring(datum.FinancialYear, 0, 5) + substring(datum.FinancialYear, 0, 2) + substring(datum.FinancialYear, 5)",
+      "as": "DisplayFinancialYear"
     }
   ],
   "mark": {
@@ -89,7 +93,8 @@
       "axis": {
         "title": "Financial year",
         "labelAngle": 0,
-        "labelFontSize": 10
+        "labelFontSize": 10,
+        "labelExpr": "substring(datum.label, 0, 5) + substring(datum.label, 0, 2) + substring(datum.label, 5)"
       }
     },
     "y": {
@@ -103,7 +108,7 @@
         "nice": false
       },
       "axis": {
-        "title": "Index (2018–19 = 100)",
+        "title": "Index (2018–2019 = 100)",
         "values": [
           80,
           90,
@@ -122,8 +127,8 @@
       "type": "nominal",
       "scale": {
         "domain": [
-          "Domestic overnight tourism spending (TRA)",
-          "Accommodation and Food Services businesses (ABS)"
+          "Domestic overnight tourism spending (Tourism Research Australia)",
+          "Accommodation and Food Services businesses (Australian Bureau of Statistics)"
         ],
         "range": [
           "#1976a3",
@@ -133,12 +138,14 @@
       "legend": {
         "title": null,
         "orient": "bottom",
-        "labelLimit": 400
+        "labelLimit": 700,
+        "columns": 1,
+        "labelFontSize": 11
       }
     },
     "tooltip": [
       {
-        "field": "FinancialYear",
+        "field": "DisplayFinancialYear",
         "type": "nominal",
         "title": "Financial year"
       },
@@ -150,19 +157,19 @@
       {
         "field": "Index",
         "type": "quantitative",
-        "title": "Index (2018–19 = 100)",
+        "title": "Index (2018–2019 = 100)",
         "format": ".2f"
       },
       {
         "field": "OvernightConsumptionM",
         "type": "quantitative",
-        "title": "TRA overnight tourism spending (A$M)",
+        "title": "Tourism Research Australia overnight tourism spending (millions of Australian dollars)",
         "format": ",.0f"
       },
       {
         "field": "HospitalityBusinesses",
         "type": "quantitative",
-        "title": "ABS hospitality businesses (number)",
+        "title": "Australian Bureau of Statistics hospitality businesses (number)",
         "format": ",.0f"
       }
     ]

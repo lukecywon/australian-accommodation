@@ -26,7 +26,7 @@
       "as": "MarketPosition"
     },
     {
-      "calculate": "datum.StateCode + '  ' + format(datum.NightsM, '.1f')",
+      "calculate": "datum.State + '  ' + format(datum.NightsM, '.1f')",
       "as": "EndpointLabel"
     },
     {
@@ -44,8 +44,8 @@
       "type": "quantitative",
       "scale": {
         "domain": [
-          -0.17,
-          1.17
+          -0.45,
+          1.45
         ],
         "nice": false
       },
@@ -184,7 +184,7 @@
         "type": "text",
         "align": "right",
         "dx": -8,
-        "fontSize": 12
+        "fontSize": 11
       },
       "encoding": {
         "x": {
@@ -210,7 +210,7 @@
         "type": "text",
         "align": "left",
         "dx": 8,
-        "fontSize": 12
+        "fontSize": 11
       },
       "encoding": {
         "x": {

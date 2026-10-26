@@ -2,7 +2,7 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
     "text": "Where is accommodation spending concentrated?",
-    "subtitle": "Tourism consumption of accommodation services, financial year 2024–25"
+    "subtitle": "Tourism consumption of accommodation services, financial year 2024–2025"
   },
   "width": 620,
   "height": 440,
@@ -59,7 +59,14 @@
               3300
             ]
           },
-          "title": "Accommodation spend (A$B)"
+          "title": [
+            "Accommodation spending",
+            "(billions of Australian dollars)"
+          ],
+          "legend": {
+            "titleLimit": 240,
+            "titleFontSize": 11
+          }
         },
         "tooltip": [
           {
@@ -69,7 +76,7 @@
           {
             "field": "AccommodationSpendB",
             "type": "quantitative",
-            "title": "Accommodation spend (A$B)",
+            "title": "Accommodation spend (billions of Australian dollars)",
             "format": ".2f"
           }
         ]

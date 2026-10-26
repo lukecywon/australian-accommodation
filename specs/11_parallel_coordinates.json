@@ -2,9 +2,9 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
     "text": "How Do State Accommodation Economies Compare?",
-    "subtitle": "Direct tourism accommodation measures, 2024–25; axes scaled independently from 0 to 1"
+    "subtitle": "Direct tourism accommodation measures, 2024–2025; axes scaled independently from 0 to 1"
   },
-  "width": 700,
+  "width": 1000,
   "height": 380,
   "data": {
     "url": "data/state_accommodation_economy.csv",
@@ -36,7 +36,7 @@
       ]
     },
     {
-      "calculate": "datum.MetricKey === 'OutputM' ? 'Output (A$M)' : datum.MetricKey === 'FilledJobs000' ? 'Filled jobs (000)' : datum.MetricKey === 'GVAperJobK' ? 'GVA per job (A$k)' : 'Consumption (A$M)'",
+      "calculate": "datum.MetricKey === 'OutputM' ? 'Output (millions of Australian dollars)' : datum.MetricKey === 'FilledJobs000' ? 'Filled jobs (thousands)' : datum.MetricKey === 'GVAperJobK' ? 'Gross value added per filled job (thousands of Australian dollars)' : 'Consumption (millions of Australian dollars)'",
       "as": "Metric"
     },
     {
@@ -67,7 +67,7 @@
       "select": {
         "type": "point",
         "fields": [
-          "StateCode"
+          "State"
         ]
       },
       "bind": "legend"
@@ -86,15 +86,18 @@
       "field": "Metric",
       "type": "ordinal",
       "sort": [
-        "Output (A$M)",
-        "Filled jobs (000)",
-        "GVA per job (A$k)",
-        "Consumption (A$M)"
+        "Output (millions of Australian dollars)",
+        "Filled jobs (thousands)",
+        "Gross value added per filled job (thousands of Australian dollars)",
+        "Consumption (millions of Australian dollars)"
       ],
       "axis": {
         "title": null,
         "labelAngle": 0,
-        "labelLimit": 180
+        "labelLimit": 290,
+        "labelFontSize": 11,
+        "labelLineHeight": 16,
+        "labelExpr": "datum.label === 'Gross value added per filled job (thousands of Australian dollars)' ? ['Gross value added', 'per filled job', '(thousands of Australian dollars)'] : datum.label === 'Filled jobs (thousands)' ? ['Filled jobs', '(thousands)'] : [split(datum.label, ' (')[0], '(millions of Australian dollars)']"
       }
     },
     "y": {
@@ -120,9 +123,17 @@
       }
     },
     "color": {
-      "field": "StateCode",
+      "field": "State",
       "type": "nominal",
-      "title": "State / territory"
+      "title": "State / territory",
+      "legend": {
+        "orient": "bottom",
+        "direction": "horizontal",
+        "columns": 2,
+        "labelLimit": 300,
+        "labelFontSize": 12,
+        "title": "State or territory"
+      }
     },
     "detail": {
       "field": "State"

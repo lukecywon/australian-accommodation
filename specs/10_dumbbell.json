@@ -5,7 +5,9 @@
     "subtitle": "Visitor nights by accommodation type, years ending June 2025 and June 2026"
   },
   "width": 640,
-  "height": { "step": 31 },
+  "height": {
+    "step": 31
+  },
   "data": {
     "url": "data/international_accommodation_comparison.csv",
     "format": {
@@ -23,7 +25,10 @@
       "bind": {
         "input": "select",
         "name": "Display: ",
-        "options": ["All accommodation types", "Smaller categories (<15M nights)"]
+        "options": [
+          "All accommodation types",
+          "Smaller categories (<15M nights)"
+        ]
       }
     }
   ],
@@ -44,58 +49,156 @@
     "y": {
       "field": "AccommodationType",
       "type": "nominal",
-      "sort": {"field": "Nights2026M", "op": "max", "order": "descending"},
+      "sort": {
+        "field": "Nights2026M",
+        "op": "max",
+        "order": "descending"
+      },
       "title": null,
-      "axis": {"labelLimit": 280, "labelFontSize": 11}
+      "axis": {
+        "labelLimit": 280,
+        "labelFontSize": 11
+      }
     }
   },
   "layer": [
     {
-      "mark": {"type": "rule", "strokeWidth": 2, "color": "#94a3b8"},
+      "mark": {
+        "type": "rule",
+        "strokeWidth": 2,
+        "color": "#94a3b8"
+      },
       "encoding": {
         "x": {
           "field": "Nights2025M",
           "type": "quantitative",
-          "scale": {"zero": true},
+          "scale": {
+            "zero": true
+          },
           "title": "Visitor nights (millions)"
         },
-        "x2": {"field": "Nights2026M"},
+        "x2": {
+          "field": "Nights2026M"
+        },
         "tooltip": [
-          {"field": "AccommodationType", "title": "Accommodation type"},
-          {"field": "Nights2025M", "type": "quantitative", "title": "2025 (M nights)", "format": ".2f"},
-          {"field": "Nights2026M", "type": "quantitative", "title": "2026 (M nights)", "format": ".2f"},
-          {"field": "ChangeM", "type": "quantitative", "title": "Change (M nights)", "format": "+.2f"},
-          {"field": "ChangePct", "type": "quantitative", "title": "Change (%)", "format": "+.1f"}
+          {
+            "field": "AccommodationType",
+            "title": "Accommodation type"
+          },
+          {
+            "field": "Nights2025M",
+            "type": "quantitative",
+            "title": "2025 (millions of nights)",
+            "format": ".2f"
+          },
+          {
+            "field": "Nights2026M",
+            "type": "quantitative",
+            "title": "2026 (millions of nights)",
+            "format": ".2f"
+          },
+          {
+            "field": "ChangeM",
+            "type": "quantitative",
+            "title": "Change (millions of nights)",
+            "format": "+.2f"
+          },
+          {
+            "field": "ChangePct",
+            "type": "quantitative",
+            "title": "Change (percent)",
+            "format": "+.1f"
+          }
         ]
       }
     },
     {
       "transform": [
-        {"fold": ["Nights2025M", "Nights2026M"], "as": ["YearField", "VisitorNightsM"]},
-        {"calculate": "datum.YearField === 'Nights2025M' ? '2025' : '2026'", "as": "Year"}
+        {
+          "fold": [
+            "Nights2025M",
+            "Nights2026M"
+          ],
+          "as": [
+            "YearField",
+            "VisitorNightsM"
+          ]
+        },
+        {
+          "calculate": "datum.YearField === 'Nights2025M' ? '2025' : '2026'",
+          "as": "Year"
+        }
       ],
-      "mark": {"type": "circle", "size": 100, "opacity": 0.95},
+      "mark": {
+        "type": "circle",
+        "size": 100,
+        "opacity": 0.95
+      },
       "encoding": {
-        "x": {"field": "VisitorNightsM", "type": "quantitative", "scale": {"zero": true}, "title": "Visitor nights (millions)"},
+        "x": {
+          "field": "VisitorNightsM",
+          "type": "quantitative",
+          "scale": {
+            "zero": true
+          },
+          "title": "Visitor nights (millions)"
+        },
         "color": {
           "field": "Year",
           "type": "nominal",
-          "scale": {"domain": ["2025", "2026"], "range": ["#dc974a", "#167d8e"]},
-          "legend": {"title": "Year ending June"}
+          "scale": {
+            "domain": [
+              "2025",
+              "2026"
+            ],
+            "range": [
+              "#dc974a",
+              "#167d8e"
+            ]
+          },
+          "legend": {
+            "title": "Year ending June"
+          }
         },
         "tooltip": [
-          {"field": "AccommodationType", "title": "Accommodation type"},
-          {"field": "Year", "title": "Year ending June"},
-          {"field": "VisitorNightsM", "type": "quantitative", "title": "Visitor nights (M)", "format": ".2f"},
-          {"field": "ChangeM", "type": "quantitative", "title": "Change 2025–26 (M)", "format": "+.2f"},
-          {"field": "ChangePct", "type": "quantitative", "title": "Change 2025–26 (%)", "format": "+.1f"}
+          {
+            "field": "AccommodationType",
+            "title": "Accommodation type"
+          },
+          {
+            "field": "Year",
+            "title": "Year ending June"
+          },
+          {
+            "field": "VisitorNightsM",
+            "type": "quantitative",
+            "title": "Visitor nights (millions)",
+            "format": ".2f"
+          },
+          {
+            "field": "ChangeM",
+            "type": "quantitative",
+            "title": "Change 2025–2026 (millions)",
+            "format": "+.2f"
+          },
+          {
+            "field": "ChangePct",
+            "type": "quantitative",
+            "title": "Change 2025–2026 (percent)",
+            "format": "+.1f"
+          }
         ]
       }
     }
   ],
   "config": {
-    "view": {"stroke": null},
-    "axis": {"grid": true, "gridColor": "#e6e9ee"},
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "grid": true,
+      "gridColor": "#e6e9ee"
+    },
     "font": "Arial"
   }
 }

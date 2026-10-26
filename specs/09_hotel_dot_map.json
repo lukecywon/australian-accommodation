@@ -46,7 +46,7 @@
           "filter": "datum.State != 'Other Territories'"
         },
         {
-          "calculate": "isValid(datum.Name) && datum.Name != '' ? datum.Name : 'Unnamed OSM hotel record'",
+          "calculate": "isValid(datum.Name) && datum.Name != '' ? datum.Name : 'Unnamed OpenStreetMap hotel record'",
           "as": "DisplayName"
         }
       ],
@@ -82,7 +82,7 @@
           {
             "field": "OSMURL",
             "type": "nominal",
-            "title": "OSM record"
+            "title": "OpenStreetMap record"
           }
         ],
         "href": {

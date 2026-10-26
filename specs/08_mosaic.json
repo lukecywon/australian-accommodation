@@ -1,21 +1,17 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-
   "title": {
     "text": "Domestic Accommodation Mix by State",
     "subtitle": "Selected accommodation categories, 2024"
   },
-
   "width": 640,
   "height": 400,
-
   "padding": {
     "left": 15,
     "right": 15,
     "top": 15,
     "bottom": 115
   },
-
   "data": {
     "url": "data/mosaic_rectangles.csv",
     "format": {
@@ -30,7 +26,6 @@
       }
     }
   },
-
   "layer": [
     {
       "mark": {
@@ -38,43 +33,51 @@
         "stroke": "white",
         "strokeWidth": 2
       },
-
       "encoding": {
         "x": {
           "field": "x0",
           "type": "quantitative",
           "scale": {
-            "domain": [0, 100],
+            "domain": [
+              0,
+              100
+            ],
             "nice": false
           },
           "axis": null
         },
-
         "x2": {
           "field": "x1"
         },
-
         "y": {
           "field": "y0",
           "type": "quantitative",
           "scale": {
-            "domain": [0, 100],
+            "domain": [
+              0,
+              100
+            ],
             "reverse": true,
             "nice": false
           },
           "axis": {
-            "title": "Share within selected categories (%)",
-            "values": [0, 20, 40, 60, 80, 100],
+            "title": "Share within selected categories (percent)",
+            "values": [
+              0,
+              20,
+              40,
+              60,
+              80,
+              100
+            ],
             "grid": false,
             "labelFontSize": 11,
             "titleFontSize": 12
           }
         },
-
         "y2": {
           "field": "y1"
         },
-
         "color": {
           "field": "AccommodationType",
           "type": "nominal",
@@ -96,7 +99,6 @@
             "titleFontSize": 12
           }
         },
-
         "tooltip": [
           {
             "field": "State",
@@ -123,7 +125,6 @@
         ]
       }
     },
-
     {
       "transform": [
         {
@@ -139,14 +140,15 @@
               "as": "StateX1"
             }
           ],
-          "groupby": ["State"]
+          "groupby": [
+            "State"
+          ]
         },
         {
           "calculate": "(toNumber(datum.StateX0) + toNumber(datum.StateX1)) / 2",
           "as": "LabelX"
         }
       ],
-
       "mark": {
         "type": "text",
         "fontSize": 10,
@@ -156,22 +158,22 @@
         "baseline": "middle",
         "color": "#333333"
       },
-
       "encoding": {
         "x": {
           "field": "LabelX",
           "type": "quantitative",
           "scale": {
-            "domain": [0, 100],
+            "domain": [
+              0,
+              100
+            ],
             "nice": false
           },
           "axis": null
         },
-
         "y": {
           "value": 412
         },
-
         "text": {
           "field": "State",
           "type": "nominal"
@@ -179,7 +181,6 @@
       }
     }
   ],
-
   "config": {
     "view": {
       "stroke": null

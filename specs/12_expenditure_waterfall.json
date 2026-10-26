@@ -2,7 +2,10 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
     "text": "What Drove the Change in Domestic Tourism Spending?",
-    "subtitle": "June quarter 2025 to June quarter 2026 · Difference from 2025 baseline (A$M)"
+    "subtitle": [
+      "June quarter 2025 to June quarter 2026",
+      "Difference from 2025 baseline (millions of Australian dollars)"
+    ]
   },
   "width": 840,
   "height": 390,
@@ -60,7 +63,10 @@
             "nice": false
           },
           "axis": {
-            "title": "Change from June 2025 baseline (A$ million)",
+            "title": [
+              "Change from June 2025 baseline",
+              "(millions of Australian dollars)"
+            ],
             "grid": true,
             "format": ",.0f"
           }
@@ -97,19 +103,19 @@
           {
             "field": "ChangeM",
             "type": "quantitative",
-            "title": "Change (A$M)",
+            "title": "Change (millions of Australian dollars)",
             "format": "+,.3f"
           },
           {
             "field": "Start2025TotalM",
             "type": "quantitative",
-            "title": "2025 total (A$M)",
+            "title": "2025 total (millions of Australian dollars)",
             "format": ",.3f"
           },
           {
             "field": "End2026TotalM",
             "type": "quantitative",
-            "title": "2026 total (A$M)",
+            "title": "2026 total (millions of Australian dollars)",
             "format": ",.3f"
           }
         ]
@@ -136,7 +142,10 @@
             "nice": false
           },
           "axis": {
-            "title": "Change from June 2025 baseline (A$ million)",
+            "title": [
+              "Change from June 2025 baseline",
+              "(millions of Australian dollars)"
+            ],
             "grid": true,
             "format": ",.0f"
           }

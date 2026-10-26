@@ -1,19 +1,16 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": "Domestic Visitor Nights by Travel Purpose",
-  "width": 650,
+  "width": 800,
   "height": 350,
-
   "data": {
     "url": "data/purpose_by_quarter.csv"
   },
-
   "mark": {
     "type": "line",
     "point": true,
     "strokeWidth": 2.5
   },
-
   "encoding": {
     "x": {
       "field": "Quarter",
@@ -26,30 +23,33 @@
         "Jun 2026"
       ],
       "title": "Quarter",
-      "axis": {"labelAngle": 0}
+      "axis": {
+        "labelAngle": 0,
+        "labelExpr": "replace(replace(replace(replace(datum.label, 'Jun ', 'June '), 'Sep ', 'September '), 'Dec ', 'December '), 'Mar ', 'March ')"
+      }
     },
-
     "y": {
       "field": "VisitorNightsM",
       "type": "quantitative",
       "title": "Visitor nights (millions)",
-      "scale": {"zero": true}
+      "scale": {
+        "zero": true
+      }
     },
-
     "color": {
       "field": "Purpose",
       "type": "nominal",
       "title": "Purpose of travel"
     },
-
     "tooltip": [
       {
         "field": "Purpose",
         "type": "nominal"
       },
       {
-        "field": "Quarter",
-        "type": "ordinal"
+        "field": "DisplayQuarter",
+        "type": "ordinal",
+        "title": "Quarter"
       },
       {
         "field": "VisitorNightsM",
@@ -59,8 +59,15 @@
       }
     ]
   },
-
   "config": {
-    "view": {"stroke": null}
-  }
+    "view": {
+      "stroke": null
+    }
+  },
+  "transform": [
+    {
+      "calculate": "replace(replace(replace(replace(datum.Quarter, 'Jun ', 'June '), 'Sep ', 'September '), 'Dec ', 'December '), 'Mar ', 'March ')",
+      "as": "DisplayQuarter"
+    }
+  ]
 }

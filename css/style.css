@@ -220,7 +220,7 @@ h1 {
 }
 
 .vega-container.slope-chart {
-  min-width: 760px;
+  min-width: 1000px;
 }
 
 .vega-container.map-chart {
