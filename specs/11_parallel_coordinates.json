@@ -167,7 +167,7 @@
     {
       "mark": {
         "type": "line",
-        "strokeWidth": 2.5
+        "strokeWidth": 1.5
       }
     },
     {
@@ -187,7 +187,7 @@
       "mark": {
         "type": "circle",
         "filled": true,
-        "size": 65
+        "size": 40
       }
     }
   ]
