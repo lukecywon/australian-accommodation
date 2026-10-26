@@ -46,7 +46,13 @@
       "scale": {
         "scheme": "blues"
       },
-      "title": "Visitor nights per resident"
+      "title": "Visitor nights per resident",
+      "legend": {
+        "orient": "bottom",
+        "direction": "horizontal",
+        "gradientLength": 280,
+        "titleLimit": 360
+      }
     },
     "tooltip": [
       {
@@ -79,7 +85,16 @@
     },
     "legend": {
       "labelFont": "Segoe UI, Arial, sans-serif",
-      "titleFont": "Segoe UI, Arial, sans-serif"
+      "titleFont": "Segoe UI, Arial, sans-serif",
+      "orient": "bottom",
+      "direction": "horizontal",
+      "titleAnchor": "middle",
+      "layout": {
+        "bottom": {
+          "anchor": "middle"
+        }
+      },
+      "offset": 16
     }
   }
 }

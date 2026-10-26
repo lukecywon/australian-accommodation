@@ -60,8 +60,17 @@
             "(billions of Australian dollars)"
           ],
           "legend": {
-            "titleLimit": 240,
-            "titleFontSize": 11
+            "titleLimit": 360,
+            "titleFontSize": 11,
+            "orient": "bottom",
+            "direction": "horizontal",
+            "columns": 3,
+            "values": [
+              2,
+              4,
+              6
+            ],
+            "columnPadding": 24
           }
         },
         "tooltip": [
@@ -90,7 +99,16 @@
     },
     "legend": {
       "labelFont": "Segoe UI, Arial, sans-serif",
-      "titleFont": "Segoe UI, Arial, sans-serif"
+      "titleFont": "Segoe UI, Arial, sans-serif",
+      "orient": "bottom",
+      "direction": "horizontal",
+      "titleAnchor": "middle",
+      "layout": {
+        "bottom": {
+          "anchor": "middle"
+        }
+      },
+      "offset": 16
     }
   }
 }
