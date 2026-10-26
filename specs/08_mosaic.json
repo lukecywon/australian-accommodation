@@ -1,9 +1,5 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": {
-    "text": "Domestic Accommodation Mix by State",
-    "subtitle": "Selected accommodation categories, 2024"
-  },
   "width": 640,
   "height": 400,
   "padding": {

@@ -1,6 +1,5 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": "Domestic Visitor Nights by Travel Purpose",
   "width": 800,
   "height": 350,
   "data": {

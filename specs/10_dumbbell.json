@@ -1,9 +1,5 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": {
-    "text": "How Have International Accommodation Stays Changed?",
-    "subtitle": "Visitor nights by accommodation type, years ending June 2025 and June 2026"
-  },
   "width": 640,
   "height": {
     "step": 31

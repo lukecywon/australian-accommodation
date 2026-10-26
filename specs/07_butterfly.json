@@ -1,9 +1,5 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": {
-    "text": "Where Do Domestic Visitors Stay?",
-    "subtitle": "Capital cities versus regional Australia, 2024"
-  },
   "width": 640,
   "height": 270,
   "data": {

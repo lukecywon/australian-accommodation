@@ -1,9 +1,5 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": {
-    "text": "Tourism Spending versus Hospitality Businesses",
-    "subtitle": "Australian financial years 2018–2019 to 2024–2025 | 2018–2019 = 100"
-  },
   "width": 900,
   "height": 355,
   "data": {

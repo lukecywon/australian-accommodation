@@ -1,9 +1,5 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": {
-    "text": "Where Are Hotels Located Across Australia?",
-    "subtitle": "Individual hotel records mapped in OpenStreetMap"
-  },
   "width": 760,
   "height": 500,
   "projection": {

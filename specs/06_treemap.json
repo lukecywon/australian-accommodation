@@ -1,6 +1,5 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": "International Visitor Nights by Accommodation Type (2026)",
   "width": 700,
   "height": 440,
   "data": {

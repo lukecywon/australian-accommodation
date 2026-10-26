@@ -1,12 +1,5 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": {
-    "text": "Quarterly variation in domestic visitor nights",
-    "subtitle": "Deviation from each state’s five-quarter average • June 2025–June 2026",
-    "anchor": "start",
-    "fontSize": 17,
-    "subtitleFontSize": 11
-  },
   "width": {
     "step": 125
   },

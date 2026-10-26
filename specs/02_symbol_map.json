@@ -1,9 +1,5 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": {
-    "text": "Where is accommodation spending concentrated?",
-    "subtitle": "Tourism consumption of accommodation services, financial year 2024–2025"
-  },
   "width": 620,
   "height": 440,
   "projection": {

@@ -1,6 +1,5 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": "Map of Australia",
   "width": 650,
   "height": 450,
   "data": {

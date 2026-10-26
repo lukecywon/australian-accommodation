@@ -1,9 +1,5 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": {
-    "text": "How Do State Accommodation Economies Compare?",
-    "subtitle": "Direct tourism accommodation measures, 2024–2025; axes scaled independently from 0 to 1"
-  },
   "width": 1000,
   "height": 380,
   "data": {

@@ -1,12 +1,5 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": {
-    "text": "What Drove the Change in Domestic Tourism Spending?",
-    "subtitle": [
-      "June quarter 2025 to June quarter 2026",
-      "Difference from 2025 baseline (millions of Australian dollars)"
-    ]
-  },
   "width": 840,
   "height": 390,
   "data": {

@@ -1,9 +1,5 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": {
-    "text": "Tourism Spending versus Hospitality Businesses",
-    "subtitle": "National trends by financial year | 2022–2023 = 100"
-  },
   "width": 900,
   "height": 355,
   "data": {
