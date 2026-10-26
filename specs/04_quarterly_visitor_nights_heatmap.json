@@ -1,11 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": {
-    "step": 125
-  },
-  "height": {
-    "step": 38
-  },
+  "width": "container",
+  "height": 304,
   "data": {
     "url": "data/quarterly_visitor_nights.csv",
     "format": {
@@ -35,13 +31,12 @@
     {
       "calculate": "replace(replace(replace(replace(datum.Quarter, 'Jun ', 'June '), 'Sep ', 'September '), 'Dec ', 'December '), 'Mar ', 'March ')",
       "as": "DisplayQuarter"
+    },
+    {
+      "calculate": "abs(datum.DeviationPct) < 0.05 ? '0.0%' : format(datum.DeviationPct, '+.1f') + '%'",
+      "as": "DeviationLabel"
     }
   ],
-  "mark": {
-    "type": "rect",
-    "stroke": "white",
-    "strokeWidth": 2
-  },
   "encoding": {
     "x": {
       "field": "Quarter",
@@ -82,10 +77,7 @@
     "color": {
       "field": "DeviationPct",
       "type": "quantitative",
-      "title": [
-        "Difference from state average",
-        "(percent)"
-      ],
+      "title": "Difference from state average (percent)",
       "scale": {
         "scheme": "redblue",
         "domainMid": 0
@@ -93,7 +85,8 @@
       "legend": {
         "orient": "bottom",
         "direction": "horizontal",
-        "gradientLength": 260
+        "gradientLength": 340,
+        "titleLimit": 450
       }
     },
     "tooltip": [
@@ -130,5 +123,39 @@
       "titleFontSize": 11,
       "labelFontSize": 11
     }
-  }
+  },
+  "autosize": {
+    "type": "fit-x",
+    "contains": "padding",
+    "resize": true
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "rect",
+        "stroke": "white",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "fontSize": 13,
+        "fontWeight": 500
+      },
+      "encoding": {
+        "text": {
+          "field": "DeviationLabel",
+          "type": "nominal"
+        },
+        "color": {
+          "condition": {
+            "test": "contrast('white', scale('color', datum.DeviationPct)) > contrast('#183041', scale('color', datum.DeviationPct))",
+            "value": "#ffffff"
+          },
+          "value": "#183041"
+        }
+      }
+    }
+  ]
 }
