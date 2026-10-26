@@ -258,7 +258,8 @@ h1 {
 .vega-container.map-chart,
 #chart-05,
 #chart-07,
-#chart-08 {
+#chart-08,
+#chart-10 {
   min-width: 0;
 }
 
@@ -354,6 +355,18 @@ figcaption p:last-child {
 }
 
 /* Chart controls */
+.hotel-comparison-pair .vega-bindings label {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.hotel-comparison-pair .vega-bindings select {
+  max-width: 100%;
+  margin-left: 0;
+}
+
 .vega-bindings {
   padding-top: 20px;
   font: 14px/1.6 var(--sans);

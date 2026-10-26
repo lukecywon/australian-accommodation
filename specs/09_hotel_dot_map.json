@@ -1,7 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 760,
-  "height": 500,
+  "width": "container",
+  "height": 400,
   "projection": {
     "type": "mercator"
   },
@@ -101,5 +101,10 @@
       "labelFont": "Segoe UI, Arial, sans-serif",
       "titleFont": "Segoe UI, Arial, sans-serif"
     }
+  },
+  "autosize": {
+    "type": "fit-x",
+    "contains": "padding",
+    "resize": true
   }
 }

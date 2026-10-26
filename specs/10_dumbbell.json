@@ -1,9 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 640,
-  "height": {
-    "step": 31
-  },
+  "width": "container",
+  "height": 400,
   "data": {
     "url": "data/international_accommodation_comparison.csv",
     "format": {
@@ -17,18 +15,62 @@
   "params": [
     {
       "name": "focus",
-      "value": "All accommodation types",
+      "value": "Selected accommodation types",
       "bind": {
         "input": "select",
         "name": "Display: ",
         "options": [
-          "All accommodation types",
-          "Smaller categories (<15M nights)"
+          "Selected accommodation types",
+          "Smaller categories (under 15 million nights)"
         ]
       }
     }
   ],
   "transform": [
+    {
+      "filter": "indexof(['Other commercial accommodation', 'Caravan park or commercial camping ground', 'Caravan or camping - non commercial', 'Guest house or Bed & Breakfast'], datum.AccommodationType) < 0"
+    },
+    {
+      "lookup": "AccommodationType",
+      "from": {
+        "data": {
+          "values": [
+            {
+              "AccommodationType": "Hotel/resort/motel or motor Inn",
+              "DisplayAccommodation": "Hotels, resorts and motels"
+            },
+            {
+              "AccommodationType": "Rented house/apartment/flat or unit",
+              "DisplayAccommodation": "Rented properties"
+            },
+            {
+              "AccommodationType": "Backpacker or hostel",
+              "DisplayAccommodation": "Backpackers or hostels"
+            },
+            {
+              "AccommodationType": "Own property",
+              "DisplayAccommodation": "Own property"
+            },
+            {
+              "AccommodationType": "Friends or relatives property",
+              "DisplayAccommodation": "Friends or relatives"
+            },
+            {
+              "AccommodationType": "Other Private Accommodation",
+              "DisplayAccommodation": "Other private accommodation"
+            },
+            {
+              "AccommodationType": "Other Accomodation(b)",
+              "DisplayAccommodation": "Other accommodation"
+            }
+          ]
+        },
+        "key": "AccommodationType",
+        "fields": [
+          "DisplayAccommodation"
+        ]
+      }
+    },
     {
       "calculate": "datum.Nights2026M - datum.Nights2025M",
       "as": "ChangeM"
@@ -38,12 +80,12 @@
       "as": "ChangePct"
     },
     {
-      "filter": "focus === 'All accommodation types' || datum.Nights2026M < 15"
+      "filter": "focus === 'Selected accommodation types' || datum.Nights2026M < 15"
     }
   ],
   "encoding": {
     "y": {
-      "field": "AccommodationType",
+      "field": "DisplayAccommodation",
       "type": "nominal",
       "sort": {
         "field": "Nights2026M",
@@ -52,7 +94,7 @@
       },
       "title": null,
       "axis": {
-        "labelLimit": 280,
+        "labelLimit": 170,
         "labelFontSize": 11
       }
     }
@@ -62,7 +104,7 @@
       "mark": {
         "type": "rule",
         "strokeWidth": 2,
-        "color": "#94a3b8"
+        "color": "#B6C6D0"
       },
       "encoding": {
         "x": {
@@ -128,7 +170,9 @@
       "mark": {
         "type": "circle",
         "size": 100,
-        "opacity": 0.95
+        "opacity": 1,
+        "filled": true,
+        "strokeWidth": 2
       },
       "encoding": {
         "x": {
@@ -138,23 +182,6 @@
             "zero": true
           },
           "title": "Visitor nights (millions)"
-        },
-        "color": {
-          "field": "Year",
-          "type": "nominal",
-          "scale": {
-            "domain": [
-              "2025",
-              "2026"
-            ],
-            "range": [
-              "#dc974a",
-              "#167d8e"
-            ]
-          },
-          "legend": {
-            "title": "Year ending June"
-          }
         },
         "tooltip": [
           {
@@ -174,16 +201,60 @@
           {
             "field": "ChangeM",
             "type": "quantitative",
-            "title": "Change 2025–2026 (millions)",
+            "title": "Change 2025\u00e2\u20ac\u201c2026 (millions)",
             "format": "+.2f"
           },
           {
             "field": "ChangePct",
             "type": "quantitative",
-            "title": "Change 2025–2026 (percent)",
+            "title": "Change 2025\u00e2\u20ac\u201c2026 (percent)",
             "format": "+.1f"
           }
-        ]
+        ],
+        "stroke": {
+          "field": "Year",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "2025",
+              "2026"
+            ],
+            "range": [
+              "#688FA5",
+              "#35617D"
+            ]
+          },
+          "legend": {
+            "title": "Year ending June",
+            "orient": "bottom",
+            "direction": "horizontal",
+            "columns": 2,
+            "titleAnchor": "middle",
+            "symbolStrokeWidth": 2
+          }
+        },
+        "fill": {
+          "field": "Year",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "2025",
+              "2026"
+            ],
+            "range": [
+              "white",
+              "#35617D"
+            ]
+          },
+          "legend": {
+            "title": "Year ending June",
+            "orient": "bottom",
+            "direction": "horizontal",
+            "columns": 2,
+            "titleAnchor": "middle",
+            "symbolStrokeWidth": 2
+          }
+        }
       }
     }
   ],
@@ -195,12 +266,24 @@
       "grid": true,
       "gridColor": "#e6e9ee",
       "labelFont": "Segoe UI, Arial, sans-serif",
-      "titleFont": "Segoe UI, Arial, sans-serif"
+      "titleFont": "Segoe UI, Arial, sans-serif",
+      "tickCount": 5,
+      "labelFontSize": 11
     },
     "font": "Segoe UI, Arial, sans-serif",
     "legend": {
       "labelFont": "Segoe UI, Arial, sans-serif",
-      "titleFont": "Segoe UI, Arial, sans-serif"
+      "titleFont": "Segoe UI, Arial, sans-serif",
+      "layout": {
+        "bottom": {
+          "anchor": "middle"
+        }
+      }
     }
+  },
+  "autosize": {
+    "type": "fit-x",
+    "contains": "padding",
+    "resize": true
   }
 }
