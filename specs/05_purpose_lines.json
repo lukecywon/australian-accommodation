@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Small multiples compare four travel purposes using shared quarter and visitor-night scales. Each panel shows one purpose; all values are unchanged from the original dataset.",
+  "description": "Four compact small-multiple panels compare travel purposes in one horizontal row, using shared scales and a colour-blind-friendly Okabe-Ito palette. All original data values and tooltips are retained.",
   "data": {
     "url": "data/purpose_by_quarter.csv"
   },
@@ -24,27 +24,25 @@
       "labelOrient": "top",
       "labelAnchor": "start",
       "labelAlign": "left",
-      "labelFontSize": 14,
+      "labelFontSize": 12,
       "labelFontWeight": 600,
       "labelPadding": 12
     }
   },
-  "columns": 2,
+  "columns": 4,
   "spacing": {
-    "column": 36,
-    "row": 32
+    "column": 20,
+    "row": 24
   },
   "spec": {
-    "width": 540,
-    "height": 200,
+    "width": 295,
+    "height": 180,
     "mark": {
       "type": "line",
-      "color": "#1e6484",
       "strokeWidth": 2.5,
       "point": {
         "filled": true,
-        "size": 65,
-        "color": "#1e6484"
+        "size": 65
       }
     },
     "encoding": {
@@ -61,10 +59,11 @@
         "title": null,
         "axis": {
           "labelAngle": 0,
-          "labelExpr": "replace(replace(replace(replace(datum.label, 'Jun ', 'June '), 'Sep ', 'September '), 'Dec ', 'December '), 'Mar ', 'March ')",
+          "labelExpr": "split(replace(replace(replace(replace(datum.label, 'Jun ', 'June '), 'Sep ', 'September '), 'Dec ', 'December '), 'Mar ', 'March '), ' ')",
           "labelFontSize": 11,
           "labelLimit": 120,
-          "labelPadding": 8
+          "labelPadding": 8,
+          "labelLineHeight": 14
         }
       },
       "y": {
@@ -106,7 +105,26 @@
           "title": "Visitor nights (millions)",
           "format": ".2f"
         }
-      ]
+      ],
+      "color": {
+        "field": "Purpose",
+        "type": "nominal",
+        "scale": {
+          "domain": [
+            "Holiday",
+            "Visiting friends and relatives",
+            "Business",
+            "Other"
+          ],
+          "range": [
+            "#0072B2",
+            "#D55E00",
+            "#009E73",
+            "#CC79A7"
+          ]
+        },
+        "legend": null
+      }
     }
   },
   "resolve": {
