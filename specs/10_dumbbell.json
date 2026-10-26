@@ -22,6 +22,10 @@
         "options": [
           "Selected accommodation types",
           "Smaller categories (under 15 million nights)"
+        ],
+        "labels": [
+          "All selected types",
+          "Under 15 million nights"
         ]
       }
     }
@@ -229,7 +233,7 @@
             "orient": "bottom",
             "direction": "horizontal",
             "columns": 2,
-            "titleAnchor": "middle",
+            "titleAnchor": "end",
             "symbolStrokeWidth": 2
           }
         },
@@ -251,7 +255,7 @@
             "orient": "bottom",
             "direction": "horizontal",
             "columns": 2,
-            "titleAnchor": "middle",
+            "titleAnchor": "end",
             "symbolStrokeWidth": 2
           }
         }
@@ -276,7 +280,7 @@
       "titleFont": "Segoe UI, Arial, sans-serif",
       "layout": {
         "bottom": {
-          "anchor": "middle"
+          "anchor": "end"
         }
       }
     }

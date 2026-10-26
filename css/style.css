@@ -355,16 +355,29 @@ figcaption p:last-child {
 }
 
 /* Chart controls */
-.hotel-comparison-pair .vega-bindings label {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 8px;
+#chart-10 {
+  position: relative;
 }
 
-.hotel-comparison-pair .vega-bindings select {
-  max-width: 100%;
+#chart-10 .vega-bindings {
+  position: absolute;
+  left: 0;
+  bottom: 5px;
+  padding-top: 0;
+  font-size: 12px;
+}
+
+#chart-10 .vega-bindings label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+#chart-10 .vega-bindings select {
+  width: 155px;
+  min-height: 30px;
   margin-left: 0;
+  padding: 4px 6px;
 }
 
 .vega-bindings {
