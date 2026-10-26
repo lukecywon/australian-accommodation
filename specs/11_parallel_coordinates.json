@@ -85,9 +85,9 @@
         "title": null,
         "labelAngle": 0,
         "labelLimit": 290,
-        "labelFontSize": 11,
+        "labelFontSize": 12,
         "labelLineHeight": 16,
-        "labelExpr": "datum.label === 'Gross value added per filled job (thousands of Australian dollars)' ? ['Gross value added', 'per filled job', '(thousands of Australian dollars)'] : datum.label === 'Filled jobs (thousands)' ? ['Filled jobs', '(thousands)'] : [split(datum.label, ' (')[0], '(millions of Australian dollars)']"
+        "labelExpr": "datum.label === 'Gross value added per filled job (thousands of Australian dollars)' ? ['Gross value added', 'per filled job'] : datum.label === 'Filled jobs (thousands)' ? 'Filled jobs' : split(datum.label, ' (')[0]"
       },
       "scale": {
         "padding": 0
@@ -140,12 +140,12 @@
       {
         "field": "Metric",
         "type": "nominal",
-        "title": "Indicator"
+        "title": "Indicator and unit"
       },
       {
         "field": "Value",
         "type": "quantitative",
-        "title": "Original value (unit on axis)",
+        "title": "Original value",
         "format": ",.2f"
       },
       {
