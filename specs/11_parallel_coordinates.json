@@ -119,30 +119,30 @@
       }
     },
     "color": {
-      "field": "State",
+      "field": "StateCode",
       "type": "nominal",
       "title": "State / territory",
       "legend": null,
       "scale": {
         "domain": [
-          "New South Wales",
-          "Victoria",
-          "Queensland",
-          "South Australia",
-          "Western Australia",
-          "Tasmania",
-          "Northern Territory",
-          "Australian Capital Territory"
+          "NSW",
+          "VIC",
+          "QLD",
+          "WA",
+          "SA",
+          "TAS",
+          "NT",
+          "ACT"
         ],
         "range": [
-          "#332288",
-          "#AA4499",
-          "#117733",
-          "#B55065",
-          "#225588",
-          "#887722",
-          "#882255",
-          "#258577"
+          "#1e6484",
+          "#b87926",
+          "#7456a6",
+          "#526d82",
+          "#427e77",
+          "#9b6582",
+          "#847540",
+          "#6079a6"
         ]
       }
     },
