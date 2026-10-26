@@ -269,6 +269,30 @@ figcaption {
   gap: 32px;
 }
 
+.commentary-columns span {
+  font-weight: 650;
+}
+
+.commentary-columns .state-new-south-wales {
+  color: #1e6484;
+}
+
+.commentary-columns .state-queensland {
+  color: #7456a6;
+}
+
+.commentary-columns .state-victoria {
+  color: #9c641f;
+}
+
+.commentary-columns .state-western-australia {
+  color: #526d82;
+}
+
+.commentary-columns .state-northern-territory {
+  color: #847540;
+}
+
 @media (max-width: 700px) {
   .commentary-columns {
     grid-template-columns: 1fr;
