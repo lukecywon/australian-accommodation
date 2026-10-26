@@ -1,7 +1,13 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 1000,
-  "height": 380,
+  "description": "Bump chart of state and territory ranks across four accommodation economy indicators, financial year 2024\u20132025. Rank 1 is the highest value; indicators are not a time series.",
+  "width": "container",
+  "height": 420,
+  "autosize": {
+    "type": "fit-x",
+    "contains": "padding",
+    "resize": true
+  },
   "data": {
     "url": "data/state_accommodation_economy.csv",
     "format": {
@@ -36,136 +42,183 @@
       "as": "Metric"
     },
     {
-      "joinaggregate": [
+      "window": [
         {
-          "op": "min",
-          "field": "Value",
-          "as": "MetricMin"
-        },
+          "op": "rank",
+          "as": "Rank"
+        }
+      ],
+      "sort": [
         {
-          "op": "max",
           "field": "Value",
-          "as": "MetricMax"
+          "order": "descending"
         }
       ],
       "groupby": [
         "MetricKey"
       ]
-    },
-    {
-      "calculate": "datum.MetricMax === datum.MetricMin ? 0.5 : (datum.Value - datum.MetricMin) / (datum.MetricMax - datum.MetricMin)",
-      "as": "Normalised"
     }
   ],
-  "params": [
-    {
-      "name": "selectedState",
-      "select": {
-        "type": "point",
-        "fields": [
-          "State"
-        ]
-      },
-      "bind": "legend"
-    }
-  ],
-  "mark": {
-    "type": "line",
-    "point": {
-      "filled": true,
-      "size": 65
-    },
-    "strokeWidth": 2.5
-  },
   "encoding": {
     "x": {
-      "field": "Metric",
+      "field": "MetricKey",
       "type": "ordinal",
       "sort": [
-        "Output (millions of Australian dollars)",
-        "Filled jobs (thousands)",
-        "Gross value added per filled job (thousands of Australian dollars)",
-        "Consumption (millions of Australian dollars)"
+        "OutputM",
+        "FilledJobs000",
+        "GVAperJobK",
+        "ConsumptionM"
       ],
       "axis": {
         "title": null,
         "labelAngle": 0,
-        "labelLimit": 290,
-        "labelFontSize": 11,
+        "labelFontSize": 12,
         "labelLineHeight": 16,
-        "labelExpr": "datum.label === 'Gross value added per filled job (thousands of Australian dollars)' ? ['Gross value added', 'per filled job', '(thousands of Australian dollars)'] : datum.label === 'Filled jobs (thousands)' ? ['Filled jobs', '(thousands)'] : [split(datum.label, ' (')[0], '(millions of Australian dollars)']"
+        "labelPadding": 14,
+        "ticks": false,
+        "domain": false,
+        "labelExpr": "datum.label === 'OutputM' ? 'Output' : datum.label === 'FilledJobs000' ? 'Filled jobs' : datum.label === 'GVAperJobK' ? ['Gross value added', 'per filled job'] : 'Consumption'"
       }
     },
     "y": {
-      "field": "Normalised",
+      "field": "Rank",
       "type": "quantitative",
       "scale": {
         "domain": [
-          0,
-          1
-        ]
+          1,
+          8
+        ],
+        "reverse": true,
+        "nice": false
       },
       "axis": {
-        "title": "Relative value (0 = lowest state; 1 = highest state)",
+        "title": "Rank (1 = highest value)",
         "values": [
-          0,
-          0.25,
-          0.5,
-          0.75,
-          1
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
         ],
-        "format": ".2f",
-        "grid": true
+        "format": "d",
+        "domain": false,
+        "ticks": false,
+        "gridColor": "#e6e9ee"
       }
     },
     "color": {
       "field": "State",
       "type": "nominal",
-      "title": "State / territory",
-      "legend": {
-        "orient": "bottom",
-        "direction": "horizontal",
-        "columns": 2,
-        "labelLimit": 300,
-        "labelFontSize": 12,
-        "title": "State or territory"
-      }
+      "scale": {
+        "domain": [
+          "New South Wales",
+          "Victoria",
+          "Queensland",
+          "South Australia",
+          "Western Australia",
+          "Tasmania",
+          "Northern Territory",
+          "Australian Capital Territory"
+        ],
+        "range": [
+          "#332288",
+          "#AA4499",
+          "#117733",
+          "#CC6677",
+          "#225588",
+          "#887722",
+          "#882255",
+          "#258577"
+        ]
+      },
+      "legend": null
     },
     "detail": {
       "field": "State"
     },
     "opacity": {
       "condition": {
-        "param": "selectedState",
+        "param": "stateHover",
         "value": 1
       },
-      "value": 0.13
+      "value": 0.15
     },
     "tooltip": [
       {
         "field": "State",
-        "type": "nominal",
-        "title": "State"
+        "title": "State or territory"
       },
       {
         "field": "Metric",
-        "type": "nominal",
-        "title": "Indicator"
+        "title": "Indicator and unit"
+      },
+      {
+        "field": "Rank",
+        "type": "quantitative",
+        "title": "Rank",
+        "format": "d"
       },
       {
         "field": "Value",
         "type": "quantitative",
-        "title": "Original value (unit on axis)",
+        "title": "Original value",
         "format": ",.2f"
-      },
-      {
-        "field": "Normalised",
-        "type": "quantitative",
-        "title": "Relative position",
-        "format": ".2f"
       }
     ]
   },
+  "layer": [
+    {
+      "mark": {
+        "type": "line",
+        "interpolate": "monotone",
+        "strokeWidth": 2.5
+      }
+    },
+    {
+      "params": [
+        {
+          "name": "stateHover",
+          "select": {
+            "type": "point",
+            "fields": [
+              "State"
+            ],
+            "on": "pointerover",
+            "clear": "pointerout"
+          }
+        }
+      ],
+      "mark": {
+        "type": "circle",
+        "size": 95,
+        "stroke": "white",
+        "strokeWidth": 1.5
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.MetricKey === 'ConsumptionM'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "dx": 12,
+        "fontSize": 12,
+        "fontWeight": 600
+      },
+      "encoding": {
+        "text": {
+          "field": "State"
+        }
+      }
+    }
+  ],
   "config": {
     "view": {
       "stroke": null
@@ -182,5 +235,11 @@
       "titleFont": "Segoe UI, Arial, sans-serif"
     },
     "font": "Segoe UI, Arial, sans-serif"
+  },
+  "padding": {
+    "left": 5,
+    "right": 175,
+    "top": 10,
+    "bottom": 5
   }
 }
