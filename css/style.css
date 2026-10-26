@@ -262,6 +262,20 @@ figcaption {
   color: var(--blue);
 }
 
+/* Two-column figure commentary */
+.commentary-columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 32px;
+}
+
+@media (max-width: 700px) {
+  .commentary-columns {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+
 /* Chart controls */
 .vega-bindings {
   padding-top: 20px;
