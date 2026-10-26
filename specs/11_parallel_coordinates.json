@@ -87,9 +87,11 @@
         "labelLimit": 290,
         "labelFontSize": 12,
         "labelLineHeight": 16,
-        "labelExpr": "datum.label === 'Gross value added per filled job (thousands of Australian dollars)' ? ['Gross value added', 'per filled job'] : datum.label === 'Filled jobs (thousands)' ? 'Filled jobs' : split(datum.label, ' (')[0]"
+        "labelExpr": "datum.label === 'Gross value added per filled job (thousands of Australian dollars)' ? ['Gross value added', 'per filled job'] : datum.label === 'Filled jobs (thousands)' ? 'Filled jobs' : split(datum.label, ' (')[0]",
+        "labelPadding": 12
       },
       "scale": {
+        "type": "point",
         "padding": 0
       }
     },
@@ -112,14 +114,37 @@
           1
         ],
         "format": ".2f",
-        "grid": true
+        "grid": true,
+        "labelPadding": 8
       }
     },
     "color": {
       "field": "State",
       "type": "nominal",
       "title": "State / territory",
-      "legend": null
+      "legend": null,
+      "scale": {
+        "domain": [
+          "New South Wales",
+          "Victoria",
+          "Queensland",
+          "South Australia",
+          "Western Australia",
+          "Tasmania",
+          "Northern Territory",
+          "Australian Capital Territory"
+        ],
+        "range": [
+          "#332288",
+          "#AA4499",
+          "#117733",
+          "#B55065",
+          "#225588",
+          "#887722",
+          "#882255",
+          "#258577"
+        ]
+      }
     },
     "detail": {
       "field": "State"
@@ -164,7 +189,9 @@
       "labelFontSize": 11,
       "titleFontSize": 12,
       "labelFont": "Segoe UI, Arial, sans-serif",
-      "titleFont": "Segoe UI, Arial, sans-serif"
+      "titleFont": "Segoe UI, Arial, sans-serif",
+      "domain": false,
+      "ticks": false
     },
     "legend": {
       "labelFontSize": 11,
