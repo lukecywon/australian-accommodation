@@ -1,0 +1,247 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Compare domestic and international visitor nights for eight Australian states and territories in the same year. Lines connect visitor markets, not years. Only label positions are adjusted to avoid collisions.",
+  "width": "container",
+  "height": 500,
+  "autosize": {
+    "type": "fit-x",
+    "contains": "padding"
+  },
+  "data": {
+    "url": "data/tourism_by_state_with_population.csv"
+  },
+  "transform": [
+    {
+      "fold": [
+        "DomesticNightsM",
+        "InternationalNightsM"
+      ],
+      "as": [
+        "Market",
+        "NightsM"
+      ]
+    },
+    {
+      "calculate": "datum.Market === 'DomesticNightsM' ? 0 : 1",
+      "as": "MarketPosition"
+    },
+    {
+      "calculate": "datum.StateCode + '  ' + format(datum.NightsM, '.1f')",
+      "as": "EndpointLabel"
+    },
+    {
+      "calculate": "datum.MarketPosition === 0 ? (datum.StateCode === 'NT' ? 2 : datum.StateCode === 'ACT' ? 8 : datum.StateCode === 'TAS' ? 14 : datum.NightsM) : (datum.StateCode === 'TAS' ? 2 : datum.StateCode === 'NT' ? 8 : datum.StateCode === 'ACT' ? 14 : datum.StateCode === 'SA' ? 20 : datum.NightsM)",
+      "as": "LabelNightsM"
+    },
+    {
+      "calculate": "datum.MarketPosition === 0 ? -0.025 : 1.025",
+      "as": "LabelX"
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "MarketPosition",
+      "type": "quantitative",
+      "scale": {
+        "domain": [
+          -0.17,
+          1.17
+        ],
+        "nice": false
+      },
+      "axis": {
+        "title": null,
+        "orient": "top",
+        "values": [
+          0,
+          1
+        ],
+        "labelExpr": "datum.value === 0 ? 'Domestic visitor nights' : 'International visitor nights'",
+        "labelAngle": 0,
+        "labelPadding": 18,
+        "labelFontSize": 14,
+        "labelFont": "Georgia",
+        "labelColor": "#183041",
+        "grid": false,
+        "domain": false,
+        "ticks": false
+      }
+    },
+    "y": {
+      "field": "NightsM",
+      "type": "quantitative",
+      "scale": {
+        "domain": [
+          0,
+          125
+        ],
+        "nice": false
+      },
+      "axis": {
+        "title": "Visitor nights (millions)",
+        "values": [
+          0,
+          25,
+          50,
+          75,
+          100,
+          125
+        ]
+      }
+    },
+    "color": {
+      "field": "StateCode",
+      "type": "nominal",
+      "scale": {
+        "domain": [
+          "NSW",
+          "VIC",
+          "QLD",
+          "WA",
+          "SA",
+          "TAS",
+          "NT",
+          "ACT"
+        ],
+        "range": [
+          "#1e6484",
+          "#b87926",
+          "#7456a6",
+          "#526d82",
+          "#427e77",
+          "#9b6582",
+          "#847540",
+          "#6079a6"
+        ]
+      },
+      "legend": null
+    },
+    "detail": {
+      "field": "State"
+    },
+    "tooltip": [
+      {
+        "field": "State",
+        "type": "nominal",
+        "title": "State / territory"
+      },
+      {
+        "field": "DomesticNightsM",
+        "type": "quantitative",
+        "title": "Domestic nights (millions)",
+        "format": ".3f"
+      },
+      {
+        "field": "InternationalNightsM",
+        "type": "quantitative",
+        "title": "International nights (millions)",
+        "format": ".3f"
+      }
+    ]
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "line",
+        "strokeWidth": 2.5,
+        "opacity": 0.85
+      },
+      "encoding": {
+        "order": {
+          "field": "MarketPosition"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "circle",
+        "size": 85,
+        "opacity": 1
+      }
+    },
+    {
+      "mark": {
+        "type": "rule",
+        "strokeWidth": 1,
+        "opacity": 0.6
+      },
+      "encoding": {
+        "x2": {
+          "field": "LabelX"
+        },
+        "y2": {
+          "field": "LabelNightsM"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.MarketPosition === 0"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "dx": -8,
+        "fontSize": 12
+      },
+      "encoding": {
+        "x": {
+          "field": "LabelX",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "LabelNightsM",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "EndpointLabel"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.MarketPosition === 1"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 8,
+        "fontSize": 12
+      },
+      "encoding": {
+        "x": {
+          "field": "LabelX",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "LabelNightsM",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "EndpointLabel"
+        }
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "font": "system-ui, sans-serif",
+    "axis": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "titleFont": "Georgia",
+      "labelColor": "#536575",
+      "titleColor": "#183041",
+      "gridColor": "#e2e9ef",
+      "domain": false,
+      "ticks": false,
+      "titlePadding": 12
+    }
+  }
+}
