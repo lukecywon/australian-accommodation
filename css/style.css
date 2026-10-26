@@ -156,7 +156,15 @@ h1 {
 }
 
 .chapter-heading {
-  margin-bottom: 36px;
+  margin-bottom: 24px;
+}
+
+.chapter-heading h2 {
+  margin-bottom: 12px;
+}
+
+.chapter-heading .chapter-number {
+  margin-bottom: 8px;
 }
 
 .chapter-number, .figure-number {
@@ -168,6 +176,8 @@ h1 {
 }
 
 .chapter-heading > p:last-child {
+  margin-bottom: 0;
+  line-height: 1.55;
   color: var(--muted);
 }
 
@@ -476,7 +486,7 @@ footer li {
   }
 
   .chapter-heading {
-    margin-bottom: 28px;
+    margin-bottom: 20px;
   }
 
   .figure-pair {
