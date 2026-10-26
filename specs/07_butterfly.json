@@ -58,7 +58,11 @@
       "axis": {
         "labelLimit": 180,
         "labelFontSize": 11,
-        "labelExpr": "datum.label === 'Caravan_commercial camping' ? ['Caravan and', 'commercial camping'] : datum.label"
+        "labelExpr": "datum.label === 'Caravan_commercial camping' ? ['Caravan and', 'commercial camping'] : datum.label === 'Friends or relatives property' ? ['Friends or relatives', 'property'] : datum.label === 'Rented accommodation' ? ['Rented', 'accommodation'] : datum.label",
+        "labelAngle": -45,
+        "labelAlign": "right",
+        "labelBaseline": "middle",
+        "labelPadding": 10
       }
     },
     "color": {
@@ -110,7 +114,10 @@
     "font": "Segoe UI, Arial, sans-serif",
     "axis": {
       "labelFont": "Segoe UI, Arial, sans-serif",
-      "titleFont": "Segoe UI, Arial, sans-serif"
+      "titleFont": "Segoe UI, Arial, sans-serif",
+      "domain": false,
+      "ticks": false,
+      "grid": false
     },
     "legend": {
       "labelFont": "Segoe UI, Arial, sans-serif",
