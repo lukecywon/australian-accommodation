@@ -8,7 +8,7 @@
   --blue: #1e6484;
   --amber: #b87926;
   --serif: Georgia, 'Times New Roman', serif;
-  --content: 1120px;
+  --content: 1600px;
 }
 
 /* Base layout and typography */
@@ -182,6 +182,31 @@ h1 {
   color: var(--muted);
 }
 
+/* Side-by-side geography maps */
+.figure-pair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  margin-bottom: 56px;
+}
+
+.figure-pair > .chart-block {
+  margin-bottom: 0;
+  padding: 24px;
+}
+
+.figure-pair canvas,
+.figure-pair svg {
+  max-width: 100%;
+  height: auto !important;
+}
+
+@media (max-width: 1200px) {
+  .figure-pair {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* Chart containers and captions */
 .chart-scroll {
   width: 100%;
@@ -332,7 +357,12 @@ footer li {
     margin-bottom: 28px;
   }
 
-  .chart-block {
+  .figure-pair {
+    margin-bottom: 40px;
+  }
+
+  .chart-block,
+  .figure-pair > .chart-block {
     padding: 16px;
     margin-bottom: 40px;
   }
