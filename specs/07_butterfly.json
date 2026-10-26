@@ -59,7 +59,7 @@
         "labelLimit": 180,
         "labelFontSize": 11,
         "labelExpr": "datum.label === 'Caravan_commercial camping' ? ['Caravan and', 'commercial camping'] : datum.label === 'Friends or relatives property' ? ['Friends or relatives', 'property'] : datum.label === 'Rented accommodation' ? ['Rented', 'accommodation'] : datum.label",
-        "labelAngle": -45,
+        "labelAngle": -50,
         "labelAlign": "right",
         "labelBaseline": "middle",
         "labelPadding": 10
