@@ -51,7 +51,8 @@
         "orient": "bottom",
         "direction": "horizontal",
         "gradientLength": 280,
-        "titleLimit": 360
+        "titleLimit": 360,
+        "offset": 57
       }
     },
     "tooltip": [

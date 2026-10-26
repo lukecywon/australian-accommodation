@@ -208,6 +208,18 @@ h1 {
   padding: 24px;
 }
 
+.figure-pair .vega-embed {
+  display: block;
+}
+
+.figure-pair .vega-bindings:empty {
+  display: none;
+}
+
+.figure-pair figcaption {
+  margin-top: 8px;
+}
+
 .figure-pair canvas,
 .figure-pair svg {
   margin-inline: auto;
