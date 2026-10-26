@@ -340,6 +340,17 @@ figcaption p:last-child {
   }
 }
 
+/* Accommodation category emphasis */
+.accommodation-rented {
+  color: #332288;
+  font-weight: 650;
+}
+
+.accommodation-friends {
+  color: #117733;
+  font-weight: 650;
+}
+
 /* Chart controls */
 .vega-bindings {
   padding-top: 20px;

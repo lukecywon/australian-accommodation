@@ -1,50 +1,99 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 700,
-  "height": 440,
+  "description": "International visitor nights by accommodation type. All eleven tiles are labelled; compact labels are expanded in tooltips. Values are shown in millions. Uses the Paul Tol muted palette with neutral greys for the smallest categories.",
+  "width": "container",
+  "height": 660,
+  "autosize": {
+    "type": "fit-x",
+    "contains": "padding",
+    "resize": true
+  },
   "data": {
-    "url": "data/treemap_rectangles.csv"
+    "url": "data/treemap_rectangles.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "Nights2026M": "number",
+        "SharePct": "number",
+        "x0": "number",
+        "x1": "number",
+        "y0": "number",
+        "y1": "number"
+      }
+    }
   },
-  "mark": {
-    "type": "rect",
-    "stroke": "white",
-    "strokeWidth": 2
-  },
-  "encoding": {
-    "x": {
-      "field": "x0",
-      "type": "quantitative",
-      "scale": {
-        "domain": [
-          0,
-          100
+  "transform": [
+    {
+      "lookup": "AccommodationType",
+      "from": {
+        "data": {
+          "values": [
+            {
+              "AccommodationType": "Rented house/apartment/flat or unit",
+              "ShortLabel": "Rented properties"
+            },
+            {
+              "AccommodationType": "Friends or relatives property",
+              "ShortLabel": "Friends or relatives"
+            },
+            {
+              "AccommodationType": "Hotel/resort/motel or motor Inn",
+              "ShortLabel": "Hotels, resorts\nand motels"
+            },
+            {
+              "AccommodationType": "Other Private Accommodation",
+              "ShortLabel": "Other private"
+            },
+            {
+              "AccommodationType": "Backpacker or hostel",
+              "ShortLabel": "Backpackers / hostels"
+            },
+            {
+              "AccommodationType": "Other Accomodation(b)",
+              "ShortLabel": "Other accommodation"
+            },
+            {
+              "AccommodationType": "Own property",
+              "ShortLabel": "Own property"
+            },
+            {
+              "AccommodationType": "Other commercial accommodation",
+              "ShortLabel": "Other\npaid"
+            },
+            {
+              "AccommodationType": "Caravan park or commercial camping ground",
+              "ShortLabel": "Caravan\npark"
+            },
+            {
+              "AccommodationType": "Caravan or camping - non commercial",
+              "ShortLabel": "Camping"
+            },
+            {
+              "AccommodationType": "Guest house or Bed & Breakfast",
+              "ShortLabel": "B&B"
+            }
+          ]
+        },
+        "key": "AccommodationType",
+        "fields": [
+          "ShortLabel"
         ]
-      },
-      "axis": null
+      }
     },
-    "x2": {
-      "field": "x1"
+    {
+      "calculate": "(datum.x0 + datum.x1) / 2",
+      "as": "LabelX"
     },
-    "y": {
-      "field": "y0",
-      "type": "quantitative",
-      "scale": {
-        "domain": [
-          0,
-          100
-        ],
-        "reverse": true
-      },
-      "axis": null
+    {
+      "calculate": "(datum.y0 + datum.y1) / 2",
+      "as": "LabelY"
     },
-    "y2": {
-      "field": "y1"
-    },
-    "color": {
-      "field": "AccommodationType",
-      "type": "nominal",
-      "title": "Accommodation type"
-    },
+    {
+      "calculate": "datum.ShortLabel + '\\n' + format(datum.Nights2026M, '.1f')",
+      "as": "TileLabel"
+    }
+  ],
+  "encoding": {
     "tooltip": [
       {
         "field": "AccommodationType",
@@ -65,6 +114,135 @@
       }
     ]
   },
+  "layer": [
+    {
+      "mark": {
+        "type": "rect",
+        "stroke": "white",
+        "strokeWidth": 2
+      },
+      "encoding": {
+        "x": {
+          "field": "x0",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              100
+            ]
+          },
+          "axis": null
+        },
+        "x2": {
+          "field": "x1"
+        },
+        "y": {
+          "field": "y0",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              100
+            ],
+            "reverse": true
+          },
+          "axis": null
+        },
+        "y2": {
+          "field": "y1"
+        },
+        "color": {
+          "field": "AccommodationType",
+          "type": "nominal",
+          "title": "Accommodation type",
+          "legend": null,
+          "scale": {
+            "domain": [
+              "Rented house/apartment/flat or unit",
+              "Friends or relatives property",
+              "Hotel/resort/motel or motor Inn",
+              "Other Private Accommodation",
+              "Backpacker or hostel",
+              "Other Accomodation(b)",
+              "Own property",
+              "Other commercial accommodation",
+              "Caravan park or commercial camping ground",
+              "Caravan or camping - non commercial",
+              "Guest house or Bed & Breakfast"
+            ],
+            "range": [
+              "#332288",
+              "#117733",
+              "#88CCEE",
+              "#CC6677",
+              "#44AA99",
+              "#DDCC77",
+              "#999933",
+              "#AA4499",
+              "#882255",
+              "#666666",
+              "#BBBBBB"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "baseline": "middle",
+        "lineBreak": "\n",
+        "fontSize": {
+          "expr": "datum.y1 - datum.y0 < 5 ? 9 : (datum.x1 - datum.x0) * width / 100 < 90 ? 10 : (datum.x1 - datum.x0) * width / 100 < 200 ? 12 : 16"
+        },
+        "lineHeight": {
+          "expr": "datum.y1 - datum.y0 < 5 ? 10 : (datum.x1 - datum.x0) * width / 100 < 90 ? 11 : (datum.x1 - datum.x0) * width / 100 < 200 ? 14 : 19"
+        },
+        "fontWeight": 600,
+        "dy": {
+          "expr": "-(length(split(datum.TileLabel, '\\n')) - 1) * (datum.y1 - datum.y0 < 5 ? 10 : (datum.x1 - datum.x0) * width / 100 < 90 ? 11 : (datum.x1 - datum.x0) * width / 100 < 200 ? 14 : 19) / 2 + 1"
+        }
+      },
+      "encoding": {
+        "x": {
+          "field": "LabelX",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              100
+            ],
+            "nice": false
+          },
+          "axis": null
+        },
+        "y": {
+          "field": "LabelY",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              100
+            ],
+            "reverse": true,
+            "nice": false
+          },
+          "axis": null
+        },
+        "text": {
+          "field": "TileLabel"
+        },
+        "color": {
+          "condition": {
+            "test": "contrast('white', scale('color', datum.AccommodationType)) > contrast('#183041', scale('color', datum.AccommodationType))",
+            "value": "#ffffff"
+          },
+          "value": "#183041"
+        }
+      }
+    }
+  ],
   "config": {
     "view": {
       "stroke": null
