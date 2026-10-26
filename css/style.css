@@ -145,9 +145,13 @@ h1 {
 
 /* Chapters and figure headings */
 .chapter {
-  padding-block: 88px 12px;
+  padding-block: 64px 0;
   border-bottom: 1px solid var(--border);
   scroll-margin-top: 24px;
+}
+
+.chapter > :last-child {
+  margin-bottom: 48px;
 }
 
 .chapter-heading {
@@ -190,11 +194,15 @@ h1 {
 .figure-pair {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 24px;
+  column-gap: 24px;
+  row-gap: 0;
   margin-bottom: 56px;
 }
 
 .figure-pair > .chart-block {
+  display: grid;
+  grid-template-rows: subgrid;
+  grid-row: span 3;
   margin-bottom: 0;
   padding: 24px;
 }
@@ -208,6 +216,12 @@ h1 {
 @media (max-width: 1200px) {
   .figure-pair {
     grid-template-columns: 1fr;
+    row-gap: 56px;
+  }
+
+  .figure-pair > .chart-block {
+    display: block;
+    grid-row: auto;
   }
 }
 
@@ -367,7 +381,7 @@ footer li {
   }
 
   .chapter {
-    padding-top: 64px;
+    padding-top: 48px;
   }
 
   .chart-block {
@@ -391,7 +405,7 @@ footer li {
   }
 
   .chapter {
-    padding-top: 52px;
+    padding-top: 40px;
   }
 
   .chapter-heading {
@@ -399,13 +413,22 @@ footer li {
   }
 
   .figure-pair {
+    row-gap: 40px;
     margin-bottom: 40px;
   }
 
-  .chart-block,
-  .figure-pair > .chart-block {
+  .chart-block {
     padding: 16px;
     margin-bottom: 40px;
+  }
+
+  .figure-pair > .chart-block {
+    padding: 16px;
+    margin-bottom: 0;
+  }
+
+  .chapter > :last-child {
+    margin-bottom: 32px;
   }
 
   .period-note {
