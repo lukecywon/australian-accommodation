@@ -1,12 +1,12 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 640,
+  "width": "container",
   "height": 400,
   "padding": {
-    "left": 15,
-    "right": 15,
-    "top": 15,
-    "bottom": 115
+    "left": 5,
+    "right": 5,
+    "top": 5,
+    "bottom": 5
   },
   "data": {
     "url": "data/mosaic_rectangles.csv",
@@ -92,7 +92,9 @@
           "legend": {
             "title": "Accommodation type",
             "labelFontSize": 11,
-            "titleFontSize": 12
+            "titleFontSize": 12,
+            "columns": 1,
+            "labelLimit": 300
           }
         },
         "tooltip": [
@@ -192,7 +194,21 @@
     "font": "Segoe UI, Arial, sans-serif",
     "legend": {
       "labelFont": "Segoe UI, Arial, sans-serif",
-      "titleFont": "Segoe UI, Arial, sans-serif"
+      "titleFont": "Segoe UI, Arial, sans-serif",
+      "orient": "bottom",
+      "direction": "horizontal",
+      "titleAnchor": "start",
+      "layout": {
+        "bottom": {
+          "anchor": "start"
+        }
+      },
+      "offset": 100
     }
+  },
+  "autosize": {
+    "type": "fit-x",
+    "contains": "padding",
+    "resize": true
   }
 }

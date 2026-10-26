@@ -1,7 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 640,
-  "height": 270,
+  "width": "container",
+  "height": 400,
   "data": {
     "url": "data/accommodation_capital_regional.csv"
   },
@@ -54,7 +54,12 @@
         "Caravan_commercial camping",
         "Friends or relatives property"
       ],
-      "title": null
+      "title": null,
+      "axis": {
+        "labelLimit": 180,
+        "labelFontSize": 11,
+        "labelExpr": "datum.label === 'Caravan_commercial camping' ? ['Caravan and', 'commercial camping'] : datum.label"
+      }
     },
     "color": {
       "field": "Area",
@@ -71,7 +76,8 @@
       },
       "title": "Area",
       "legend": {
-        "labelExpr": "datum.label === 'Capital' ? 'Capital cities' : 'Regional Australia'"
+        "labelExpr": "datum.label === 'Capital' ? 'Capital cities' : 'Regional Australia'",
+        "columns": 1
       }
     },
     "tooltip": [
@@ -102,7 +108,21 @@
     },
     "legend": {
       "labelFont": "Segoe UI, Arial, sans-serif",
-      "titleFont": "Segoe UI, Arial, sans-serif"
+      "titleFont": "Segoe UI, Arial, sans-serif",
+      "orient": "bottom",
+      "direction": "horizontal",
+      "titleAnchor": "start",
+      "layout": {
+        "bottom": {
+          "anchor": "start"
+        }
+      },
+      "offset": 16
     }
+  },
+  "autosize": {
+    "type": "fit-x",
+    "contains": "padding",
+    "resize": true
   }
 }
