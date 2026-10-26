@@ -255,7 +255,8 @@ h1 {
   min-width: 1000px;
 }
 
-.vega-container.map-chart {
+.vega-container.map-chart,
+#chart-05 {
   min-width: 0;
 }
 

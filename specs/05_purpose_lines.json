@@ -1,138 +1,260 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Four compact small-multiple panels compare travel purposes in a two-column layout, using shared scales and a colour-blind-friendly Okabe-Ito palette. Panel widths fit the existing chart container without horizontal overflow on desktop and tablet. All original data values and tooltips are retained.",
+  "description": "Responsive two-column small multiples in one Vega-Lite view. Panel coordinates position the four travel-purpose plots; both rows retain the same visitor-night scale. Original values and tooltips are unchanged.",
+  "width": "container",
+  "height": 470,
+  "autosize": {
+    "type": "fit-x",
+    "contains": "padding",
+    "resize": true
+  },
   "data": {
-    "url": "data/purpose_by_quarter.csv"
+    "url": "data/purpose_by_quarter.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "VisitorNightsM": "number"
+      }
+    }
   },
   "transform": [
     {
       "calculate": "replace(replace(replace(replace(datum.Quarter, 'Jun ', 'June '), 'Sep ', 'September '), 'Dec ', 'December '), 'Mar ', 'March ')",
       "as": "DisplayQuarter"
+    },
+    {
+      "calculate": "datum.Purpose === 'Visiting friends and relatives' || datum.Purpose === 'Other' ? 4.6 : 0",
+      "as": "PanelColumn"
+    },
+    {
+      "calculate": "datum.Purpose === 'Holiday' || datum.Purpose === 'Visiting friends and relatives' ? 70 : 0",
+      "as": "PanelBase"
+    },
+    {
+      "calculate": "indexof(['Jun 2025', 'Sep 2025', 'Dec 2025', 'Mar 2026', 'Jun 2026'], datum.Quarter)",
+      "as": "QuarterIndex"
+    },
+    {
+      "calculate": "datum.PanelColumn + datum.QuarterIndex",
+      "as": "PanelX"
+    },
+    {
+      "calculate": "datum.PanelBase + datum.VisitorNightsM",
+      "as": "PanelY"
     }
   ],
-  "facet": {
-    "field": "Purpose",
-    "type": "nominal",
-    "sort": [
-      "Holiday",
-      "Visiting friends and relatives",
-      "Business",
-      "Other"
-    ],
-    "header": {
-      "title": null,
-      "labelOrient": "top",
-      "labelAnchor": "start",
-      "labelAlign": "left",
-      "labelFontSize": 12,
-      "labelFontWeight": 600,
-      "labelPadding": 12
-    }
-  },
-  "columns": 2,
-  "spacing": {
-    "column": 20,
-    "row": 24
-  },
-  "spec": {
-    "width": 280,
-    "height": 200,
-    "mark": {
-      "type": "line",
-      "strokeWidth": 2.5,
-      "point": {
-        "filled": true,
-        "size": 65
+  "encoding": {
+    "x": {
+      "field": "PanelX",
+      "type": "quantitative",
+      "scale": {
+        "domain": [
+          -0.25,
+          8.85
+        ],
+        "nice": false
+      },
+      "axis": {
+        "title": null,
+        "values": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          4.6,
+          5.6,
+          6.6,
+          7.6,
+          8.6
+        ],
+        "labelExpr": "width < 650 && (round(datum.value >= 4.6 ? datum.value - 4.6 : datum.value) === 1 || round(datum.value >= 4.6 ? datum.value - 4.6 : datum.value) === 3) ? '' : [['June', 'September', 'December', 'March', 'June'][round(datum.value >= 4.6 ? datum.value - 4.6 : datum.value)], ['2025', '2025', '2025', '2026', '2026'][round(datum.value >= 4.6 ? datum.value - 4.6 : datum.value)]]",
+        "labelAngle": 0,
+        "labelFontSize": 11,
+        "labelLineHeight": 14,
+        "labelPadding": 8,
+        "labelOverlap": false,
+        "grid": false,
+        "labelAlign": {
+          "expr": "width < 650 && datum.value === 4 ? 'right' : width < 650 && datum.value === 4.6 ? 'left' : 'center'"
+        }
       }
     },
-    "encoding": {
-      "x": {
-        "field": "Quarter",
-        "type": "ordinal",
-        "sort": [
-          "Jun 2025",
-          "Sep 2025",
-          "Dec 2025",
-          "Mar 2026",
-          "Jun 2026"
+    "y": {
+      "field": "PanelY",
+      "type": "quantitative",
+      "scale": {
+        "domain": [
+          0,
+          140
         ],
-        "title": null,
-        "axis": {
-          "labelAngle": 0,
-          "labelExpr": "split(replace(replace(replace(replace(datum.label, 'Jun ', 'June '), 'Sep ', 'September '), 'Dec ', 'December '), 'Mar ', 'March '), ' ')",
-          "labelFontSize": 11,
-          "labelLimit": 120,
-          "labelPadding": 8,
-          "labelLineHeight": 14
-        }
+        "nice": false
       },
-      "y": {
+      "axis": {
+        "title": "Visitor nights (millions)",
+        "values": [
+          0,
+          10,
+          20,
+          30,
+          40,
+          50,
+          70,
+          80,
+          90,
+          100,
+          110,
+          120
+        ],
+        "labelExpr": "datum.value >= 70 ? datum.value - 70 : datum.value",
+        "grid": false
+      }
+    },
+    "color": {
+      "field": "Purpose",
+      "type": "nominal",
+      "scale": {
+        "domain": [
+          "Holiday",
+          "Visiting friends and relatives",
+          "Business",
+          "Other"
+        ],
+        "range": [
+          "#0072B2",
+          "#D55E00",
+          "#009E73",
+          "#CC79A7"
+        ]
+      },
+      "legend": null
+    },
+    "detail": {
+      "field": "Purpose"
+    },
+    "tooltip": [
+      {
+        "field": "Purpose",
+        "type": "nominal"
+      },
+      {
+        "field": "DisplayQuarter",
+        "type": "ordinal",
+        "title": "Quarter"
+      },
+      {
         "field": "VisitorNightsM",
         "type": "quantitative",
         "title": "Visitor nights (millions)",
-        "scale": {
-          "domain": [
-            0,
-            55
-          ],
-          "nice": false
-        },
-        "axis": {
-          "values": [
-            0,
-            10,
-            20,
-            30,
-            40,
-            50
-          ],
-          "grid": true
-        }
-      },
-      "tooltip": [
+        "format": ".2f"
+      }
+    ]
+  },
+  "layer": [
+    {
+      "transform": [
         {
-          "field": "Purpose",
-          "type": "nominal"
+          "filter": "datum.Quarter === 'Jun 2025'"
         },
         {
-          "field": "DisplayQuarter",
-          "type": "ordinal",
-          "title": "Quarter"
+          "calculate": "[0, 10, 20, 30, 40, 50]",
+          "as": "GridTicks"
         },
         {
-          "field": "VisitorNightsM",
-          "type": "quantitative",
-          "title": "Visitor nights (millions)",
-          "format": ".2f"
-        }
-      ],
-      "color": {
-        "field": "Purpose",
-        "type": "nominal",
-        "scale": {
-          "domain": [
-            "Holiday",
-            "Visiting friends and relatives",
-            "Business",
-            "Other"
-          ],
-          "range": [
-            "#0072B2",
-            "#D55E00",
-            "#009E73",
-            "#CC79A7"
+          "flatten": [
+            "GridTicks"
           ]
         },
-        "legend": null
+        {
+          "calculate": "datum.PanelBase + datum.GridTicks",
+          "as": "GridY"
+        },
+        {
+          "calculate": "datum.PanelColumn + 4",
+          "as": "GridEnd"
+        }
+      ],
+      "mark": {
+        "type": "rule",
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "x": {
+          "field": "PanelColumn",
+          "type": "quantitative"
+        },
+        "x2": {
+          "field": "GridEnd"
+        },
+        "y": {
+          "field": "GridY",
+          "type": "quantitative"
+        },
+        "color": {
+          "value": "#e2e9ef"
+        },
+        "tooltip": null
+      }
+    },
+    {
+      "mark": {
+        "type": "line",
+        "strokeWidth": 2.5,
+        "point": {
+          "filled": true,
+          "size": 65
+        }
+      },
+      "encoding": {
+        "order": {
+          "field": "QuarterIndex"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.Quarter === 'Jun 2025'"
+        },
+        {
+          "calculate": "datum.PanelBase + 65",
+          "as": "HeaderY"
+        },
+        {
+          "calculate": "width < 650 && datum.Purpose === 'Visiting friends and relatives' ? 'Visiting friends\\nand relatives' : datum.Purpose",
+          "as": "PanelHeading"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "bottom",
+        "fontSize": {
+          "expr": "width < 650 ? 11 : 14"
+        },
+        "fontWeight": 600,
+        "lineHeight": 15,
+        "lineBreak": "\n"
+      },
+      "encoding": {
+        "x": {
+          "field": "PanelColumn",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "HeaderY",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "PanelHeading"
+        },
+        "color": {
+          "value": "#183041"
+        },
+        "tooltip": null
       }
     }
-  },
-  "resolve": {
-    "scale": {
-      "x": "shared",
-      "y": "shared"
-    }
-  },
+  ],
   "config": {
     "view": {
       "stroke": null
@@ -145,7 +267,9 @@
       "titleFontSize": 12,
       "gridColor": "#e2e9ef",
       "domainColor": "#b8c6d0",
-      "tickColor": "#b8c6d0"
+      "tickColor": "#b8c6d0",
+      "domain": false,
+      "ticks": false
     },
     "legend": {
       "labelFont": "Segoe UI, Arial, sans-serif",
