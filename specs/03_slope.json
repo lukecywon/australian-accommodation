@@ -64,7 +64,7 @@
         "labelAngle": 0,
         "labelPadding": 18,
         "labelFontSize": 14,
-        "labelFont": "Georgia",
+        "labelFont": "Segoe UI, Arial, sans-serif",
         "labelColor": "#183041",
         "grid": false,
         "domain": false,
@@ -397,17 +397,22 @@
     "view": {
       "stroke": null
     },
-    "font": "system-ui, sans-serif",
+    "font": "Segoe UI, Arial, sans-serif",
     "axis": {
       "labelFontSize": 12,
       "titleFontSize": 12,
-      "titleFont": "Georgia",
+      "titleFont": "Segoe UI, Arial, sans-serif",
       "labelColor": "#536575",
       "titleColor": "#183041",
       "gridColor": "#e2e9ef",
       "domain": false,
       "ticks": false,
-      "titlePadding": 12
+      "titlePadding": 12,
+      "labelFont": "Segoe UI, Arial, sans-serif"
+    },
+    "legend": {
+      "labelFont": "Segoe UI, Arial, sans-serif",
+      "titleFont": "Segoe UI, Arial, sans-serif"
     }
   }
 }

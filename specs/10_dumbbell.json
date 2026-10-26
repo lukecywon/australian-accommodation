@@ -193,8 +193,14 @@
     },
     "axis": {
       "grid": true,
-      "gridColor": "#e6e9ee"
+      "gridColor": "#e6e9ee",
+      "labelFont": "Segoe UI, Arial, sans-serif",
+      "titleFont": "Segoe UI, Arial, sans-serif"
     },
-    "font": "Arial"
+    "font": "Segoe UI, Arial, sans-serif",
+    "legend": {
+      "labelFont": "Segoe UI, Arial, sans-serif",
+      "titleFont": "Segoe UI, Arial, sans-serif"
+    }
   }
 }

@@ -8,6 +8,7 @@
   --blue: #1e6484;
   --amber: #b87926;
   --serif: Georgia, 'Times New Roman', serif;
+  --sans: 'Segoe UI', Arial, sans-serif;
   --content: 1600px;
 }
 
@@ -24,7 +25,7 @@ body {
   margin: 0;
   background: var(--page);
   color: var(--ink);
-  font: 17px/1.7 system-ui, sans-serif;
+  font: 17px/1.7 var(--sans);
 }
 
 h1, h2, h3 {
@@ -254,6 +255,10 @@ h1 {
   display: block;
 }
 
+body #vg-tooltip-element {
+  font-family: var(--sans);
+}
+
 figcaption {
   margin-top: 16px;
   padding-top: 16px;
@@ -324,7 +329,7 @@ figcaption p:last-child {
 /* Chart controls */
 .vega-bindings {
   padding-top: 20px;
-  font: 14px/1.6 system-ui, sans-serif;
+  font: 14px/1.6 var(--sans);
 }
 
 .vega-bind select {

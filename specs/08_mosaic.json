@@ -185,7 +185,14 @@
       "domainColor": "#888888",
       "tickColor": "#888888",
       "labelColor": "#444444",
-      "titleColor": "#444444"
+      "titleColor": "#444444",
+      "labelFont": "Segoe UI, Arial, sans-serif",
+      "titleFont": "Segoe UI, Arial, sans-serif"
+    },
+    "font": "Segoe UI, Arial, sans-serif",
+    "legend": {
+      "labelFont": "Segoe UI, Arial, sans-serif",
+      "titleFont": "Segoe UI, Arial, sans-serif"
     }
   }
 }

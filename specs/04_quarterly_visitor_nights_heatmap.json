@@ -117,12 +117,17 @@
       "stroke": null
     },
     "axis": {
-      "labelFontSize": 11
+      "labelFontSize": 11,
+      "labelFont": "Segoe UI, Arial, sans-serif",
+      "titleFont": "Segoe UI, Arial, sans-serif"
     },
     "legend": {
       "titleFontSize": 11,
-      "labelFontSize": 11
-    }
+      "labelFontSize": 11,
+      "labelFont": "Segoe UI, Arial, sans-serif",
+      "titleFont": "Segoe UI, Arial, sans-serif"
+    },
+    "font": "Segoe UI, Arial, sans-serif"
   },
   "autosize": {
     "type": "fit-x",

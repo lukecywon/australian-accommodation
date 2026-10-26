@@ -82,6 +82,15 @@
   "config": {
     "view": {
       "stroke": null
+    },
+    "font": "Segoe UI, Arial, sans-serif",
+    "axis": {
+      "labelFont": "Segoe UI, Arial, sans-serif",
+      "titleFont": "Segoe UI, Arial, sans-serif"
+    },
+    "legend": {
+      "labelFont": "Segoe UI, Arial, sans-serif",
+      "titleFont": "Segoe UI, Arial, sans-serif"
     }
   }
 }
