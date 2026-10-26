@@ -1,62 +1,119 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 800,
-  "height": 350,
+  "description": "Small multiples compare four travel purposes using shared quarter and visitor-night scales. Each panel shows one purpose; all values are unchanged from the original dataset.",
   "data": {
     "url": "data/purpose_by_quarter.csv"
   },
-  "mark": {
-    "type": "line",
-    "point": true,
-    "strokeWidth": 2.5
+  "transform": [
+    {
+      "calculate": "replace(replace(replace(replace(datum.Quarter, 'Jun ', 'June '), 'Sep ', 'September '), 'Dec ', 'December '), 'Mar ', 'March ')",
+      "as": "DisplayQuarter"
+    }
+  ],
+  "facet": {
+    "field": "Purpose",
+    "type": "nominal",
+    "sort": [
+      "Holiday",
+      "Visiting friends and relatives",
+      "Business",
+      "Other"
+    ],
+    "header": {
+      "title": null,
+      "labelOrient": "top",
+      "labelAnchor": "start",
+      "labelAlign": "left",
+      "labelFontSize": 14,
+      "labelFontWeight": 600,
+      "labelPadding": 12
+    }
   },
-  "encoding": {
-    "x": {
-      "field": "Quarter",
-      "type": "ordinal",
-      "sort": [
-        "Jun 2025",
-        "Sep 2025",
-        "Dec 2025",
-        "Mar 2026",
-        "Jun 2026"
-      ],
-      "title": "Quarter",
-      "axis": {
-        "labelAngle": 0,
-        "labelExpr": "replace(replace(replace(replace(datum.label, 'Jun ', 'June '), 'Sep ', 'September '), 'Dec ', 'December '), 'Mar ', 'March ')"
+  "columns": 2,
+  "spacing": {
+    "column": 36,
+    "row": 32
+  },
+  "spec": {
+    "width": 540,
+    "height": 200,
+    "mark": {
+      "type": "line",
+      "color": "#1e6484",
+      "strokeWidth": 2.5,
+      "point": {
+        "filled": true,
+        "size": 65,
+        "color": "#1e6484"
       }
     },
-    "y": {
-      "field": "VisitorNightsM",
-      "type": "quantitative",
-      "title": "Visitor nights (millions)",
-      "scale": {
-        "zero": true
-      }
-    },
-    "color": {
-      "field": "Purpose",
-      "type": "nominal",
-      "title": "Purpose of travel"
-    },
-    "tooltip": [
-      {
-        "field": "Purpose",
-        "type": "nominal"
-      },
-      {
-        "field": "DisplayQuarter",
+    "encoding": {
+      "x": {
+        "field": "Quarter",
         "type": "ordinal",
-        "title": "Quarter"
+        "sort": [
+          "Jun 2025",
+          "Sep 2025",
+          "Dec 2025",
+          "Mar 2026",
+          "Jun 2026"
+        ],
+        "title": null,
+        "axis": {
+          "labelAngle": 0,
+          "labelExpr": "replace(replace(replace(replace(datum.label, 'Jun ', 'June '), 'Sep ', 'September '), 'Dec ', 'December '), 'Mar ', 'March ')",
+          "labelFontSize": 11,
+          "labelLimit": 120,
+          "labelPadding": 8
+        }
       },
-      {
+      "y": {
         "field": "VisitorNightsM",
         "type": "quantitative",
         "title": "Visitor nights (millions)",
-        "format": ".2f"
-      }
-    ]
+        "scale": {
+          "domain": [
+            0,
+            55
+          ],
+          "nice": false
+        },
+        "axis": {
+          "values": [
+            0,
+            10,
+            20,
+            30,
+            40,
+            50
+          ],
+          "grid": true
+        }
+      },
+      "tooltip": [
+        {
+          "field": "Purpose",
+          "type": "nominal"
+        },
+        {
+          "field": "DisplayQuarter",
+          "type": "ordinal",
+          "title": "Quarter"
+        },
+        {
+          "field": "VisitorNightsM",
+          "type": "quantitative",
+          "title": "Visitor nights (millions)",
+          "format": ".2f"
+        }
+      ]
+    }
+  },
+  "resolve": {
+    "scale": {
+      "x": "shared",
+      "y": "shared"
+    }
   },
   "config": {
     "view": {
@@ -65,17 +122,20 @@
     "font": "Segoe UI, Arial, sans-serif",
     "axis": {
       "labelFont": "Segoe UI, Arial, sans-serif",
-      "titleFont": "Segoe UI, Arial, sans-serif"
+      "titleFont": "Segoe UI, Arial, sans-serif",
+      "labelFontSize": 11,
+      "titleFontSize": 12,
+      "gridColor": "#e2e9ef",
+      "domainColor": "#b8c6d0",
+      "tickColor": "#b8c6d0"
     },
     "legend": {
       "labelFont": "Segoe UI, Arial, sans-serif",
       "titleFont": "Segoe UI, Arial, sans-serif"
+    },
+    "header": {
+      "labelFont": "Segoe UI, Arial, sans-serif",
+      "titleFont": "Segoe UI, Arial, sans-serif"
     }
-  },
-  "transform": [
-    {
-      "calculate": "replace(replace(replace(replace(datum.Quarter, 'Jun ', 'June '), 'Sep ', 'September '), 'Dec ', 'December '), 'Mar ', 'March ')",
-      "as": "DisplayQuarter"
-    }
-  ]
+  }
 }
