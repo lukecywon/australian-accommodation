@@ -52,7 +52,9 @@
       "axis": {
         "labelAngle": 0,
         "labelPadding": 9,
-        "labelExpr": "replace(replace(replace(replace(datum.label, 'Jun ', 'June '), 'Sep ', 'September '), 'Dec ', 'December '), 'Mar ', 'March ')"
+        "labelExpr": "replace(replace(replace(replace(datum.label, 'Jun ', 'June '), 'Sep ', 'September '), 'Dec ', 'December '), 'Mar ', 'March ')",
+        "domain": false,
+        "ticks": false
       }
     },
     "y": {
@@ -71,7 +73,9 @@
       "title": null,
       "axis": {
         "labelLimit": 215,
-        "labelPadding": 8
+        "labelPadding": 8,
+        "domain": false,
+        "ticks": false
       }
     },
     "color": {
