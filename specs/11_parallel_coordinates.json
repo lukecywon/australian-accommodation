@@ -57,26 +57,6 @@
       "as": "Normalised"
     }
   ],
-  "params": [
-    {
-      "name": "selectedState",
-      "select": {
-        "type": "point",
-        "fields": [
-          "State"
-        ]
-      },
-      "bind": "legend"
-    }
-  ],
-  "mark": {
-    "type": "line",
-    "point": {
-      "filled": true,
-      "size": 65
-    },
-    "strokeWidth": 2.5
-  },
   "encoding": {
     "x": {
       "field": "Metric",
@@ -136,7 +116,7 @@
     },
     "opacity": {
       "condition": {
-        "param": "selectedState",
+        "param": "stateHover",
         "value": 1
       },
       "value": 0.13
@@ -182,5 +162,33 @@
       "titleFont": "Segoe UI, Arial, sans-serif"
     },
     "font": "Segoe UI, Arial, sans-serif"
-  }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "line",
+        "strokeWidth": 2.5
+      }
+    },
+    {
+      "params": [
+        {
+          "name": "stateHover",
+          "select": {
+            "type": "point",
+            "fields": [
+              "State"
+            ],
+            "on": "pointerover",
+            "clear": "pointerout"
+          }
+        }
+      ],
+      "mark": {
+        "type": "circle",
+        "filled": true,
+        "size": 65
+      }
+    }
+  ]
 }
