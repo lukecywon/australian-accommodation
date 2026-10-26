@@ -1,7 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 1000,
-  "height": 380,
+  "width": "container",
+  "height": 420,
   "data": {
     "url": "data/state_accommodation_economy.csv",
     "format": {
@@ -15,6 +15,20 @@
     }
   },
   "transform": [
+    {
+      "window": [
+        {
+          "op": "rank",
+          "as": "LabelRank"
+        }
+      ],
+      "sort": [
+        {
+          "field": "ConsumptionM",
+          "order": "ascending"
+        }
+      ]
+    },
     {
       "calculate": "datum.GVAM / datum.FilledJobs000",
       "as": "GVAperJobK"
@@ -74,6 +88,9 @@
         "labelFontSize": 11,
         "labelLineHeight": 16,
         "labelExpr": "datum.label === 'Gross value added per filled job (thousands of Australian dollars)' ? ['Gross value added', 'per filled job', '(thousands of Australian dollars)'] : datum.label === 'Filled jobs (thousands)' ? ['Filled jobs', '(thousands)'] : [split(datum.label, ' (')[0], '(millions of Australian dollars)']"
+      },
+      "scale": {
+        "padding": 0
       }
     },
     "y": {
@@ -102,14 +119,7 @@
       "field": "State",
       "type": "nominal",
       "title": "State / territory",
-      "legend": {
-        "orient": "bottom",
-        "direction": "horizontal",
-        "columns": 2,
-        "labelLimit": 300,
-        "labelFontSize": 12,
-        "title": "State or territory"
-      }
+      "legend": null
     },
     "detail": {
       "field": "State"
@@ -189,6 +199,66 @@
         "filled": true,
         "size": 40
       }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.MetricKey === 'ConsumptionM'"
+        },
+        {
+          "calculate": "max(datum.Normalised, (datum.LabelRank - 1) * 0.055)",
+          "as": "LabelY"
+        }
+      ],
+      "mark": {
+        "type": "rule",
+        "xOffset": 8,
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "y2": {
+          "field": "LabelY"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.MetricKey === 'ConsumptionM'"
+        },
+        {
+          "calculate": "max(datum.Normalised, (datum.LabelRank - 1) * 0.055)",
+          "as": "LabelY"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "dx": 14,
+        "fontSize": 12,
+        "fontWeight": 600
+      },
+      "encoding": {
+        "y": {
+          "field": "LabelY",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "State"
+        }
+      }
     }
-  ]
+  ],
+  "autosize": {
+    "type": "fit-x",
+    "contains": "padding",
+    "resize": true
+  },
+  "padding": {
+    "left": 5,
+    "right": 175,
+    "top": 10,
+    "bottom": 5
+  }
 }
