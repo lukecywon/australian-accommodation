@@ -417,23 +417,14 @@ figcaption p:last-child {
 }
 
 /* Conclusion */
-.closing {
-  margin-block: 48px;
-  padding: 28px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-}
-
-.closing h2 {
-  margin-bottom: 24px;
-  font-size: 1.7rem;
-}
-
 .conclusion-columns {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 32px;
+  padding: 28px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
 }
 
 .conclusion-columns h3 {
@@ -467,13 +458,74 @@ footer h2 {
   color: var(--ink);
 }
 
-footer ul {
-  max-width: 84ch;
-  padding-left: 20px;
+.sources-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: 24px;
+  align-items: start;
 }
 
-footer li {
-  margin-bottom: 16px;
+.source-card {
+  min-width: 0;
+  padding: 28px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.source-card h3 {
+  font-size: 1.2rem;
+  color: var(--ink);
+}
+
+.reference-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.reference-list li {
+  margin-bottom: 20px;
+  padding-left: 1.5em;
+  text-indent: -1.5em;
+  overflow-wrap: anywhere;
+}
+
+.reference-list li:last-child {
+  margin-bottom: 0;
+}
+
+.figure-sources {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.figure-sources th, .figure-sources td {
+  padding: 12px 8px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+
+.figure-sources tbody th {
+  font-weight: 400;
+}
+
+.figure-sources th span {
+  display: block;
+  margin-top: 4px;
+  font-size: 0.8rem;
+}
+
+.map-attribution {
+  margin: 20px 0 0;
+  font-size: 0.8rem;
+}
+
+@media (max-width: 900px) {
+  .sources-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .assignment-note {
@@ -546,14 +598,14 @@ footer li {
     margin-bottom: 36px;
   }
 
-  .closing {
-    margin-block: 32px;
-    padding: 16px;
-  }
-
   .conclusion-columns {
     grid-template-columns: 1fr;
     gap: 24px;
+    padding: 16px;
+  }
+
+  .source-card {
+    padding: 16px;
   }
 
   footer {
