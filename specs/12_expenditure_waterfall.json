@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 840,
+  "width": "container",
   "height": 390,
   "data": {
     "url": "data/spending_waterfall.csv",
@@ -31,8 +31,8 @@
       ],
       "axis": {
         "title": null,
-        "labelAngle": -25,
-        "labelFontSize": 11,
+        "labelAngle": -40,
+        "labelFontSize": 10,
         "labelLimit": 160
       }
     }
@@ -41,7 +41,6 @@
     {
       "mark": {
         "type": "bar",
-        "size": 64,
         "cornerRadius": 2
       },
       "encoding": {
@@ -84,7 +83,7 @@
           },
           "legend": {
             "title": null,
-            "orient": "top"
+            "orient": "bottom"
           }
         },
         "tooltip": [
@@ -119,7 +118,9 @@
         "type": "text",
         "dy": -8,
         "baseline": "bottom",
-        "fontSize": 11,
+        "fontSize": {
+          "expr": "width < 400 ? 9 : 11"
+        },
         "fontWeight": "bold",
         "color": "#233449"
       },
@@ -166,5 +167,10 @@
       "labelFont": "Segoe UI, Arial, sans-serif",
       "titleFont": "Segoe UI, Arial, sans-serif"
     }
+  },
+  "autosize": {
+    "type": "fit-x",
+    "contains": "padding",
+    "resize": true
   }
 }
