@@ -141,7 +141,7 @@
       "mark": {
         "type": "text",
         "fontSize": 13,
-        "fontWeight": 500
+        "fontWeight": "bold"
       },
       "encoding": {
         "text": {
