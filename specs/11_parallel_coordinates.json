@@ -50,25 +50,16 @@
       "as": "Metric"
     },
     {
-      "joinaggregate": [
-        {
-          "op": "min",
-          "field": "Value",
-          "as": "MetricMin"
-        },
-        {
-          "op": "max",
-          "field": "Value",
-          "as": "MetricMax"
-        }
-      ],
-      "groupby": [
-        "MetricKey"
-      ]
+      "calculate": "datum.MetricKey === 'OutputM' ? 7000 : datum.MetricKey === 'FilledJobs000' ? 35 : datum.MetricKey === 'GVAperJobK' ? 120 : 8000",
+      "as": "AxisMax"
     },
     {
-      "calculate": "datum.MetricMax === datum.MetricMin ? 0.5 : (datum.Value - datum.MetricMin) / (datum.MetricMax - datum.MetricMin)",
-      "as": "Normalised"
+      "calculate": "datum.MetricKey === 'OutputM' ? 1000 : datum.MetricKey === 'FilledJobs000' ? 5 : datum.MetricKey === 'GVAperJobK' ? 20 : 2000",
+      "as": "TickStep"
+    },
+    {
+      "calculate": "datum.Value / datum.AxisMax",
+      "as": "PlotPosition"
     }
   ],
   "encoding": {
@@ -81,42 +72,23 @@
         "Gross value added per filled job (thousands of Australian dollars)",
         "Consumption (millions of Australian dollars)"
       ],
-      "axis": {
-        "title": null,
-        "labelAngle": 0,
-        "labelLimit": 290,
-        "labelFontSize": 12,
-        "labelLineHeight": 16,
-        "labelExpr": "datum.label === 'Gross value added per filled job (thousands of Australian dollars)' ? ['Gross value added', 'per filled job'] : datum.label === 'Filled jobs (thousands)' ? 'Filled jobs' : split(datum.label, ' (')[0]",
-        "labelPadding": 12
-      },
+      "axis": null,
       "scale": {
         "type": "point",
         "padding": 0
       }
     },
     "y": {
-      "field": "Normalised",
+      "field": "PlotPosition",
       "type": "quantitative",
       "scale": {
         "domain": [
           0,
           1
-        ]
-      },
-      "axis": {
-        "title": "Relative value (0 = lowest state; 1 = highest state)",
-        "values": [
-          0,
-          0.25,
-          0.5,
-          0.75,
-          1
         ],
-        "format": ".2f",
-        "grid": true,
-        "labelPadding": 8
-      }
+        "nice": false
+      },
+      "axis": null
     },
     "color": {
       "field": "StateCode",
@@ -172,12 +144,6 @@
         "type": "quantitative",
         "title": "Original value",
         "format": ",.2f"
-      },
-      {
-        "field": "Normalised",
-        "type": "quantitative",
-        "title": "Relative position",
-        "format": ".2f"
       }
     ]
   },
@@ -201,6 +167,141 @@
     "font": "Segoe UI, Arial, sans-serif"
   },
   "layer": [
+    {
+      "transform": [
+        {
+          "aggregate": [],
+          "groupby": [
+            "MetricKey",
+            "Metric",
+            "AxisMax",
+            "TickStep"
+          ]
+        },
+        {
+          "calculate": "0",
+          "as": "AxisBottom"
+        },
+        {
+          "calculate": "1",
+          "as": "AxisTop"
+        }
+      ],
+      "encoding": {
+        "color": {
+          "value": "#B6C2CB"
+        },
+        "detail": {
+          "field": "MetricKey"
+        },
+        "opacity": {
+          "value": 1
+        },
+        "tooltip": null
+      },
+      "layer": [
+        {
+          "mark": {
+            "type": "rule",
+            "strokeWidth": 1
+          },
+          "encoding": {
+            "y": {
+              "field": "AxisBottom",
+              "type": "quantitative"
+            },
+            "y2": {
+              "field": "AxisTop"
+            }
+          }
+        },
+        {
+          "transform": [
+            {
+              "calculate": "sequence(0, datum.AxisMax + datum.TickStep / 2, datum.TickStep)",
+              "as": "Ticks"
+            },
+            {
+              "flatten": [
+                "Ticks"
+              ],
+              "as": [
+                "TickValue"
+              ]
+            },
+            {
+              "calculate": "datum.TickValue / datum.AxisMax",
+              "as": "TickPosition"
+            }
+          ],
+          "encoding": {
+            "y": {
+              "field": "TickPosition",
+              "type": "quantitative"
+            }
+          },
+          "layer": [
+            {
+              "mark": {
+                "type": "tick",
+                "orient": "horizontal",
+                "size": 6,
+                "thickness": 1
+              }
+            },
+            {
+              "mark": {
+                "type": "text",
+                "align": "right",
+                "baseline": "middle",
+                "dx": -9,
+                "fontSize": 10
+              },
+              "encoding": {
+                "text": {
+                  "field": "TickValue",
+                  "type": "quantitative",
+                  "format": ","
+                },
+                "color": {
+                  "value": "#536575"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "transform": [
+            {
+              "calculate": "datum.MetricKey === 'OutputM' ? 'Output\\n(millions of\\nAustralian dollars)' : datum.MetricKey === 'FilledJobs000' ? 'Filled jobs\\n(thousands)' : datum.MetricKey === 'GVAperJobK' ? 'Gross value added\\nper filled job\\n(thousands of\\nAustralian dollars)' : 'Consumption\\n(millions of\\nAustralian dollars)'",
+              "as": "AxisHeader"
+            }
+          ],
+          "mark": {
+            "type": "text",
+            "align": "center",
+            "baseline": "top",
+            "dy": -90,
+            "lineBreak": "\n",
+            "lineHeight": 15,
+            "fontSize": 11,
+            "fontWeight": 500
+          },
+          "encoding": {
+            "y": {
+              "field": "AxisTop",
+              "type": "quantitative"
+            },
+            "text": {
+              "field": "AxisHeader"
+            },
+            "color": {
+              "value": "#183041"
+            }
+          }
+        }
+      ]
+    },
     {
       "mark": {
         "type": "line",
@@ -233,7 +334,7 @@
           "filter": "datum.MetricKey === 'ConsumptionM'"
         },
         {
-          "calculate": "max(datum.Normalised, (datum.LabelRank - 1) * 0.055)",
+          "calculate": "max(datum.PlotPosition, 0.035 + (datum.LabelRank - 1) * 0.055)",
           "as": "LabelY"
         }
       ],
@@ -254,7 +355,7 @@
           "filter": "datum.MetricKey === 'ConsumptionM'"
         },
         {
-          "calculate": "max(datum.Normalised, (datum.LabelRank - 1) * 0.055)",
+          "calculate": "max(datum.PlotPosition, 0.035 + (datum.LabelRank - 1) * 0.055)",
           "as": "LabelY"
         }
       ],
@@ -287,5 +388,6 @@
     "right": 5,
     "top": 10,
     "bottom": 5
-  }
+  },
+  "description": "Parallel coordinates of four state accommodation economy indicators. Each vertical axis uses original units and its own zero-based scale. Axis limits are rounded above the observed maxima."
 }
