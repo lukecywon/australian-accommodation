@@ -70,14 +70,20 @@
           "Regional"
         ],
         "range": [
-          "#3478ae",
-          "#dc974a"
+          "#35617D",
+          "#C68A58"
         ]
       },
       "title": "Area",
       "legend": {
-        "labelExpr": "datum.label === 'Capital' ? 'Capital cities' : 'Regional Australia'",
-        "columns": 1
+        "labelExpr": "width < 250 ? (datum.label === 'Capital' ? ['Capital', 'cities'] : ['Regional', 'Australia']) : datum.label === 'Capital' ? 'Capital cities' : 'Regional Australia'",
+        "columns": 2,
+        "gridAlign": "each",
+        "columnPadding": 12,
+        "clipHeight": 40,
+        "labelLimit": {
+          "expr": "width < 450 ? 70 : 240"
+        }
       }
     },
     "tooltip": [
@@ -111,18 +117,26 @@
       "titleFont": "Segoe UI, Arial, sans-serif",
       "orient": "bottom",
       "direction": "horizontal",
-      "titleAnchor": "start",
+      "titleAnchor": "middle",
       "layout": {
         "bottom": {
-          "anchor": "start"
+          "anchor": "middle"
         }
       },
-      "offset": 16
+      "offset": 74,
+      "columnPadding": 24,
+      "labelLimit": 240
     }
   },
   "autosize": {
     "type": "fit-x",
     "contains": "padding",
     "resize": true
+  },
+  "padding": {
+    "left": 5,
+    "right": 5,
+    "top": 5,
+    "bottom": 5
   }
 }
