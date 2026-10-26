@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Four compact small-multiple panels compare travel purposes in one horizontal row, using shared scales and a colour-blind-friendly Okabe-Ito palette. All original data values and tooltips are retained.",
+  "description": "Four compact small-multiple panels compare travel purposes in a two-column layout, using shared scales and a colour-blind-friendly Okabe-Ito palette. Panel widths fit the existing chart container without horizontal overflow on desktop and tablet. All original data values and tooltips are retained.",
   "data": {
     "url": "data/purpose_by_quarter.csv"
   },
@@ -29,14 +29,14 @@
       "labelPadding": 12
     }
   },
-  "columns": 4,
+  "columns": 2,
   "spacing": {
     "column": 20,
     "row": 24
   },
   "spec": {
-    "width": 295,
-    "height": 180,
+    "width": 280,
+    "height": 200,
     "mark": {
       "type": "line",
       "strokeWidth": 2.5,
