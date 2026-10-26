@@ -88,9 +88,7 @@
       ],
       "axis": {
         "title": "Financial year",
-        "labelAngle": {
-          "expr": "width < 450 ? -45 : 0"
-        },
+        "labelAngle": -45,
         "labelFontSize": 10,
         "labelExpr": "substring(datum.label, 0, 5) + substring(datum.label, 0, 2) + substring(datum.label, 5)",
         "labelOverlap": "greedy"
@@ -107,7 +105,7 @@
         "nice": false
       },
       "axis": {
-        "title": "Index (2018\u00e2\u20ac\u201c2019 = 100)",
+        "title": "Index (2018-2019 = 100)",
         "values": [
           80,
           90,
@@ -130,8 +128,8 @@
           "Accommodation and Food Services businesses (Australian Bureau of Statistics)"
         ],
         "range": [
-          "#1976a3",
-          "#d28b37"
+          "#70466F",
+          "#B68B32"
         ]
       },
       "legend": {
@@ -157,7 +155,7 @@
       {
         "field": "Index",
         "type": "quantitative",
-        "title": "Index (2018\u00e2\u20ac\u201c2019 = 100)",
+        "title": "Index (2018-2019 = 100)",
         "format": ".2f"
       },
       {
@@ -181,7 +179,9 @@
     "font": "Segoe UI, Arial, sans-serif",
     "axis": {
       "labelFont": "Segoe UI, Arial, sans-serif",
-      "titleFont": "Segoe UI, Arial, sans-serif"
+      "titleFont": "Segoe UI, Arial, sans-serif",
+      "domain": false,
+      "ticks": false
     },
     "legend": {
       "labelFont": "Segoe UI, Arial, sans-serif",

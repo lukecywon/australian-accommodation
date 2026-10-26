@@ -160,7 +160,9 @@
       "titleColor": "#344054",
       "gridColor": "#E6EAF0",
       "labelFont": "Segoe UI, Arial, sans-serif",
-      "titleFont": "Segoe UI, Arial, sans-serif"
+      "titleFont": "Segoe UI, Arial, sans-serif",
+      "domain": false,
+      "ticks": false
     },
     "font": "Segoe UI, Arial, sans-serif",
     "legend": {
