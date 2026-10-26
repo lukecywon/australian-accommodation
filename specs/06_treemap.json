@@ -89,7 +89,7 @@
       "as": "LabelY"
     },
     {
-      "calculate": "datum.ShortLabel + '\\n' + format(datum.Nights2026M, '.1f')",
+      "calculate": "datum.ShortLabel + '\\n' + format(datum.Nights2026M, '.1f') + ' M'",
       "as": "TileLabel"
     }
   ],
