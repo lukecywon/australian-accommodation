@@ -1,5 +1,6 @@
 vegaEmbed("#chart-01", "specs/01_choropleth.json", {
-  actions: false
+  actions: false,
+  renderer: "svg"
 }).catch(console.error);
 
 vegaEmbed("#chart-02", "specs/02_symbol_map.json", {

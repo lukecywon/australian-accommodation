@@ -59,6 +59,12 @@
         "title": "State"
       },
       {
+        "field": "NightsPerResident",
+        "type": "quantitative",
+        "title": "Visitor Nights Per Resident",
+        "format": ".1f"
+      },
+      {
         "field": "DomesticNightsM",
         "type": "quantitative",
         "title": "Domestic nights (millions)",
