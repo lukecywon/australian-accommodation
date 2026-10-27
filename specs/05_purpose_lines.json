@@ -327,19 +327,39 @@
           "filter": "datum.Year === 2020 && datum.Purpose !== 'Other and not asked'"
         },
         {
-          "calculate": "datum.PanelColumn + 2.25",
-          "as": "AnnotationEndX"
-        },
-        {
-          "calculate": "datum.PanelColumn + 2.4",
-          "as": "AnnotationTextX"
-        },
-        {
-          "calculate": "datum.PanelBase + (datum.Purpose === 'Business' ? -5 : -28)",
+          "calculate": "datum.PanelBase + (datum.Purpose === 'Business' ? 8 : datum.Purpose === 'Visiting friends and relatives' ? -32 : -28)",
           "as": "AnnotationY"
         },
         {
-          "calculate": "width < 650 ? 'COVID-19\\ndrop' : 'COVID-19 drop'",
+          "calculate": "datum.PanelColumn + (width < 650 ? 3.65 : 3.3)",
+          "as": "AnnotationCenterX"
+        },
+        {
+          "calculate": "width < 650 ? 60 : 150",
+          "as": "AnnotationWidth"
+        },
+        {
+          "calculate": "width < 650 ? 50 : 30",
+          "as": "AnnotationHeight"
+        },
+        {
+          "calculate": "datum.AnnotationCenterX - 11.5 * datum.AnnotationWidth / (2 * width)",
+          "as": "AnnotationLeft"
+        },
+        {
+          "calculate": "datum.AnnotationCenterX + 11.5 * datum.AnnotationWidth / (2 * width)",
+          "as": "AnnotationRight"
+        },
+        {
+          "calculate": "datum.AnnotationY + 140 * datum.AnnotationHeight / (2 * height)",
+          "as": "AnnotationTop"
+        },
+        {
+          "calculate": "datum.AnnotationY - 140 * datum.AnnotationHeight / (2 * height)",
+          "as": "AnnotationBottom"
+        },
+        {
+          "calculate": "(width < 650 ? 'COVID-19\\nDrop:\\n' : 'COVID-19 Drop: ') + format(datum.ChangePct, '.1f') + '%'",
           "as": "AnnotationLabel"
         }
       ],
@@ -361,7 +381,7 @@
           },
           "encoding": {
             "x2": {
-              "field": "AnnotationEndX"
+              "field": "AnnotationLeft"
             },
             "y2": {
               "field": "AnnotationY"
@@ -370,21 +390,52 @@
         },
         {
           "mark": {
-            "type": "text",
-            "align": "left",
-            "baseline": "middle",
-            "fontSize": 11,
-            "fontWeight": 500,
-            "lineBreak": "\n",
-            "lineHeight": 13
+            "type": "rect",
+            "stroke": "#B6C6D0",
+            "strokeWidth": 1,
+            "cornerRadius": 4
           },
           "encoding": {
             "x": {
-              "field": "AnnotationTextX",
+              "field": "AnnotationLeft",
+              "type": "quantitative"
+            },
+            "x2": {
+              "field": "AnnotationRight"
+            },
+            "y": {
+              "field": "AnnotationTop",
+              "type": "quantitative"
+            },
+            "y2": {
+              "field": "AnnotationBottom"
+            },
+            "color": {
+              "value": "white"
+            }
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "baseline": "top",
+            "fontSize": {
+              "expr": "width < 650 ? 10 : 11"
+            },
+            "fontWeight": 500,
+            "lineBreak": "\n",
+            "lineHeight": 12,
+            "dx": 6,
+            "dy": 6
+          },
+          "encoding": {
+            "x": {
+              "field": "AnnotationLeft",
               "type": "quantitative"
             },
             "y": {
-              "field": "AnnotationY",
+              "field": "AnnotationTop",
               "type": "quantitative"
             },
             "text": {
