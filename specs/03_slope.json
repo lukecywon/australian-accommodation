@@ -320,7 +320,7 @@
           "datum": 0.44
         },
         "y2": {
-          "datum": 96
+          "datum": 103
         }
       }
     },
@@ -363,9 +363,9 @@
       "mark": {
         "type": "text",
         "align": "left",
-        "baseline": "middle",
-        "fontSize": 12,
-        "lineHeight": 17,
+        "baseline": "top",
+        "fontSize": 11,
+        "lineHeight": 16,
         "color": "#183041"
       },
       "encoding": {
@@ -374,13 +374,15 @@
           "type": "quantitative"
         },
         "y": {
-          "datum": 97,
+          "datum": 102,
           "type": "quantitative"
         },
         "text": {
           "value": [
-            "Queensland leads in domestic nights;",
-            "Victoria leads in international nights."
+            "Queensland and Victoria swap second and third.",
+            "Queensland's domestic lead: 5.5 million nights.",
+            "Victoria's international lead: 17.5 million nights.",
+            "Queensland has the largest gap: 29.8 million nights."
           ]
         },
         "color": {
@@ -390,6 +392,119 @@
           "value": 1
         },
         "tooltip": null
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.StateCode === 'NSW' && datum.MarketPosition === 0"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "top",
+        "fontSize": 11,
+        "lineHeight": 16
+      },
+      "encoding": {
+        "x": {
+          "datum": 0.33,
+          "type": "quantitative"
+        },
+        "y": {
+          "datum": 124,
+          "type": "quantitative"
+        },
+        "color": {
+          "value": "#183041"
+        },
+        "opacity": {
+          "value": 1
+        },
+        "tooltip": null,
+        "text": {
+          "value": [
+            "New South Wales leads both visitor markets:",
+            "119.2 million domestic; 106.6 million international nights."
+          ]
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.StateCode === 'WA' && datum.MarketPosition === 0"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "top",
+        "fontSize": 11,
+        "lineHeight": 16
+      },
+      "encoding": {
+        "x": {
+          "datum": 0.12,
+          "type": "quantitative"
+        },
+        "y": {
+          "datum": 58,
+          "type": "quantitative"
+        },
+        "color": {
+          "value": "#183041"
+        },
+        "opacity": {
+          "value": 1
+        },
+        "tooltip": null,
+        "text": {
+          "value": [
+            "Only Western Australia and the Northern Territory",
+            "record more international than domestic nights:",
+            "2.5 million and 0.5 million more, respectively."
+          ]
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.StateCode === 'WA' && datum.MarketPosition === 0"
+        }
+      ],
+      "mark": {
+        "type": "rule",
+        "strokeWidth": 1,
+        "strokeDash": [
+          3,
+          3
+        ]
+      },
+      "encoding": {
+        "x": {
+          "datum": 0.64,
+          "type": "quantitative"
+        },
+        "y": {
+          "datum": 37.14992,
+          "type": "quantitative"
+        },
+        "color": {
+          "value": "#526d82"
+        },
+        "opacity": {
+          "value": 1
+        },
+        "tooltip": null,
+        "x2": {
+          "datum": 0.5
+        },
+        "y2": {
+          "datum": 44
+        }
       }
     }
   ],
