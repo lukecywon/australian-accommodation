@@ -327,11 +327,11 @@
           "filter": "datum.Year === 2020 && datum.Purpose !== 'Other and not asked'"
         },
         {
-          "calculate": "datum.PanelBase + (datum.Purpose === 'Business' ? 8 : datum.Purpose === 'Visiting friends and relatives' ? -32 : -28)",
+          "calculate": "datum.PanelBase + (datum.Purpose === 'Business' ? (width < 650 ? 8 : -19) : datum.Purpose === 'Visiting friends and relatives' ? -32 : -28)",
           "as": "AnnotationY"
         },
         {
-          "calculate": "datum.PanelColumn + (width < 650 ? 3.65 : 3.3)",
+          "calculate": "datum.PanelColumn + (datum.Purpose === 'Business' ? 1.5 : width < 650 ? 3.65 : 3.3)",
           "as": "AnnotationCenterX"
         },
         {
@@ -361,6 +361,14 @@
         {
           "calculate": "(width < 650 ? 'COVID-19\\nDrop:\\n' : 'COVID-19 Drop: ') + format(datum.ChangePct, '.1f') + '%'",
           "as": "AnnotationLabel"
+        },
+        {
+          "calculate": "datum.Purpose === 'Business' ? datum.AnnotationCenterX : datum.AnnotationLeft",
+          "as": "ConnectorX"
+        },
+        {
+          "calculate": "datum.Purpose === 'Business' ? datum.AnnotationBottom : datum.AnnotationY",
+          "as": "ConnectorY"
         }
       ],
       "encoding": {
@@ -381,10 +389,10 @@
           },
           "encoding": {
             "x2": {
-              "field": "AnnotationLeft"
+              "field": "ConnectorX"
             },
             "y2": {
-              "field": "AnnotationY"
+              "field": "ConnectorY"
             }
           }
         },
@@ -418,24 +426,26 @@
         {
           "mark": {
             "type": "text",
-            "align": "left",
-            "baseline": "top",
+            "align": "center",
+            "baseline": "middle",
             "fontSize": {
               "expr": "width < 650 ? 10 : 11"
             },
             "fontWeight": 500,
             "lineBreak": "\n",
             "lineHeight": 12,
-            "dx": 6,
-            "dy": 6
+            "dx": 0,
+            "dy": {
+              "expr": "width < 650 ? -11 : 1.5"
+            }
           },
           "encoding": {
             "x": {
-              "field": "AnnotationLeft",
+              "field": "AnnotationCenterX",
               "type": "quantitative"
             },
             "y": {
-              "field": "AnnotationTop",
+              "field": "AnnotationY",
               "type": "quantitative"
             },
             "text": {
