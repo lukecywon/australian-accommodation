@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "International visitor nights by accommodation type. All eleven tiles are labelled; compact labels are expanded in tooltips. Values are shown in millions. Uses the Paul Tol muted palette with neutral greys for the smallest categories.",
+  "description": "International visitor nights by accommodation type. All eleven tiles are labelled; compact labels are expanded in tooltips. Values are shown in millions. A coastal palette uses deep blue for rented properties, terracotta for friends or relatives, seafoam for hotels and sand or muted coastal tones for the remaining categories.",
   "width": "container",
   "height": 660,
   "autosize": {
@@ -171,17 +171,17 @@
               "Guest house or Bed & Breakfast"
             ],
             "range": [
-              "#332288",
-              "#117733",
-              "#88CCEE",
-              "#CC6677",
-              "#44AA99",
-              "#DDCC77",
-              "#999933",
-              "#AA4499",
-              "#882255",
-              "#666666",
-              "#BBBBBB"
+              "#2B5D73",
+              "#C97868",
+              "#79A69A",
+              "#D6BD91",
+              "#568A91",
+              "#A9BFC5",
+              "#A58F68",
+              "#846F83",
+              "#51756A",
+              "#88958C",
+              "#D8DAD2"
             ]
           }
         }
@@ -235,10 +235,10 @@
         },
         "color": {
           "condition": {
-            "test": "contrast('white', scale('color', datum.AccommodationType)) > contrast('#183041', scale('color', datum.AccommodationType))",
+            "test": "contrast('white', scale('color', datum.AccommodationType)) > contrast('#111111', scale('color', datum.AccommodationType))",
             "value": "#ffffff"
           },
-          "value": "#183041"
+          "value": "#111111"
         }
       }
     }
