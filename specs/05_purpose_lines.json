@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Annual domestic visitor nights by stopover purpose, years ending December 2019-2024, extracted from the National Visitor Survey workbook. Two-column small multiples share a 0-200 million scale. Source values in thousands are converted to millions.",
+  "description": "Domestic visitor-night recovery by purpose, relative to each purpose's 2019 annual total. Four small multiples use the same percentage-change scale; dotted lines mark 2019 levels. Original totals remain in tooltips.",
   "width": "container",
   "height": 470,
   "autosize": {
@@ -20,11 +20,31 @@
   },
   "transform": [
     {
+      "calculate": "datum.Year === 2019 ? datum.VisitorNightsM : null",
+      "as": "BaselineValue"
+    },
+    {
+      "joinaggregate": [
+        {
+          "op": "max",
+          "field": "BaselineValue",
+          "as": "Baseline2019M"
+        }
+      ],
+      "groupby": [
+        "Purpose"
+      ]
+    },
+    {
+      "calculate": "100 * (datum.VisitorNightsM / datum.Baseline2019M - 1)",
+      "as": "ChangePct"
+    },
+    {
       "calculate": "datum.Purpose === 'Visiting friends and relatives' || datum.Purpose === 'Other and not asked' ? 6 : 0",
       "as": "PanelColumn"
     },
     {
-      "calculate": "datum.Purpose === 'Holiday or leisure' || datum.Purpose === 'Visiting friends and relatives' ? 250 : 0",
+      "calculate": "datum.Purpose === 'Holiday or leisure' || datum.Purpose === 'Visiting friends and relatives' ? 75 : 0",
       "as": "PanelBase"
     },
     {
@@ -36,7 +56,7 @@
       "as": "PanelX"
     },
     {
-      "calculate": "datum.PanelBase + datum.VisitorNightsM",
+      "calculate": "datum.PanelBase + datum.ChangePct",
       "as": "PanelY"
     }
   ],
@@ -84,26 +104,28 @@
       "type": "quantitative",
       "scale": {
         "domain": [
-          0,
-          500
+          -40,
+          100
         ],
         "nice": false
       },
       "axis": {
-        "title": "Visitor nights (millions)",
+        "title": "Change from 2019 (percent)",
         "values": [
+          -40,
+          -30,
+          -20,
+          -10,
           0,
-          50,
-          100,
-          150,
-          200,
-          250,
-          300,
-          350,
-          400,
-          450
+          10,
+          35,
+          45,
+          55,
+          65,
+          75,
+          85
         ],
-        "labelExpr": "datum.value >= 250 ? datum.value - 250 : datum.value",
+        "labelExpr": "(datum.value === 0 || datum.value === 75 ? '0' : format(datum.value >= 35 ? datum.value - 75 : datum.value, '+.0f')) + '%'",
         "grid": false
       }
     },
@@ -144,6 +166,18 @@
         "type": "quantitative",
         "title": "Visitor nights (millions)",
         "format": ".2f"
+      },
+      {
+        "field": "Baseline2019M",
+        "type": "quantitative",
+        "title": "2019 visitor nights (millions)",
+        "format": ".2f"
+      },
+      {
+        "field": "ChangePct",
+        "type": "quantitative",
+        "title": "Change from 2019 (percent)",
+        "format": "+.1f"
       }
     ]
   },
@@ -154,7 +188,7 @@
           "filter": "datum.Year === 2019"
         },
         {
-          "calculate": "[0, 50, 100, 150, 200]",
+          "calculate": "[-40, -30, -20, -10, 10]",
           "as": "GridTicks"
         },
         {
@@ -194,6 +228,42 @@
       }
     },
     {
+      "transform": [
+        {
+          "filter": "datum.Year === 2019"
+        },
+        {
+          "calculate": "datum.PanelColumn + 5",
+          "as": "BaselineEnd"
+        }
+      ],
+      "mark": {
+        "type": "rule",
+        "strokeDash": [
+          2,
+          4
+        ],
+        "strokeWidth": 1.5
+      },
+      "encoding": {
+        "x": {
+          "field": "PanelColumn",
+          "type": "quantitative"
+        },
+        "x2": {
+          "field": "BaselineEnd"
+        },
+        "y": {
+          "field": "PanelBase",
+          "type": "quantitative"
+        },
+        "color": {
+          "value": "#647585"
+        },
+        "tooltip": null
+      }
+    },
+    {
       "mark": {
         "type": "line",
         "strokeWidth": 2.5,
@@ -214,7 +284,7 @@
           "filter": "datum.Year === 2019"
         },
         {
-          "calculate": "datum.PanelBase + 235",
+          "calculate": "datum.PanelBase + 23",
           "as": "HeaderY"
         },
         {
