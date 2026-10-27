@@ -3,7 +3,13 @@
   "width": "container",
   "height": 400,
   "data": {
-    "url": "data/accommodation_capital_regional.csv"
+    "url": "data/accommodation_capital_regional.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "NightsM": "number"
+      }
+    }
   },
   "transform": [
     {
@@ -13,21 +19,24 @@
     {
       "calculate": "datum.Area === 'Capital' ? 'Capital cities' : 'Regional Australia'",
       "as": "DisplayArea"
+    },
+    {
+      "calculate": "format(datum.NightsM, '.1f') + ' M'",
+      "as": "NightsLabel"
     }
   ],
-  "mark": {
-    "type": "bar",
-    "cornerRadiusEnd": 3
-  },
   "encoding": {
     "x": {
       "field": "SignedNights",
       "type": "quantitative",
       "scale": {
-        "domain": [
-          -85,
-          85
-        ]
+        "domainMin": {
+          "expr": "-80 * width / max(width - 80, 1)"
+        },
+        "domainMax": {
+          "expr": "80 * width / max(width - 80, 1)"
+        },
+        "nice": false
       },
       "axis": {
         "title": "Visitor nights (millions)",
@@ -74,20 +83,18 @@
           "Regional"
         ],
         "range": [
-          "#35617D",
-          "#C68A58"
+          "#4056A1",
+          "#B88726"
         ]
       },
       "title": "Area",
       "legend": {
-        "labelExpr": "width < 250 ? (datum.label === 'Capital' ? ['Capital', 'cities'] : ['Regional', 'Australia']) : datum.label === 'Capital' ? 'Capital cities' : 'Regional Australia'",
+        "labelExpr": "width < 350 ? (datum.label === 'Capital' ? ['Capital', 'cities'] : ['Regional', 'Australia']) : datum.label === 'Capital' ? 'Capital cities' : 'Regional Australia'",
         "columns": 2,
         "gridAlign": "each",
         "columnPadding": 12,
         "clipHeight": 40,
-        "labelLimit": {
-          "expr": "width < 450 ? 70 : 240"
-        },
+        "labelLimit": 150,
         "title": null
       }
     },
@@ -146,5 +153,39 @@
     "right": 5,
     "top": 5,
     "bottom": 5
-  }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "bar",
+        "cornerRadiusEnd": 3
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": {
+          "expr": "datum.Area === 'Capital' ? 'right' : 'left'"
+        },
+        "dx": {
+          "expr": "datum.Area === 'Capital' ? -6 : 6"
+        },
+        "baseline": "middle",
+        "fontSize": 10,
+        "fontWeight": 600
+      },
+      "encoding": {
+        "text": {
+          "field": "NightsLabel"
+        },
+        "color": {
+          "condition": {
+            "test": "datum.Area === 'Capital'",
+            "value": "#4056A1"
+          },
+          "value": "#8B641C"
+        }
+      }
+    }
+  ]
 }

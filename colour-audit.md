@@ -72,7 +72,7 @@ All 13 active chart specifications were rechecked after the changes. No active c
 | 1 | Sequential blues | No |
 | 2 | Single teal on a neutral map | No |
 | 4 | Red-blue diverging scale | No |
-| 7 | Blue and ochre | No |
+| 7 | Indigo and gold | No |
 | 9 | Blue dots on a neutral map | No |
 | 10 | Two blue shades, hollow/filled markers | No |
 | 13 | Plum and gold | No |
