@@ -417,6 +417,10 @@ figcaption p:last-child {
 }
 
 /* Conclusion */
+.chapter.closing {
+  padding-top: 32px;
+}
+
 .conclusion-columns {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
