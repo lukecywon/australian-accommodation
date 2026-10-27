@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Responsive two-column small multiples in one Vega-Lite view. Panel coordinates position the four travel-purpose plots; both rows retain the same visitor-night scale. Original values and tooltips are unchanged.",
+  "description": "Annual domestic visitor nights by stopover purpose, years ending December 2019-2024, extracted from the National Visitor Survey workbook. Two-column small multiples share a 0-200 million scale. Source values in thousands are converted to millions.",
   "width": "container",
   "height": 470,
   "autosize": {
@@ -9,33 +9,30 @@
     "resize": true
   },
   "data": {
-    "url": "data/purpose_by_quarter.csv",
+    "url": "data/purpose_by_year.csv",
     "format": {
       "type": "csv",
       "parse": {
-        "VisitorNightsM": "number"
+        "VisitorNightsM": "number",
+        "Year": "number"
       }
     }
   },
   "transform": [
     {
-      "calculate": "replace(replace(replace(replace(datum.Quarter, 'Jun ', 'June '), 'Sep ', 'September '), 'Dec ', 'December '), 'Mar ', 'March ')",
-      "as": "DisplayQuarter"
-    },
-    {
-      "calculate": "datum.Purpose === 'Visiting friends and relatives' || datum.Purpose === 'Other' ? 4.6 : 0",
+      "calculate": "datum.Purpose === 'Visiting friends and relatives' || datum.Purpose === 'Other and not asked' ? 6 : 0",
       "as": "PanelColumn"
     },
     {
-      "calculate": "datum.Purpose === 'Holiday' || datum.Purpose === 'Visiting friends and relatives' ? 70 : 0",
+      "calculate": "datum.Purpose === 'Holiday or leisure' || datum.Purpose === 'Visiting friends and relatives' ? 250 : 0",
       "as": "PanelBase"
     },
     {
-      "calculate": "indexof(['Jun 2025', 'Sep 2025', 'Dec 2025', 'Mar 2026', 'Jun 2026'], datum.Quarter)",
-      "as": "QuarterIndex"
+      "calculate": "datum.Year - 2019",
+      "as": "YearIndex"
     },
     {
-      "calculate": "datum.PanelColumn + datum.QuarterIndex",
+      "calculate": "datum.PanelColumn + datum.YearIndex",
       "as": "PanelX"
     },
     {
@@ -50,7 +47,7 @@
       "scale": {
         "domain": [
           -0.25,
-          8.85
+          11.25
         ],
         "nice": false
       },
@@ -62,13 +59,15 @@
           2,
           3,
           4,
-          4.6,
-          5.6,
-          6.6,
-          7.6,
-          8.6
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
         ],
-        "labelExpr": "width < 650 && (round(datum.value >= 4.6 ? datum.value - 4.6 : datum.value) === 1 || round(datum.value >= 4.6 ? datum.value - 4.6 : datum.value) === 3) ? '' : [['June', 'September', 'December', 'March', 'June'][round(datum.value >= 4.6 ? datum.value - 4.6 : datum.value)], ['2025', '2025', '2025', '2026', '2026'][round(datum.value >= 4.6 ? datum.value - 4.6 : datum.value)]]",
+        "labelExpr": "width < 650 && indexof([0, 2, 5], datum.value >= 6 ? datum.value - 6 : datum.value) < 0 ? '' : format(2019 + (datum.value >= 6 ? datum.value - 6 : datum.value), 'd')",
         "labelAngle": 0,
         "labelFontSize": 11,
         "labelLineHeight": 14,
@@ -76,7 +75,7 @@
         "labelOverlap": false,
         "grid": false,
         "labelAlign": {
-          "expr": "width < 650 && datum.value === 4 ? 'right' : width < 650 && datum.value === 4.6 ? 'left' : 'center'"
+          "expr": "width < 650 && datum.value === 5 ? 'right' : width < 650 && datum.value === 6 ? 'left' : 'center'"
         }
       }
     },
@@ -86,7 +85,7 @@
       "scale": {
         "domain": [
           0,
-          140
+          500
         ],
         "nice": false
       },
@@ -94,19 +93,17 @@
         "title": "Visitor nights (millions)",
         "values": [
           0,
-          10,
-          20,
-          30,
-          40,
           50,
-          70,
-          80,
-          90,
           100,
-          110,
-          120
+          150,
+          200,
+          250,
+          300,
+          350,
+          400,
+          450
         ],
-        "labelExpr": "datum.value >= 70 ? datum.value - 70 : datum.value",
+        "labelExpr": "datum.value >= 250 ? datum.value - 250 : datum.value",
         "grid": false
       }
     },
@@ -115,10 +112,10 @@
       "type": "nominal",
       "scale": {
         "domain": [
-          "Holiday",
+          "Holiday or leisure",
           "Visiting friends and relatives",
           "Business",
-          "Other"
+          "Other and not asked"
         ],
         "range": [
           "#0072B2",
@@ -138,9 +135,9 @@
         "type": "nominal"
       },
       {
-        "field": "DisplayQuarter",
+        "field": "Year",
         "type": "ordinal",
-        "title": "Quarter"
+        "title": "Year ending December"
       },
       {
         "field": "VisitorNightsM",
@@ -154,10 +151,10 @@
     {
       "transform": [
         {
-          "filter": "datum.Quarter === 'Jun 2025'"
+          "filter": "datum.Year === 2019"
         },
         {
-          "calculate": "[0, 10, 20, 30, 40, 50]",
+          "calculate": "[0, 50, 100, 150, 200]",
           "as": "GridTicks"
         },
         {
@@ -170,7 +167,7 @@
           "as": "GridY"
         },
         {
-          "calculate": "datum.PanelColumn + 4",
+          "calculate": "datum.PanelColumn + 5",
           "as": "GridEnd"
         }
       ],
@@ -207,17 +204,17 @@
       },
       "encoding": {
         "order": {
-          "field": "QuarterIndex"
+          "field": "YearIndex"
         }
       }
     },
     {
       "transform": [
         {
-          "filter": "datum.Quarter === 'Jun 2025'"
+          "filter": "datum.Year === 2019"
         },
         {
-          "calculate": "datum.PanelBase + 65",
+          "calculate": "datum.PanelBase + 235",
           "as": "HeaderY"
         },
         {
