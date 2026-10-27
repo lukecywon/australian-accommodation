@@ -355,6 +355,23 @@ figcaption p:last-child {
   }
 }
 
+/* Travel-purpose emphasis */
+.purpose-holiday {
+  color: #3C5488;
+}
+
+.purpose-friends {
+  color: #A84B62;
+}
+
+.purpose-business {
+  color: #287D74;
+}
+
+.purpose-other {
+  color: #80643F;
+}
+
 /* Accommodation category emphasis */
 .accommodation-rented {
   color: #332288;

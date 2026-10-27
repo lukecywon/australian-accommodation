@@ -140,10 +140,10 @@
           "Other and not asked"
         ],
         "range": [
-          "#0072B2",
-          "#D55E00",
-          "#009E73",
-          "#CC79A7"
+          "#3C5488",
+          "#A84B62",
+          "#287D74",
+          "#80643F"
         ]
       },
       "legend": null
@@ -314,9 +314,6 @@
         },
         "text": {
           "field": "PanelHeading"
-        },
-        "color": {
-          "value": "#183041"
         },
         "tooltip": null
       }
