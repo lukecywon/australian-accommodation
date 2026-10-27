@@ -289,24 +289,24 @@
     {
       "transform": [
         {
-          "filter": "datum.StateCode === 'QLD' && datum.MarketPosition === 0"
+          "filter": "datum.StateCode === 'NSW' && datum.MarketPosition === 0"
         }
       ],
       "mark": {
         "type": "rule",
         "strokeWidth": 1,
         "strokeDash": [
-          3,
+          4,
           3
         ]
       },
       "encoding": {
         "x": {
-          "datum": 0.239631,
+          "datum": 0.36,
           "type": "quantitative"
         },
         "y": {
-          "datum": 84.861788,
+          "datum": 114.6262,
           "type": "quantitative"
         },
         "color": {
@@ -317,32 +317,32 @@
         },
         "tooltip": null,
         "x2": {
-          "datum": 0.44
+          "datum": 0.36
         },
         "y2": {
-          "datum": 103
+          "datum": 121
         }
       }
     },
     {
       "transform": [
         {
-          "filter": "datum.StateCode === 'QLD' && datum.MarketPosition === 0"
+          "filter": "datum.StateCode === 'NSW' && datum.MarketPosition === 0"
         }
       ],
       "mark": {
         "type": "point",
         "filled": false,
-        "size": 120,
-        "strokeWidth": 1.5
+        "size": 55,
+        "strokeWidth": 1.2
       },
       "encoding": {
         "x": {
-          "datum": 0.239631,
+          "datum": 0.36,
           "type": "quantitative"
         },
         "y": {
-          "datum": 84.861788,
+          "datum": 114.6262,
           "type": "quantitative"
         },
         "color": {
@@ -357,41 +357,45 @@
     {
       "transform": [
         {
-          "filter": "datum.StateCode === 'QLD' && datum.MarketPosition === 0"
+          "filter": "datum.StateCode === 'NSW' && datum.MarketPosition === 0"
+        },
+        {
+          "calculate": "0.17 + 1.9 * 320 / width",
+          "as": "AnnotationRight"
+        },
+        {
+          "calculate": "133 - 125 * 48 / height",
+          "as": "AnnotationBottom"
         }
       ],
       "mark": {
-        "type": "text",
-        "align": "left",
-        "baseline": "top",
-        "fontSize": 11,
-        "lineHeight": 16,
-        "color": "#183041"
+        "type": "rect",
+        "stroke": "#B6C6D0",
+        "strokeWidth": 1,
+        "cornerRadius": 4
       },
       "encoding": {
         "x": {
-          "datum": 0.46,
+          "datum": 0.17,
           "type": "quantitative"
         },
         "y": {
-          "datum": 102,
+          "datum": 133,
           "type": "quantitative"
         },
-        "text": {
-          "value": [
-            "Queensland and Victoria swap second and third.",
-            "Queensland's domestic lead: 5.5 million nights.",
-            "Victoria's international lead: 17.5 million nights.",
-            "Queensland has the largest gap: 29.8 million nights."
-          ]
-        },
         "color": {
-          "value": "#183041"
+          "value": "#ffffff"
         },
         "opacity": {
           "value": 1
         },
-        "tooltip": null
+        "tooltip": null,
+        "x2": {
+          "field": "AnnotationRight"
+        },
+        "y2": {
+          "field": "AnnotationBottom"
+        }
       }
     },
     {
@@ -404,16 +408,18 @@
         "type": "text",
         "align": "left",
         "baseline": "top",
+        "dx": 10,
+        "dy": 8,
         "fontSize": 11,
         "lineHeight": 16
       },
       "encoding": {
         "x": {
-          "datum": 0.33,
+          "datum": 0.17,
           "type": "quantitative"
         },
         "y": {
-          "datum": 124,
+          "datum": 133,
           "type": "quantitative"
         },
         "color": {
@@ -434,23 +440,137 @@
     {
       "transform": [
         {
-          "filter": "datum.StateCode === 'WA' && datum.MarketPosition === 0"
+          "filter": "datum.StateCode === 'QLD' && datum.MarketPosition === 0"
+        }
+      ],
+      "mark": {
+        "type": "rule",
+        "strokeWidth": 1,
+        "strokeDash": [
+          4,
+          3
+        ]
+      },
+      "encoding": {
+        "x": {
+          "datum": 0.239631,
+          "type": "quantitative"
+        },
+        "y": {
+          "datum": 84.861788,
+          "type": "quantitative"
+        },
+        "color": {
+          "value": "#526d82"
+        },
+        "opacity": {
+          "value": 1
+        },
+        "tooltip": null,
+        "x2": {
+          "datum": 0.4
+        },
+        "y2": {
+          "datum": 86
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.StateCode === 'QLD' && datum.MarketPosition === 0"
+        }
+      ],
+      "mark": {
+        "type": "point",
+        "filled": false,
+        "size": 55,
+        "strokeWidth": 1.2
+      },
+      "encoding": {
+        "x": {
+          "datum": 0.239631,
+          "type": "quantitative"
+        },
+        "y": {
+          "datum": 84.861788,
+          "type": "quantitative"
+        },
+        "color": {
+          "value": "#526d82"
+        },
+        "opacity": {
+          "value": 1
+        },
+        "tooltip": null
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.StateCode === 'QLD' && datum.MarketPosition === 0"
+        },
+        {
+          "calculate": "0.4 + 1.9 * 280 / width",
+          "as": "AnnotationRight"
+        },
+        {
+          "calculate": "106 - 125 * 80 / height",
+          "as": "AnnotationBottom"
+        }
+      ],
+      "mark": {
+        "type": "rect",
+        "stroke": "#B6C6D0",
+        "strokeWidth": 1,
+        "cornerRadius": 4
+      },
+      "encoding": {
+        "x": {
+          "datum": 0.4,
+          "type": "quantitative"
+        },
+        "y": {
+          "datum": 106,
+          "type": "quantitative"
+        },
+        "color": {
+          "value": "#ffffff"
+        },
+        "opacity": {
+          "value": 1
+        },
+        "tooltip": null,
+        "x2": {
+          "field": "AnnotationRight"
+        },
+        "y2": {
+          "field": "AnnotationBottom"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.StateCode === 'QLD' && datum.MarketPosition === 0"
         }
       ],
       "mark": {
         "type": "text",
         "align": "left",
         "baseline": "top",
+        "dx": 10,
+        "dy": 8,
         "fontSize": 11,
         "lineHeight": 16
       },
       "encoding": {
         "x": {
-          "datum": 0.12,
+          "datum": 0.4,
           "type": "quantitative"
         },
         "y": {
-          "datum": 58,
+          "datum": 106,
           "type": "quantitative"
         },
         "color": {
@@ -462,9 +582,10 @@
         "tooltip": null,
         "text": {
           "value": [
-            "Only Western Australia and the Northern Territory",
-            "record more international than domestic nights:",
-            "2.5 million and 0.5 million more, respectively."
+            "Queensland and Victoria swap ranks 2 and 3.",
+            "Queensland leads domestically by 5.5 million.",
+            "Victoria leads internationally by 17.5 million.",
+            "Queensland's 29.8 million-night gap is largest."
           ]
         }
       }
@@ -479,7 +600,7 @@
         "type": "rule",
         "strokeWidth": 1,
         "strokeDash": [
-          3,
+          4,
           3
         ]
       },
@@ -500,10 +621,124 @@
         },
         "tooltip": null,
         "x2": {
-          "datum": 0.5
+          "datum": 0.4
         },
         "y2": {
           "datum": 44
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.StateCode === 'WA' && datum.MarketPosition === 0"
+        }
+      ],
+      "mark": {
+        "type": "point",
+        "filled": false,
+        "size": 55,
+        "strokeWidth": 1.2
+      },
+      "encoding": {
+        "x": {
+          "datum": 0.64,
+          "type": "quantitative"
+        },
+        "y": {
+          "datum": 37.14992,
+          "type": "quantitative"
+        },
+        "color": {
+          "value": "#526d82"
+        },
+        "opacity": {
+          "value": 1
+        },
+        "tooltip": null
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.StateCode === 'WA' && datum.MarketPosition === 0"
+        },
+        {
+          "calculate": "0.12 + 1.9 * 290 / width",
+          "as": "AnnotationRight"
+        },
+        {
+          "calculate": "60 - 125 * 64 / height",
+          "as": "AnnotationBottom"
+        }
+      ],
+      "mark": {
+        "type": "rect",
+        "stroke": "#B6C6D0",
+        "strokeWidth": 1,
+        "cornerRadius": 4
+      },
+      "encoding": {
+        "x": {
+          "datum": 0.12,
+          "type": "quantitative"
+        },
+        "y": {
+          "datum": 60,
+          "type": "quantitative"
+        },
+        "color": {
+          "value": "#ffffff"
+        },
+        "opacity": {
+          "value": 1
+        },
+        "tooltip": null,
+        "x2": {
+          "field": "AnnotationRight"
+        },
+        "y2": {
+          "field": "AnnotationBottom"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.StateCode === 'WA' && datum.MarketPosition === 0"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "top",
+        "dx": 10,
+        "dy": 8,
+        "fontSize": 11,
+        "lineHeight": 16
+      },
+      "encoding": {
+        "x": {
+          "datum": 0.12,
+          "type": "quantitative"
+        },
+        "y": {
+          "datum": 60,
+          "type": "quantitative"
+        },
+        "color": {
+          "value": "#183041"
+        },
+        "opacity": {
+          "value": 1
+        },
+        "tooltip": null,
+        "text": {
+          "value": [
+            "Only Western Australia and the Northern Territory",
+            "record more international than domestic nights:",
+            "2.5 million and 0.5 million more, respectively."
+          ]
         }
       }
     }
