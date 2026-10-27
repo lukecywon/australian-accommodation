@@ -382,6 +382,80 @@
           }
         ]
       }
+    },
+    {
+      "transform": [
+        {
+          "aggregate": [
+            {
+              "op": "count",
+              "as": "AnnotationCount"
+            }
+          ]
+        },
+        {
+          "filter": "focus === 'Selected accommodation types'"
+        }
+      ],
+      "layer": [
+        {
+          "mark": {
+            "type": "rect",
+            "fill": "#ffffff",
+            "fillOpacity": 0.96,
+            "stroke": "#B6C6D0",
+            "cornerRadius": 4
+          },
+          "encoding": {
+            "x": {
+              "value": {
+                "expr": "width * (width < 280 ? 0.62 : 0.45)"
+              }
+            },
+            "x2": {
+              "value": {
+                "expr": "width - 5"
+              }
+            },
+            "y": {
+              "value": 230
+            },
+            "y2": {
+              "value": {
+                "expr": "width < 280 ? 338 : 300"
+              }
+            }
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "baseline": "top",
+            "fontSize": {
+              "expr": "width < 280 ? 8.5 : 11"
+            },
+            "lineHeight": 15,
+            "lineBreak": "\n",
+            "color": "#35617D"
+          },
+          "encoding": {
+            "x": {
+              "value": {
+                "expr": "width * (width < 280 ? 0.62 : 0.45) + (width < 280 ? 6 : 9)"
+              }
+            },
+            "y": {
+              "value": 242
+            },
+            "text": {
+              "value": {
+                "expr": "width < 280 ? 'Rented\\nproperties\\n+18.3 M\\nFriends or\\nrelatives\\n-8.6 M' : 'Largest changes, 2025–2026\\nRented properties: +18.3 M nights\\nFriends or relatives: -8.6 M nights'"
+              }
+            }
+          }
+        }
+      ]
     }
   ],
   "config": {
