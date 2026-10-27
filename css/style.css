@@ -355,6 +355,15 @@ figcaption p:last-child {
   }
 }
 
+/* Quarterly comparison emphasis */
+.quarter-above {
+  color: #2166AC;
+}
+
+.quarter-below {
+  color: #B2182B;
+}
+
 /* Travel-purpose emphasis */
 .purpose-holiday {
   color: #315A8A;
