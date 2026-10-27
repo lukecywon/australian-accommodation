@@ -417,10 +417,6 @@ figcaption p:last-child {
 }
 
 /* Conclusion */
-#closing-title {
-  font-weight: 700;
-}
-
 .conclusion-columns {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
