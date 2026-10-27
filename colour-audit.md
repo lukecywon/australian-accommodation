@@ -50,6 +50,8 @@ Direct labels, automatic black/white label contrast and matching coloured commen
 Previous conflict: seafoam hotels `#79A69A` and terracotta friends or relatives `#C97868`.
 Uses the same revised coastal mapping as Figure 6: hotels `#8FB4C8`, rented accommodation `#2B5D73`, friends or relatives `#C97868`.
 
+Caravan and commercial camping was subsequently added in slate blue `#536A85`, matching the caravan category in Figure 6. Shares and column widths now cover four accommodation categories.
+
 ## Figure 11 - State accommodation economy profiles
 
 Previously had the same state-colour conflict as Figure 3. Now uses the identical revised state mapping.

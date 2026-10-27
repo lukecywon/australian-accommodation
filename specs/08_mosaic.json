@@ -77,31 +77,34 @@
             "domain": [
               "Hotels and similar",
               "Rented accommodation",
+              "Caravan and commercial camping",
               "Friends or relatives property"
             ],
             "range": [
               "#8FB4C8",
               "#2B5D73",
+              "#536A85",
               "#C97868"
             ]
           },
           "legend": {
             "title": null,
             "labelFontSize": {
-              "expr": "width < 400 ? 8.5 : 10"
+              "expr": "width < 400 ? 9 : 10"
             },
             "titleFontSize": 12,
-            "columns": 3,
-            "labelLimit": {
-              "expr": "width < 400 ? 65 : 240"
+            "columns": {
+              "expr": "width < 400 ? 2 : 4"
             },
-            "labelExpr": "width < 450 ? (datum.label === 'Hotels and similar' ? ['Hotels and', 'similar'] : datum.label === 'Rented accommodation' ? ['Rented', 'accommodation'] : ['Friends or', 'relatives', 'property']) : datum.label",
+            "labelLimit": 100,
+            "labelExpr": "datum.label === 'Hotels and similar' ? ['Hotels and', 'similar'] : datum.label === 'Rented accommodation' ? ['Rented', 'accommodation'] : datum.label === 'Caravan and commercial camping' ? ['Caravan and', 'commercial camping'] : ['Friends or', 'relatives property']",
             "gridAlign": "each",
-            "columnPadding": 4,
+            "columnPadding": 10,
             "clipHeight": 40,
             "symbolSize": 64,
             "labelLineHeight": 12,
-            "labelOffset": 3
+            "labelOffset": 3,
+            "rowPadding": 8
           }
         },
         "tooltip": [
@@ -308,10 +311,10 @@
     "contains": "padding",
     "resize": true
   },
-  "description": "Mosaic of domestic visitor nights in three selected accommodation categories. State columns are ordered by their recorded totals, highest to lowest. Width is proportional to the total recorded nights in these categories; each block label shows its within-state percentage. Rented accommodation is deep blue, consistent with Figure 6.",
+  "description": "Mosaic of domestic visitor nights in four selected accommodation categories. State columns are ordered by their recorded totals, highest to lowest. Width is proportional to the total recorded nights in these categories; each block label shows its within-state percentage. Rented accommodation is deep blue, consistent with Figure 6.",
   "transform": [
     {
-      "calculate": "indexof(['Hotels and similar', 'Rented accommodation', 'Friends or relatives property'], datum.AccommodationType)",
+      "calculate": "indexof([\"Hotels and similar\", \"Rented accommodation\", \"Caravan and commercial camping\", \"Friends or relatives property\"], datum.AccommodationType)",
       "as": "CategoryOrder"
     },
     {

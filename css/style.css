@@ -383,6 +383,11 @@ figcaption p:last-child {
   font-weight: 650;
 }
 
+.accommodation-camping {
+  color: #536A85;
+  font-weight: 650;
+}
+
 /* Chart controls */
 #chart-10 {
   position: relative;
