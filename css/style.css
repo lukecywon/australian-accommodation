@@ -345,7 +345,7 @@ figcaption p:last-child {
 }
 
 .commentary-columns .state-northern-territory {
-  color: #847540;
+  color: #6F6B63;
 }
 
 @media (max-width: 700px) {
@@ -357,19 +357,19 @@ figcaption p:last-child {
 
 /* Travel-purpose emphasis */
 .purpose-holiday {
-  color: #3C5488;
+  color: #315A8A;
 }
 
 .purpose-friends {
-  color: #A84B62;
+  color: #A6642F;
 }
 
 .purpose-business {
-  color: #287D74;
+  color: #7651A8;
 }
 
 .purpose-other {
-  color: #80643F;
+  color: #626B73;
 }
 
 /* Accommodation category emphasis */

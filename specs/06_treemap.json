@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "International visitor nights by accommodation type. All eleven tiles are labelled; compact labels are expanded in tooltips. Values are shown in millions. A coastal palette uses deep blue for rented properties, terracotta for friends or relatives, seafoam for hotels and sand or muted coastal tones for the remaining categories.",
+  "description": "International visitor nights by accommodation type. All eleven tiles are labelled; compact labels are expanded in tooltips. Values are shown in millions. A coastal palette uses deep blue for rented properties, terracotta for friends or relatives, powder blue for hotels and sand or neutral coastal tones for the remaining categories.",
   "width": "container",
   "height": 660,
   "autosize": {
@@ -173,15 +173,15 @@
             "range": [
               "#2B5D73",
               "#C97868",
-              "#79A69A",
+              "#8FB4C8",
               "#D6BD91",
-              "#568A91",
-              "#A9BFC5",
+              "#6E91AD",
+              "#B2C0D0",
               "#A58F68",
               "#846F83",
-              "#51756A",
-              "#88958C",
-              "#D8DAD2"
+              "#536A85",
+              "#8E9196",
+              "#D6D3CE"
             ]
           }
         }

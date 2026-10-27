@@ -2,34 +2,34 @@
 
 Scope: the 13 chart specifications loaded by `js/embed.js`. Unused specification files were excluded.
 Requirement: no red-family and green-family hues together in one graph. Muted rose, coral and terracotta count as red-family; seafoam and green-leaning teal count as green-family.
-Status: proposals only. Chart palettes have not been changed.
+Status: all proposals implemented in Figures 3, 5, 6, 8, 11 and 12. Shared state and accommodation mappings, chart headings and coloured commentary have been kept consistent.
 
 ## Figure 3 - Domestic and international visitor nights
 
-Current conflict: Tasmania's rose `#9B6582` and South Australia's green-leaning teal `#427E77`.
-Proposed direction: blue, amber, purple and warm neutrals. Keep most state colours; replace South Australia with warm brown `#8C563D` and Northern Territory's olive with neutral taupe `#6F6B63`.
-Apply the same mapping to Figure 11 and the associated state-coloured analysis text.
+Previous conflict: Tasmania's rose `#9B6582` and South Australia's green-leaning teal `#427E77`.
+Applied direction: blue, amber, purple and warm neutrals. Keep most state colours; replace South Australia with warm brown `#8C563D` and Northern Territory's olive with neutral taupe `#6F6B63`.
+The same mapping is applied to Figure 11 and the associated state-coloured analysis text.
 
 ## Figure 5 - Recovery by travel purpose
 
-Current conflict: friends and relatives in raspberry `#A84B62` and business in teal `#287D74`.
-Proposed palette:
+Previous conflict: friends and relatives in raspberry `#A84B62` and business in teal `#287D74`.
+Applied palette:
 
-| Purpose | Proposed colour |
+| Purpose | Applied colour |
 |---|---|
 | Holiday or leisure | Blue `#315A8A` |
 | Visiting friends and relatives | Burnt amber `#A6642F` |
 | Business | Violet `#7651A8` |
 | Other and not asked | Slate `#626B73` |
 
-Update panel headings and category-coloured commentary to match.
+Panel headings and category-coloured commentary match this palette.
 
 ## Figure 6 - International accommodation treemap
 
-Current conflict: terracotta `#C97868` with seafoam `#79A69A`, teal `#568A91` and green `#51756A`.
-Proposed direction: coastal blue, terracotta, sand and neutral shades. Preserve the two dominant category colours and replace all green-leaning minor tones.
+Previous conflict: terracotta `#C97868` with seafoam `#79A69A`, teal `#568A91` and green `#51756A`.
+Applied direction: coastal blue, terracotta, sand and neutral shades. The two dominant category colours are preserved; all green-leaning minor tones are replaced.
 
-| Accommodation | Proposed colour |
+| Accommodation | Applied colour |
 |---|---|
 | Rented properties | Deep blue `#2B5D73` (retain) |
 | Friends or relatives | Terracotta `#C97868` (retain) |
@@ -43,21 +43,25 @@ Proposed direction: coastal blue, terracotta, sand and neutral shades. Preserve 
 | Non-commercial caravan or camping | Neutral grey `#8E9196` |
 | Guest house or bed and breakfast | Shell `#D6D3CE` |
 
-Retain direct labels and automatic black/white label contrast. Keep the matching coloured commentary.
+Direct labels, automatic black/white label contrast and matching coloured commentary are retained.
 
 ## Figure 8 - State accommodation mix
 
-Current conflict: seafoam hotels `#79A69A` and terracotta friends or relatives `#C97868`.
-Use the same revised coastal mapping as Figure 6: hotels `#8FB4C8`, rented accommodation `#2B5D73`, friends or relatives `#C97868`.
+Previous conflict: seafoam hotels `#79A69A` and terracotta friends or relatives `#C97868`.
+Uses the same revised coastal mapping as Figure 6: hotels `#8FB4C8`, rented accommodation `#2B5D73`, friends or relatives `#C97868`.
 
 ## Figure 11 - State accommodation economy profiles
 
-Same state-colour conflict as Figure 3. Apply the Figure 3 proposal exactly, rather than assigning different colours to the same states.
+Previously had the same state-colour conflict as Figure 3. Now uses the identical revised state mapping.
 
 ## Figure 12 - Spending waterfall
 
-Current conflict: increase in green-leaning teal `#138878` and decrease in red `#CF5B59`.
-Proposed palette: increase in blue `#2F6F9F`, decrease in amber `#B9742A`, total in charcoal `#4B5563`.
+Previous conflict: increase in green-leaning teal `#138878` and decrease in red `#CF5B59`.
+Applied palette: increase in blue `#2F6F9F`, decrease in amber `#B9742A`, total in charcoal `#4B5563`.
+
+## Verification
+
+All 13 active chart specifications were rechecked after the changes. No active chart combines the red and green colour families defined above. Figures 3 and 11 share identical state colours; Figures 6 and 8 share identical accommodation colours.
 
 ## Other figures checked
 
@@ -71,4 +75,4 @@ Proposed palette: increase in blue `#2F6F9F`, decrease in amber `#B9742A`, total
 | 10 | Two blue shades, hollow/filled markers | No |
 | 13 | Plum and gold | No |
 
-These are palette proposals for the user's stated rule, not a claim that removing red/green combinations alone addresses every colour-vision deficiency. Preserve the existing direct labels, numeric annotations and marker distinctions.
+These changes implement the user's stated palette rule. Existing direct labels, numeric annotations and marker distinctions are retained.
