@@ -320,6 +320,82 @@
         },
         "tooltip": null
       }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.Year === 2020 && datum.Purpose !== 'Other and not asked'"
+        },
+        {
+          "calculate": "datum.PanelColumn + 2.25",
+          "as": "AnnotationEndX"
+        },
+        {
+          "calculate": "datum.PanelColumn + 2.4",
+          "as": "AnnotationTextX"
+        },
+        {
+          "calculate": "datum.PanelBase + (datum.Purpose === 'Business' ? -5 : -28)",
+          "as": "AnnotationY"
+        },
+        {
+          "calculate": "width < 650 ? 'COVID-19\\ndrop' : 'COVID-19 drop'",
+          "as": "AnnotationLabel"
+        }
+      ],
+      "encoding": {
+        "color": {
+          "value": "#526d82"
+        },
+        "tooltip": null
+      },
+      "layer": [
+        {
+          "mark": {
+            "type": "rule",
+            "strokeWidth": 1,
+            "strokeDash": [
+              4,
+              3
+            ]
+          },
+          "encoding": {
+            "x2": {
+              "field": "AnnotationEndX"
+            },
+            "y2": {
+              "field": "AnnotationY"
+            }
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "baseline": "middle",
+            "fontSize": 11,
+            "fontWeight": 500,
+            "lineBreak": "\n",
+            "lineHeight": 13
+          },
+          "encoding": {
+            "x": {
+              "field": "AnnotationTextX",
+              "type": "quantitative"
+            },
+            "y": {
+              "field": "AnnotationY",
+              "type": "quantitative"
+            },
+            "text": {
+              "field": "AnnotationLabel"
+            },
+            "color": {
+              "value": "#183041"
+            }
+          }
+        }
+      ]
     }
   ],
   "config": {
